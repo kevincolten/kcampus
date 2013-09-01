@@ -9,10 +9,17 @@
 <body>
   <% if !current_user.nil? %>
     Logged in as: <%= current_user.email %> 
-                  <%= link_to "logout", session_url, :method => :delete %>
+                  <%= link_to "logout", session_url, :method => "delete" %>
+  <% elsif request.original_url == new_session_url %>
+    <%= link_to "new user", new_user_url %>
+  <% elsif request.original_url == new_user_url %>
+    <%= link_to "login", new_session_url %> 
   <% else %>
-    <%= link_to "login", new_session_url %>
+    <%= link_to "login", new_session_url %> 
+    <%= link_to "new user", new_user_url %>
   <% end %>
+  <br>
+  <%= link_to "Locations", locations_url %>
 <%= yield %>
 
 </body>

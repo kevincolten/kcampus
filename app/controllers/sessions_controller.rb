@@ -1,17 +1,18 @@
 class SessionsController < ApplicationController
   before_filter :require_no_current_user!, :only => [:create, :new]
-  before_filter :require_current_user!, only => [:destroy]
+  before_filter :require_current_user!, :only => [:destroy]
 
   def create
-    user = User.find_by_credential(
-      params[:user][:username],
+    user = User.find_by_credentials(
+      params[:user][:email],
       params[:user][:password]
       )
 
     if user.nil?
       render :json => "Credentials were Wrong"
     else
-      self.current_user = userredirect_to user_url(user)
+      self.current_user = user
+      redirect_to user_url(user)
     end
   end
 

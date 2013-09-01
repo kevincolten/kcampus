@@ -1,0 +1,44 @@
+<input type="hidden" name="authenticity_token" 
+ value="<%= form_authenticity_token %>">
+<p>
+ <label for="instructor_datatel">Datatel Number</label>
+ <input type="text" id="instructor_datatel" 
+        name="instructor[datatel]" value="<%= @instructor.datatel %>">
+</p>
+<p>
+<label for="instructor_fname">First Name</label>
+<input type="text" id="instructor_fname" 
+       name="instructor[fname]" value="<%= @instructor.fname %>">
+</p>
+<p>
+<label for="instructor_lname">Last Name</label>
+<input type="text" id="instructor_lname" 
+       name="instructor[lanme]" value="<%= @instructor.lname %>">
+</p>
+<p>
+<label for="instructor_phone">Phone</label>
+<input type="text" id="instructor_phone" 
+       name="instructor[phone]" value="<%= @instructor.phone %>">
+</p>
+<p>
+<label for="instructor_email">Email</label>
+<input type="text" id="instructor_email" 
+       name="instructor[email]" value="<%= @instructor.email %>">
+</p>
+<p>
+  <label for="instructor_location_id">Mailbox Location</label>
+  <select id="instructor_location_id" name="instructor[location_id]">
+    <% @locations.each do |location| %>
+      <option value="<%= location.id %>">
+        <%= "#{location.code}" %>
+         <%= "selected" if @instructor.location_id == location.id %>
+      </option>
+    <% end %>
+  </select>
+</p>
+<p>
+<label for="instructor_pay_rate">Pay Rate</label>
+$<input type="text" id="instructor_pay_rate" 
+       name="instructor[pay_rate]" value="<%= @instructor.pay_rate %>">
+</p>
+<input type="submit" value="Submit">

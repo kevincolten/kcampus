@@ -1,0 +1,5 @@
+<form action="<%= course_types_url %>" method="post">
+  <input type="hidden" name="authenticity_token" 
+   value="<%= form_authenticity_token %>">
+  <%= render partial: "form", locals: { course_type: @course_type } %>
+</form>

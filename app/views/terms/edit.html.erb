@@ -1,0 +1,4 @@
+<form action="<%= term_url %>" method="post">
+  <input type="hidden" name="_method" method="put">
+  <%= render partial: "form", locals: { term: @term } %>
+</form>

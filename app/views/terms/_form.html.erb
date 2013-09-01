@@ -1,0 +1,37 @@
+<input type="hidden" name="authenticity_token" 
+ value="<%= form_authenticity_token %>">
+<p>
+  <label for="term_semester">Semester</label>
+  <input type="text" id="term_semester" 
+         name="term[semester]" value="<%= @term.semester %>">
+</p>
+<p>
+  <label for="term_year">Year</label>
+  <input type="text" id="term_year" 
+         name="term[year]" value="<%= @term.year %>">
+</p>
+<p>
+  <label for="term_number">Term Number</label>
+  <input type="text" id="term_number" 
+         name="term[number]" value="<%= @term.number %>">
+</p>
+<p>
+  <label for="term_reg_start">Registration Dates</label>
+  <input type="date" id="term_reg_start" 
+         name="term_reg[start]" value="<%= @term.reg_start %>">
+  -
+  <input type="date" name="term_reg[end]" value="<%= @term.reg_end %>">
+</p>
+<p>
+  <label for="term_start">Term Dates</label>
+  <input type="date" id="term_start" 
+         name="term[start]" value="<%= @term.start %>">
+  -
+  <input type="date" name="term[end]" value="<%= @term.end %>">
+</p>
+<p>
+  <label for="term_add_drop_end">Final Add/Drop Date</label>
+  <input type="date" id="term_add_drop_end" 
+         name="term[add_drop_end]" value="<%= @term.add_drop_end %>">
+</p>
+<input type="submit" value="Submit">

@@ -1,0 +1,109 @@
+<input type="hidden" name="authenticity_token" 
+ value="<%= form_authenticity_token %>">
+<p>
+  <label for="course_type">Type</label>
+  <select id="course_type" name="course[type]">
+    <% @course_types.each do |course_type| %>
+      <option value="<%= course_type.id %>">
+        <%= "#{course_type.long_name}(#{course_type.discipline}-#{course_type.level})" %>
+         <%= "selected" if @course.location_id == location.id %>
+      </option>
+    <% end %>
+  </select>
+  - 
+  <input type="text" id="course_section" 
+         name="course[section]" value="<%= @course.section %>">
+</p>
+  <label for="course_synonym">Synonym</label>
+  <input type="text" id="course_synonym" 
+         name="course[synonym]" value="<%= @course.synonym %>">
+<p>
+  <label for="course_term">Code</label>
+  <select id="course_term" name="course[term_id]">
+    <% @terms.each do |term| %>
+      <option value="<%= term.id %>">
+        <%= "#{term.semester[0]}#{term.year[-2..-1]}#{term.number}" %> 
+        <%= "selected" if @course.term_id == term.id %>
+      </option>
+    <% end %>
+  </select>
+  <select id="course_location" name="course[location_id]">
+    <% @locations.each do |location| %>
+      <option value="<%= location.id %>">
+        <%= "#{location.code}" %>
+         <%= "selected" if @course.location_id == location.id %>
+      </option>
+    <% end %>
+  </select>
+  <input type="text" id="course_number" 
+         name="course[number]" value="<%= @course.number %>">
+</p>
+<br>
+  <% @days.each do |day| %>
+    <label for="course_<%= day %>"><%= day %></label>
+    <input type="checkbox" value="true" 
+           name="course[<%= day %>]" id="course_<%= day %>"
+           <%= "checked" if @course.day %>>
+    <br>
+  <% end %>
+<br>
+<p>
+  <label for="course_start_hour">Time</label>
+  <input type="text" id="course_start_hour" 
+         name="course[start_hour]" 
+         value="<%= @course.start_time.hour if @course.start_time %>">
+  <input type="text" name="course[start_minute]"
+         value="<%= @course.start_time.min if @course.start_time %>">
+  <select name="course[start_am_pm]">
+    <option value="am" 
+            <%= "selected" if @course.start_time && 
+                @course.start_time.hour < 12 %>>am</option>
+    <option value="pm" 
+            <%= "selected" if @course.start_time &&
+                @course.start_time.hour >= 12 %>>pm</option>
+  </select>
+  -
+  <input type="text" name="course[end_hour]" 
+         value="<%= @course.end_time.hour if @course.end_time %>">
+  <input type="text" name="course[end_minute]"
+         value="<%= @course.end_time.minute if @course.end_time %>">
+  <select name="course[end_am_pm]">
+    <option value="am" 
+            <%= "selected" if @course.end_time && 
+                @course.end_time.hour < 12 %>>am</option>
+    <option value="pm" 
+            <%= "selected" if @course.start_time &&
+                @course.end_time.hour >= 12 %>>pm</option>
+  </select>  
+</p>
+<p>
+  <label for="course_room_number">Room Number</label>
+  <input type="text" id="course_room_number" name="course[room_number]">
+</p>
+<p>
+  <label for="course_seats">Available Seats</label>
+  <input type="text" id="course_seats" name="course[seats]">
+</p>
+<p>
+  <label for="course_budget_code">Budget Code</label>
+  <select id="course_budget_code" name="course[budget_code]">
+    <% @budget_codes.each do |budget_code| %>
+      <option value="<%= budget_code %>">
+        <%= budget_code %>
+         <%= "selected" if @course.budget_code == budget_code %>
+      </option>
+    <% end %>
+  </select>
+</p>
+<p>
+  <select id="course_instructor_id" name="course[instructor_id]">
+    <% @instructors.each do |instructor| %>
+      <option value="<%= instructor.id %>">
+        <%= "#{instructor.fname} #{instructor.lname}" %>
+         <%= "selected" if @course.instructor_id == instructor.id %>
+      </option>
+    <% end %>
+  </select>
+</p>
+
+<input type="submit" value="Submit">

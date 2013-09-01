@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  term_id: 1
+  code: MyString
+  course_type_id: 1
+  start_date: 2013-08-31
+  end_date: 2013-08-31
+  instructor_id: 1
+  location_id: 1
+  sunday: false
+  monday: false
+  tuesday: false
+  wednesday: false
+  thursday: false
+  friday: false
+  saturday: false
+  room_number: MyString
+  available_seats: 1
+  level: 1
+  section: 1
+  synonym: 1
+  budget_code_id: 1
+  start_time: 2013-08-31 20:01:22
+  end_time: 2013-08-31 20:01:22
+
+two:
+  term_id: 1
+  code: MyString
+  course_type_id: 1
+  start_date: 2013-08-31
+  end_date: 2013-08-31
+  instructor_id: 1
+  location_id: 1
+  sunday: false
+  monday: false
+  tuesday: false
+  wednesday: false
+  thursday: false
+  friday: false
+  saturday: false
+  room_number: MyString
+  available_seats: 1
+  level: 1
+  section: 1
+  synonym: 1
+  budget_code_id: 1
+  start_time: 2013-08-31 20:01:22
+  end_time: 2013-08-31 20:01:22

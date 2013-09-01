@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fname: MyString
+  lname: MyString
+  datatel: 1
+  mailbox: 1
+  phone: MyString
+  email: MyString
+  pay_rate: 1.5
+
+two:
+  fname: MyString
+  lname: MyString
+  datatel: 1
+  mailbox: 1
+  phone: MyString
+  email: MyString
+  pay_rate: 1.5

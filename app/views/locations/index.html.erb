@@ -1,0 +1,27 @@
+<h1>Locations Index</h1>
+<a href="<%= new_location_url %>">Add Location</a>
+<ul>
+  <% @locations.each do |location| %>
+    <li>
+      <%= location.name %> (<%= location.code %>) 
+      <%= link_to "edit", edit_location_url(location)%>
+      <ul>
+        <li>
+          Address: <%= location.address %>, 
+                   <%= location.city %>,  
+                   <%= location.state %> 
+                   <%= location.zipcode %>
+        </li>
+        <li>
+          Contact Name: <%= location.contact_name %>
+        </li>
+        <li>
+          Contact Phone: <%= location.contact_phone %>
+        </li>
+        <li>
+          Contact Email: <%= location.contact_email %>
+        </li>
+      </ul>
+    </li>
+  <% end %>
+</ul>
