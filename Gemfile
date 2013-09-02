@@ -45,7 +45,7 @@ group :development do
   gem "pry-rails"
   gem "quiet_assets"
   gem "webrick"
-  gem "thin"
+  # gem "thin"
 end
 
 gem "backbone-on-rails"
