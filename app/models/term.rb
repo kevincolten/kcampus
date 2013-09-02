@@ -3,4 +3,8 @@ class Term < ActiveRecord::Base
                   :semester, :start, :year
                   
   has_many :courses
+  
+  def code
+    "#{self.semester[0]}#{self.year.to_s[-2..-1]}#{self.number}"
+  end
 end

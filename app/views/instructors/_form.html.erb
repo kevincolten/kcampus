@@ -1,9 +1,9 @@
 <input type="hidden" name="authenticity_token" 
  value="<%= form_authenticity_token %>">
 <p>
- <label for="instructor_datatel">Datatel Number</label>
- <input type="text" id="instructor_datatel" 
-        name="instructor[datatel]" value="<%= @instructor.datatel %>">
+ <label for="instructor_idn">ID</label>
+ <input type="text" id="instructor_idn" 
+        name="instructor[idn]" value="<%= @instructor.idn %>">
 </p>
 <p>
 <label for="instructor_fname">First Name</label>
@@ -29,9 +29,9 @@
   <label for="instructor_location_id">Mailbox Location</label>
   <select id="instructor_location_id" name="instructor[location_id]">
     <% @locations.each do |location| %>
-      <option value="<%= location.id %>">
+      <option value="<%= location.id %>"
+        <%= "selected" if @instructor.location_id == location.id %>>
         <%= "#{location.code}" %>
-         <%= "selected" if @instructor.location_id == location.id %>
       </option>
     <% end %>
   </select>
@@ -39,6 +39,7 @@
 <p>
 <label for="instructor_pay_rate">Pay Rate</label>
 $<input type="text" id="instructor_pay_rate" 
-       name="instructor[pay_rate]" value="<%= @instructor.pay_rate %>">
+       name="instructor[pay_rate]" value=
+       <%= sprintf('%.2f', @instructor.pay_rate) if @instructor.pay_rate %>>
 </p>
 <input type="submit" value="Submit">

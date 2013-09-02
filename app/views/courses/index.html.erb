@@ -12,24 +12,26 @@
       <th>Seats</th>
       <th>Budget Code</th>
       <th></th>
-    </thead>
-    <tbody>
-  <% @courses.each do |course| %>
-  <tr>
-    <td><%= course.synonym %></td>
-    <td><%= course.course_code %></td>
-    <td><%= course.dept_code %></td>
-    <td><%= course.course_type.short_name %></td>
-    <td><%= course.location.name %></td>
-    <td><%= course.small_days %></td>
-    <td><%= course.start_time.strftime("%l:%M%P") %> -
-        <%= course.end_time.strftime("%l:%M%P") %></td>
-    <td><%= course.instructor.full_name %></td>
-    <td><%=course.seats %></td>
-    <td><%=course.budget_code %></td>
-    <td><%= link_to "edit", edit_course_url(course) %> | 
-        <%= link_to "delete", course_url(course), :method => "delete" %>
-  </tr>   
-  <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.synonym %></td>
+        <td><%= course.course_code %></td>
+        <td><%= course.dept_code %></td>
+        <td><%= course.course_type.short_name %></td>
+        <td><%= course.location.name %></td>
+        <td><%= course.small_days %></td>
+        <td><%= course.start_time.strftime("%l:%M%P") %> -
+            <%= course.end_time.strftime("%l:%M%P") %></td>
+        <td><%= course.instructor.full_name %></td>
+        <td><%=course.seats %></td>
+        <td><%=course.budget_code %></td>
+        <td><%= link_to "edit", edit_course_url(course) %> | 
+            <%= link_to "delete", course_url(course), :method => "delete" %>
+      </tr>   
+    <% end %>
+  </tbody>
 </table>
 <%= link_to "Add Course", new_course_url %>

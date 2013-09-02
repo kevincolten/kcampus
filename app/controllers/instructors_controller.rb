@@ -17,9 +17,15 @@ class InstructorsController < ApplicationController
   end
   
   def edit
+    @instructor = Instructor.find(params[:id])
+    @locations = Location.all
   end
   
   def update
+    @instructor = Instructor.find(params[:id])
+    @instructor.update_attributes(params[:instructor])
+    @instructor.save
+    redirect_to instructors_url
   end
 
 end
