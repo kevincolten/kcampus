@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+  before_filter :require_current_user!
   
   def index
     @locations = Location.all
@@ -34,7 +35,7 @@ class LocationsController < ApplicationController
   
   def destroy
     @location = Location.find(params[:id])
-    @location.destroy!
+    @location.delete
     redirect_to locations_url
   end
   

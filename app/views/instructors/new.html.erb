@@ -1,0 +1,4 @@
+<form action="<%= instructors_url %>" method="post">
+  <%= render partial: "form", locals: { instructor: @instructor,
+                                        locations: @locations } %>
+</form>

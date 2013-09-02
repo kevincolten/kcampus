@@ -1,0 +1,18 @@
+@import "bootstrap";
+
+.center-300{
+  position:absolute;
+  width:300px;
+  height:300px;
+  top:50%;
+  left:50%;
+  margin:-150px 0 0 -150px;
+}
+
+.form-center{
+  position:absolute;
+  width:300px;
+  top:50%;
+  left:50%;
+  margin:-300px 0 0 -150px;
+}

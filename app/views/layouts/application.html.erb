@@ -7,19 +7,35 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if !current_user.nil? %>
-    Logged in as: <%= current_user.email %> 
-                  <%= link_to "logout", session_url, :method => "delete" %>
-  <% elsif request.original_url == new_session_url %>
-    <%= link_to "new user", new_user_url %>
-  <% elsif request.original_url == new_user_url %>
-    <%= link_to "login", new_session_url %> 
-  <% else %>
-    <%= link_to "login", new_session_url %> 
-    <%= link_to "new user", new_user_url %>
-  <% end %>
-  <br>
-  <%= link_to "Locations", locations_url %>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href="#">KCamp.us</a>
+      <ul class="nav">
+        <% if current_user %>
+        <li
+        <%= 'class=active' if request.env['PATH_INFO'] == user_path(current_user) %>>
+          <%= link_to "Home", user_url(current_user) %>
+        </li>
+        <li
+        <%= 'class=active' if request.env['PATH_INFO'] == locations_path %>>
+        <%= link_to "Locations", locations_url %></li>
+        <li
+        <%= 'class=active' if request.env['PATH_INFO'] == courses_path %>>
+        <%= link_to "Courses", courses_url %></li>
+        <li
+        <%= 'class=active' if request.env['PATH_INFO'] == instructors_path %>>
+        <%= link_to "Instructors", instructors_url %></li>
+        <li
+        <%= 'class=active' if request.env['PATH_INFO'] == terms_path %>>
+        <%= link_to "Terms", terms_url %></li>
+        <% elsif request.env['PATH_INFO'] == new_session_path %>
+        <li><%= link_to "Sign Up", new_user_url %></li>
+        <% else %>
+        <li><%= link_to "Log In", new_session_url %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 <%= yield %>
 
 </body>

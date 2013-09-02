@@ -1,5 +1,17 @@
 <h1>Courses</h1>
-<ul>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Course Code</th>
+      <th>Synonym</th>
+      <th>Dept Code</th>
+      <th>Type</th>
+      <th>Location</th>
+      <th>Days</th>
+      <th>Instructor</th>
+      <th>Seats</th>
+      <th>Budget Code</th>
+      
   <% @courses.each do |course| %>
     <li><%= course %></li>
   <% end %>

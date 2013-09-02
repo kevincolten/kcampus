@@ -1,13 +1,20 @@
 class CoursesController < ApplicationController
+  before_filter :require_current_user!
   
   def index
-    @courses = @courses.all
+    @courses = Course.all
   end
   
   def new
     @course = Course.new
     @terms = Term.all
     @locations = Location.all
+    @instructors = Instructor.all
+    @course_types = CourseType.all
+    @days = ["Sunday", "Monday", "Tuesday", "Wednesday", 
+             "Thursday", "Friday", "Saturday"]
+    @budget_codes = [80001]
+    @course_days = @course.course_days
   end
   
   def create
@@ -25,6 +32,14 @@ class CoursesController < ApplicationController
   
   def edit
     @course = Course.find(params[:id])
+    @terms = Term.all
+    @locations = Location.all
+    @instructors = Instructor.all
+    @course_types = CourseType.all
+    @days = ["Sunday", "Monday", "Tuesday", "Wednesday", 
+             "Thursday", "Friday", "Saturday"]
+    @budget_codes = [80001]
+    @course_days = @course.course_days
   end
   
   def update
