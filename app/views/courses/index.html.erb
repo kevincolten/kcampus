@@ -2,17 +2,31 @@
 <table class="table table-striped table-hover">
   <thead>
     <tr>
-      <th>Course Code</th>
       <th>Synonym</th>
+      <th>Course Code</th>
       <th>Dept Code</th>
       <th>Type</th>
       <th>Location</th>
       <th>Days</th>
+      <th>Time</th>
       <th>Instructor</th>
       <th>Seats</th>
       <th>Budget Code</th>
-      
+    </thead>
+    <tbody>
   <% @courses.each do |course| %>
-    <li><%= course %></li>
+  <tr>
+    <td><%= course.synonym %></td>
+    <td></td>
+    <td></td>
+    <td><%= course.course_type.short_name %></td>
+    <td><%= course.location.name %></td>
+    <td><%= course.small_days %></td>
+    <td><%= course.start_time.strftime("%l:%M%P") %> -
+        <%= course.end_time.strftime("%l:%M%P") %></td>
+    <td><%= course.instructor.full_name %></td>
+    <td><%=course.seats %></td>
+    <td><%=course.budget_code %></td>
+    
   <% end %>
 </ul>

@@ -12,5 +12,7 @@ class Location < ActiveRecord::Base
   validates :state, :presence => true
   validates :zipcode, :presence => true
   
+  has_many :courses
+  
 
 end
