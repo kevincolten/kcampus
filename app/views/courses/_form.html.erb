@@ -23,7 +23,7 @@
     <% @terms.each do |term| %>
       <option value="<%= term.id %>"
         <%= "selected" if @course.term_id == term.id %>>
-          <%= "#{term.semester[0]}#{term.year.to_s[-2..-1]}#{term.number}" %> 
+          <%= term.course_code %> 
       </option>
     <% end %>
   </select>

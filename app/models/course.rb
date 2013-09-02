@@ -36,11 +36,18 @@ class Course < ActiveRecord::Base
   end
   
   def course_code
-    "#{}"
+    str = "#{self.course_type.discipline}"
+    str << "#{sprintf('%04d', self.course_type.level)}-"
+    str << "#{sprintf('%02d', self.number)}"
   end
   
   def dept_code
-    
+    str = "#{self.term.semester[0]}"
+    str << "#{self.term.year.to_s[-2..-1]}"
+    str << "#{self.term.number}"
+    str << "#{self.location.code}-"
+    str << "#{self.number}"
+    str
   end
   
 end
