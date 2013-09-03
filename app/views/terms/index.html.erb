@@ -5,21 +5,26 @@
       <th>Semester</th>
       <th>Code</th>
       <th>Department Code</th>
-      <th>Registration</th>
-      <th>Start-End</th>
-      <th>Drop Date</th>
+      <th>Registration Dates</th>
+      <th>Term Dates</th>
+      <th>Add-Drop Date</th>
       <th></th>
-     </tr>
-   </thead>
-   <tbody>
-     <% @terms.each do |term| %>
-       <tr>
-         <td><%= term.year %></td>
-         <td><%= term.semester %></td>
-         <td><%= term.code %></td>
-         <td><%= term.dept_code %></td>
-         <td><%= "#{term.reg_start.strftime("%m/%d/%Y")} - #{term.reg_end.strftime("%m/%d/%Y")}" %>     
-       </tr>
-     <% end %>
-   </tbody>
-  </table>
+    </tr>
+  </thead>
+  <tbody>
+    <% @terms.each do |term| %>
+      <tr>
+        <td><%= term.year %></td>
+        <td><%= term.semester %></td>
+        <td><%= term.code %></td>
+        <td><%= term.dept_code %></td>
+        <td><%= term.reg_dates %></td>
+        <td><%= term.dates %></td>
+        <td><%= "#{term.add_drop_end.strftime("%m/%d/%Y")}" %></td>
+        <td><%= link_to "edit", edit_term_url(term) %> |
+           <%= link_to "delete", term_url(term), :method => "destroy" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "add term", new_term_url %>

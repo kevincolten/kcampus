@@ -1,6 +1,6 @@
 class Instructor < ActiveRecord::Base
   attr_accessible :idn, :email, :fname, :lname, 
-                  :location_id, :pay_rate, :phone
+                  :location_id, :pay_rate, :phone, :client_id
                   
   has_many :courses
   

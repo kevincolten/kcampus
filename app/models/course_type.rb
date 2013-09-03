@@ -1,5 +1,5 @@
 class CourseType < ActiveRecord::Base
-  attr_accessible :long_name, :short_name, :discipline, :level
+  attr_accessible :long_name, :short_name, :discipline, :level, :client_id
   
   has_many :courses
   

@@ -1,0 +1,30 @@
+<div class="center-300">
+  <h3>Sign Up</h3>
+  <form action="<%= clients_url %>" method="post">
+    <p>
+    <label for="client_fname">First Name</label>
+    <input type="text" id="client_fname" name="client[fname]">
+    </p>
+    <p>
+    <label for="client_lname">Last Name</label>
+    <input type="text" id="client_lname" name="client[lname]">
+    </p>
+    <p>
+    <label for="client_phone">Phone</label>
+    <input type="text" id="client_phone" name="client[phone]">
+    </p>
+    <p>
+    <label for="client_organization">Organization Name</label>
+    <input type="text" id="client_organization" name="client[organization]">
+    </p>
+    <p>
+    <label for="client_email">Email</label>
+    <input type="text" id="client_email" name="client[email]">
+    </p>
+    <p>
+    <label for="user_password">Password</label>
+    <input type="password" id="user_password" name="user[password]">
+    </p>
+    <input type="submit" value="Submit" class="btn btn-primary">
+  </form>
+</div>

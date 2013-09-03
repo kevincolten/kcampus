@@ -10,6 +10,7 @@ class LocationsController < ApplicationController
   end
   
   def create
+    params[:location][:client_id] = 1
     @location = Location.new(params[:location])
     if @location.save
       redirect_to locations_url

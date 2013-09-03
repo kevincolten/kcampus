@@ -3,7 +3,7 @@ class Course < ActiveRecord::Base
                   :end_time, :friday, :instructor_id, :location_id, 
                   :monday, :room_number, :saturday, :section, 
                   :start_time, :sunday, :synonym, :term_id, 
-                  :thursday, :tuesday, :wednesday, :number
+                  :thursday, :tuesday, :wednesday, :number, :client_id
                     
   belongs_to :instructor
   

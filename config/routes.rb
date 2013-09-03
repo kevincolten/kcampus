@@ -6,6 +6,7 @@ AccAdultEd::Application.routes.draw do
   resources :courses
   resources :course_types
   resources :instructors
+  resources :clients, :only => [:new, :create]
   
   root :to => "users#show"
 end

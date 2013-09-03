@@ -11,6 +11,7 @@ class InstructorsController < ApplicationController
   end
   
   def create
+    params[:instructor][:client_id] = 1
     @instructor = Instructor.new(params[:instructor])
     @instructor.save
     redirect_to instructors_url
@@ -25,6 +26,12 @@ class InstructorsController < ApplicationController
     @instructor = Instructor.find(params[:id])
     @instructor.update_attributes(params[:instructor])
     @instructor.save
+    redirect_to instructors_url
+  end
+  
+  def destroy
+    @instructor = Instructor.find(params[:id])
+    @instructor.destroy
     redirect_to instructors_url
   end
 

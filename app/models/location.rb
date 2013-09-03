@@ -1,6 +1,6 @@
 class Location < ActiveRecord::Base
   attr_accessible :address, :city, :code, :contact_email, :contact_name, 
-                  :contact_phone, :name, :state, :zipcode
+                  :contact_phone, :name, :state, :zipcode, :client_id
 
   validates :address, :presence => true
   validates :city, :presence => true
