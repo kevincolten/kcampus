@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  student_id: 1
+  course_id: 1
+  client_id: 1
+  hours: 1.5
+  date: 2013-09-03
+
+two:
+  student_id: 1
+  course_id: 1
+  client_id: 1
+  hours: 1.5
+  date: 2013-09-03

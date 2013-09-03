@@ -10,6 +10,7 @@ class TermsController < ApplicationController
   end
   
   def create
+    params[:term][:client_id] = current_user.client_id
     @term = Term.new(params[:term])
     @term.save
     redirect_to terms_url

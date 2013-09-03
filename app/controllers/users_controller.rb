@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 	before_filter :require_no_current_user!, :only => [:create, :new]
 
 	def create
-    params[:user][:client_id] = 1
+    params[:user][:client_id] = current_user.client_id
     params[:user][:admin] = false
     @user = User.new(params[:user])
     if @user.save

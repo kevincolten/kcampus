@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130903143221) do
+ActiveRecord::Schema.define(:version => 20130903173124) do
 
   create_table "admins", :force => true do |t|
     t.string   "fname"
@@ -22,9 +22,20 @@ ActiveRecord::Schema.define(:version => 20130903143221) do
     t.string   "email"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "client_id",   :null => false
   end
 
   add_index "admins", ["email"], :name => "index_admins_on_email"
+
+  create_table "attendance_records", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "course_id"
+    t.integer  "client_id"
+    t.float    "hours"
+    t.date     "date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "clients", :force => true do |t|
     t.string   "fname",        :null => false
@@ -34,6 +45,14 @@ ActiveRecord::Schema.define(:version => 20130903143221) do
     t.string   "phone",        :null => false
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "course_regs", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "course_id"
+    t.integer  "client_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "course_types", :force => true do |t|
@@ -72,6 +91,25 @@ ActiveRecord::Schema.define(:version => 20130903143221) do
     t.integer  "client_id",                         :null => false
   end
 
+  create_table "event_regs", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "event_id"
+    t.integer  "client_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.string   "date"
+    t.integer  "max_seats"
+    t.integer  "location_id"
+    t.time     "time"
+    t.integer  "client_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "instructors", :force => true do |t|
     t.string   "fname"
     t.string   "lname"
@@ -108,6 +146,8 @@ ActiveRecord::Schema.define(:version => 20130903143221) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "client_id",  :null => false
+    t.string   "email"
+    t.string   "phone"
   end
 
   create_table "terms", :force => true do |t|

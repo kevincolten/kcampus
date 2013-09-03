@@ -10,6 +10,7 @@ class CourseTypesController < ApplicationController
   end
   
   def create
+    params[:course_type][:client_id] = current_user.client_id
     @course_type = CourseType.new(params[:course_type])
     @course_type.save
     redirect_to course_types_url

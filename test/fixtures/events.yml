@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  date: MyString
+  max_seats: 1
+  location_id: 1
+  time: 2013-09-03 10:27:14
+  client_id: 1
+
+two:
+  name: MyString
+  date: MyString
+  max_seats: 1
+  location_id: 1
+  time: 2013-09-03 10:27:14
+  client_id: 1

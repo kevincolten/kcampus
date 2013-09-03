@@ -26,6 +26,9 @@
         <%= 'class=active' if request.env['PATH_INFO'] == instructors_path %>>
         <%= link_to "Instructors", instructors_url %></li>
         <li
+        <%= 'class=active' if request.env['PATH_INFO'] == admins_path %>>
+        <%= link_to "Admins", admins_url %></li>
+        <li
         <%= 'class=active' if request.env['PATH_INFO'] == course_types_path %>>
         <%= link_to "Course Types", course_types_url %></li>
         <li

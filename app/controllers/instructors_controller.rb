@@ -11,7 +11,7 @@ class InstructorsController < ApplicationController
   end
   
   def create
-    params[:instructor][:client_id] = 1
+    params[:instructor][:client_id] = current_user.client_id
     @instructor = Instructor.new(params[:instructor])
     @instructor.save
     redirect_to instructors_url
