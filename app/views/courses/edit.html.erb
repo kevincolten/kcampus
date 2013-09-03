@@ -1,5 +1,5 @@
 <form action="<%= course_url %>" method="post">
-  <input type="hidden" name="_method" method="put">
+  <input type="hidden" name="_method" value="put">
   <%= render partial: "form", locals: { course: @course,
                                         locations: @locations,
                                         terms: @terms,

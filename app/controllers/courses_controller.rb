@@ -46,7 +46,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @course.update_attributes(params[:course])
     @course.save!
-    redirect_to course_url(@course)
+    redirect_to courses_url
   end
   
   def destroy

@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :seats, :budget_code, :course_type_id, 
+  attr_accessible :max_seats, :min_seats, :budget_code, :course_type_id, 
                   :end_time, :friday, :instructor_id, :location_id, 
                   :monday, :room_number, :saturday, :section, 
                   :start_time, :sunday, :synonym, :term_id, 
@@ -29,15 +29,21 @@ class Course < ActiveRecord::Base
   def small_days
     s_days = []
     course_days.each do |day|
-      s_days << day[0] unless day == "Thursday"
-      s_days << day[0..1] if day == "Thursday"
+      case day
+        when "Sunday"
+          s_days << "Su"
+        when "Thursday"
+          s_days << "Th"
+        else
+          s_days << day[0] 
+      end
     end
     s_days.join(", ")
   end
   
   def course_code
-    str = "#{self.course_type.discipline}"
-    str << "#{sprintf('%04d', self.course_type.level)}-"
+    str = "#{self.course_type.discipline}-"
+    str << "#{sprintf('%04d',course_type.level*100+1)}-"
     str << "#{sprintf('%03d', self.section)}"
   end
   

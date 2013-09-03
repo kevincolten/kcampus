@@ -96,9 +96,15 @@
            class="span1">
   </p>
   <p style="width:80px; float:left">
-    <label for="course_seats">Seats</label>
-    <input type="text" id="course_seats" 
-           name="course[seats]" value="<%= @course.seats %>"
+    <label for="course_min_seats">Min. Enroll</label>
+    <input type="text" id="course_min_seats" 
+           name="course[min_seats]" value="<%= @course.min_seats %>"
+           class="span1" >
+  </p>
+  <p style="width:80px; float:left">
+    <label for="course_max_seats">Max. Enroll</label>
+    <input type="text" id="course_max_seats" 
+           name="course[max_seats]" value="<%= @course.max_seats %>"
            class="span1" >
   </p>
   <p>

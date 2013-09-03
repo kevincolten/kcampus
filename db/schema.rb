@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130902224127) do
+ActiveRecord::Schema.define(:version => 20130903003506) do
 
   create_table "course_types", :force => true do |t|
     t.string   "long_name",  :null => false
@@ -35,15 +35,16 @@ ActiveRecord::Schema.define(:version => 20130902224127) do
     t.boolean  "friday",         :default => false, :null => false
     t.boolean  "saturday",       :default => false, :null => false
     t.string   "room_number",                       :null => false
-    t.integer  "seats",                             :null => false
+    t.integer  "max_seats",                         :null => false
     t.integer  "section",                           :null => false
-    t.integer  "synonym",                           :null => false
+    t.integer  "synonym"
     t.integer  "budget_code",                       :null => false
     t.time     "start_time",                        :null => false
     t.time     "end_time",                          :null => false
     t.integer  "number",                            :null => false
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
+    t.integer  "min_seats",                         :null => false
   end
 
   create_table "instructors", :force => true do |t|
@@ -92,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20130902224127) do
     t.date     "add_drop_end", :null => false
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "code",         :null => false
   end
 
   create_table "users", :force => true do |t|

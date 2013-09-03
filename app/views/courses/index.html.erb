@@ -9,7 +9,8 @@
       <th>Days</th>
       <th>Time</th>
       <th>Instructor</th>
-      <th>Seats</th>
+      <th>Min Enroll</th>
+      <th>Max Enroll</th>
       <th>Budget Code</th>
       <th></th>
     </tr>
@@ -26,7 +27,8 @@
         <td><%= course.start_time.strftime("%l:%M%P") %> -
             <%= course.end_time.strftime("%l:%M%P") %></td>
         <td><%= course.instructor.full_name %></td>
-        <td><%=course.seats %></td>
+        <td><%=course.min_seats %></td>
+        <td><%=course.max_seats %></td>
         <td><%=course.budget_code %></td>
         <td><%= link_to "edit", edit_course_url(course) %> | 
             <%= link_to "delete", course_url(course), :method => "delete" %>
