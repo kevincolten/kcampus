@@ -29,6 +29,9 @@ class CoursesController < ApplicationController
   
   def show
     @course = Course.find(params[:id])
+    @dates = @course.dates
+    @month_years = @course.month_years
+    @students = @course.students
   end
   
   def edit

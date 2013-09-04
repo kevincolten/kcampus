@@ -12,6 +12,10 @@ class Course < ActiveRecord::Base
   belongs_to :course_type
   
   belongs_to :term
+  
+  has_many :course_regs
+  
+  has_many :students, :through => :course_regs, :source => :student
                   
   def course_days
     methods = [ :sunday, 
@@ -54,5 +58,31 @@ class Course < ActiveRecord::Base
     str << "#{self.location.code}-"
     str << "#{sprintf('%02d', self.number)}"
   end
+  
+  def dates
+    array = []
+    hash = { "Su" => 0, 
+             "M"  => 1, 
+             "T"  => 2, 
+             "W"  => 3, 
+             "Th" => 4, 
+             "F"  => 5,
+             "S"  => 6 }
+    self.small_days.split(", ").each {|day| array << hash[day]}
+    (self.term.start..self.term.end).to_a.select do |k| 
+        array.include?(k.wday)
+    end
+  end
+  
+  def month_years
+    month_years = {}
+    self.dates.each do |date| 
+      unless month_years.has_key?(Date::MONTHNAMES[date.month])
+        month_years[Date::MONTHNAMES[date.month]] = date.year
+      end
+    end
+    month_years
+  end
+  
   
 end

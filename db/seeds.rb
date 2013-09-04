@@ -156,3 +156,38 @@
                      "client_id"=> @client.id)
                      
 @admin2.save
+
+@event = Event.new( :term_id => @term.id,
+                    :name => "Registration",
+                    :date => "2013-09-29",
+                    :location_id => @location1.id,
+                    :room => "123",
+                    :max_seats => 100,
+                    :start => "09:00",
+                    :end => "15:00",
+                    :contact_name => "Patricia Hernandez",
+                    :contact_phone => "1234567890",
+                    :contact_email => "pat@hello.com",
+                    :client_id => @client.id )
+                    
+@event.save
+
+@student1 = Student.new( :idn => "9638521",
+                         :fname => "Caleb",
+                         :lname => "Guidry",
+                         :dob => "1986-12-30",
+                         :phone => "1234567890",
+                         :email => "caleb@hello.com",
+                         :client_id => @client.id )
+                         
+@student1.save
+                         
+@student2 = Student.new( :idn => "1472583",
+                         :fname => "Cody",
+                         :lname => "Broussard",
+                         :dob => "1987-1-24",
+                         :phone => "1234567890",
+                         :email => "cody@hello.com",
+                         :client_id => @client.id )
+                         
+@student2.save

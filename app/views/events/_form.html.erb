@@ -1,48 +1,124 @@
 <input type="hidden" name="authenticity_token" 
  value="<%= form_authenticity_token %>">
-<p>
-<label for="location_code">Code</label>
-<input type="text" id="location_code" 
-       name="location[code]" value="<%= @location.code %>">
-</p>
-<p>
-<label for="location_name">Location Name</label>
-<input type="text" id="location_name" 
-       name="location[name]" value="<%= @location.name %>">
-</p>
-<p>
-<label for="location_address">Street Address</label>
-<input type="text" id="location_address" 
-       name="location[address]" value="<%= @location.address %>">
-</p>
-<p>
-<label for="location_city">City</label>
-<input type="text" id="location_city" 
-       name="location[city]" value="<%= @location.city %>">
-</p>
-<p>
-<label for="location_state">State</label>
-<input type="text" id="location_state" 
-       name="location[state]" value="<%= @location.state %>">
-</p>
-<p>
-<label for="location_zipcode">Zipcode</label>
-<input type="text" id="location_zipcode" 
-       name="location[zipcode]" value="<%= @location.zipcode %>">
-</p>
-<p>
-<label for="location_contact_name">Contact Name</label>
-<input type="text" id="location_contact_name" 
-       name="location[contact_name]" value="<%= @location.contact_name %>">
-</p>
-<p>
-<label for="location_contact_phone">Contact Phone</label>
-<input type="text" id="location_contact_phone" 
-       name="location[contact_phone]" value="<%= @location.contact_phone %>">
-</p>
-<p>
-<label for="location_contact_email">Contact Email</label>
-<input type="text" id="location_contact_email" 
-       name="location[contact_email]" value="<%= @location.contact_email %>">
-</p>
-<input type="submit" value="Submit">
+<div style="margin: 50px 0 0 20%">
+  <p style="width:160px; float:left">
+     <label for="course_synonym">Synonym</label>
+     <input type="text" id="course_synonym" 
+            name="course[synonym]" value="<%= @course.synonym %>"
+            class="span2">
+  </p>
+  <p>
+    <label for="course_course_type_id">Course Code</label>
+    <select id="course_course_type_id" name="course[course_type_id]" 
+            class="span5">
+      <% @course_types.each do |course_type| %>
+        <option value="<%= course_type.id %>"
+          <%= "selected" if @course.course_type_id == course_type.id %>>
+          <%= course_type.code %>
+        </option>
+      <% end %>
+    </select>
+    - 
+    <input type="text" id="course_section" 
+           name="course[section]" value="<%= @course.section %>" 
+           placeholder="section" class="span1">
+  </p>
+  <br>
+  <br>
+  <p style="float:left; width:390px">
+    <label for="course_term">Deptartment Code</label>
+    <select id="course_term" name="course[term_id]" class="span2">
+      <% @terms.each do |term| %>
+        <option value="<%= term.id %>"
+          <%= "selected" if @course.term_id == term.id %>>
+            <%= term.code %> 
+        </option>
+      <% end %>
+    </select>
+    <select id="course_location" name="course[location_id]" class="span2">
+      <% @locations.each do |location| %>
+        <option value="<%= location.id %>"
+          <%= "selected" if @course.location_id == location.id %>>
+            <%= "#{location.code}" %>
+        </option>
+      <% end %>
+    </select>
+    <span style="width:200px">-</span>
+    <input type="text" id="course_number" 
+           name="course[number]" value="<%= @course.number %>"
+           placeholder="no." class="span1">
+  </p>
+  <p>
+    <label for="course_instructor_id">Instructor</label>
+    <select id="course_instructor_id" name="course[instructor_id]">
+      <% @instructors.each do |instructor| %>
+        <option value="<%= instructor.id %>" 
+          <%= "selected" if @course.instructor_id == instructor.id %> >
+            <%= "#{instructor.fname} #{instructor.lname}" %>
+        </option>
+      <% end %>
+    </select>
+  </p>
+  <br>
+  <br>
+  <p>
+    <% @days.each do |day| %>
+      <label class="checkbox inline day">
+        <input type="checkbox" value="true" 
+               name="course[<%= day.downcase %>]" id="course_<%= day %>"
+               <%= "checked" if @course_days.include?(day) %>>
+        <%= day %></label>
+    <% end %>
+  </p>
+  <br>
+  <br>
+  <p style="float:left; width:310px">
+    <label for="course_start_time">Time</label>
+    <input type="time" id="course_start_time" 
+           name="course[start_time]"
+           class="span2" 
+           value=<% if @course.start_time %>
+           <%= "#{sprintf("%02d", @course.start_time.hour)}:#{sprintf("%02d", @course.start_time.min)}" %>>
+           <% end %>
+    </select>
+    -
+    <input type="time" name="course[end_time]"
+           class="span2" 
+           value=<% if @course.end_time %>
+           <%= "#{sprintf("%02d", @course.end_time.hour)}:#{sprintf("%02d", @course.end_time.min)}" %>>
+           <% end %>
+    </select>  
+  </p>
+  <p style="width:80px; float:left">
+    <label for="course_room_number">Rm No.</label>
+    <input type="text" id="course_room_number" 
+           name="course[room_number]" value="<%= @course.room_number %> "
+           class="span1">
+  </p>
+  <p style="width:80px; float:left">
+    <label for="course_min_seats">Min. Enroll</label>
+    <input type="text" id="course_min_seats" 
+           name="course[min_seats]" value="<%= @course.min_seats %>"
+           class="span1" >
+  </p>
+  <p style="width:80px; float:left">
+    <label for="course_max_seats">Max. Enroll</label>
+    <input type="text" id="course_max_seats" 
+           name="course[max_seats]" value="<%= @course.max_seats %>"
+           class="span1" >
+  </p>
+  <p>
+    <label for="course_budget_code">Budget Code</label>
+    <select id="course_budget_code" name="course[budget_code]" class="span2">
+      <% @budget_codes.each do |budget_code| %>
+        <option value="<%= budget_code %>"
+          <%= "selected" if @course.budget_code == budget_code %>>
+            <%= budget_code %>
+        </option>
+      <% end %>
+    </select>
+  </p>
+  <br>
+  <br>
+  <input type="submit" value="Submit" class="btn btn-primary span8">
+</div>

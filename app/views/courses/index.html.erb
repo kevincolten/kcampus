@@ -20,7 +20,7 @@
       <tr>
         <td><%= course.synonym %></td>
         <td><%= course.course_code %></td>
-        <td><%= course.dept_code %></td>
+        <td><%=link_to "#{course.dept_code}", course_url(course) %></td>
         <td><%= course.course_type.short_name %></td>
         <td><%= course.location.name %></td>
         <td><%= course.small_days %></td>

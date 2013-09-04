@@ -2,39 +2,32 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Address</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Location</th>
+      <th>Room Number</th>
       <th>Contact Name</th>
       <th>Contact Phone</th>
       <th>Contact Email</th>
+      <th>Max Seats</th>
+      <th>Remaining Seats</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-  <% @locations.each do |location| %>
+  <% @events.each do |event| %>
     <tr>
-      <td>
-        <%= location.name %> (<%= location.code %>) 
-      </td>
-      <td>
-          <%= location.address %>, 
-          <%= location.city %>,  
-          <%= location.state %> 
-          <%= location.zipcode %>
-        </td>
-        <td>
-          <%= location.contact_name %>
-        </td>
-        <td>
-          <%= location.contact_phone %>
-        </td>
-        <td>
-          <%= location.contact_email %> 
-        </td>
-        <td>
-          <%= link_to "edit", edit_location_url(location) %> | 
-          <%= link_to "delete", location_url(location), :method => "delete" %>
-        </td>
-      </tr>
+      <td><%= event.name %></td>
+      <td><%= event.date %>
+      <td><%= event.start %> - <%= event.end %></td>
+      <td><%= event.location_id %></td>
+      <td><%= event.room %></td>
+      <td><%= event.contact_name %></td>
+      <td><%= event.contact_phone %></td>
+      <td><%= event.contact_email %></td>
+      <td><%= event.max_seats %></td>
+      <td><%= event.max_seats %></td>
+      <td></td>
+    </tr>
   <% end %>
 </table>
-<%= link_to "add location", new_location_url %>
