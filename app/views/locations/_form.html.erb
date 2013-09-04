@@ -1,48 +1,65 @@
 <input type="hidden" name="authenticity_token" 
  value="<%= form_authenticity_token %>">
-<p>
-<label for="location_code">Code</label>
-<input type="text" id="location_code" 
+<div class="control-group">
+  <label class="control-label" for="location_code">Code</label>
+  <div class="controls">
+    <input type="text" id="location_code" class="span1"
        name="location[code]" value="<%= @location.code %>">
-</p>
-<p>
-<label for="location_name">Location Name</label>
-<input type="text" id="location_name" 
-       name="location[name]" value="<%= @location.name %>">
-</p>
-<p>
-<label for="location_address">Street Address</label>
-<input type="text" id="location_address" 
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="location_name">Location Name</label>
+  <div class="controls">
+    <input type="text" id="location_name" 
+      name="location[name]" value="<%= @location.name %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="location_address">Street Address</label>
+  <div class="controls">
+    <input type="text" id="location_address" 
        name="location[address]" value="<%= @location.address %>">
-</p>
-<p>
-<label for="location_city">City</label>
-<input type="text" id="location_city" 
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="location_city">City</label>
+  <div class="controls">
+    <input type="text" id="location_city" class="span2"
        name="location[city]" value="<%= @location.city %>">
-</p>
-<p>
-<label for="location_state">State</label>
-<input type="text" id="location_state" 
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="location_state">State</label>
+  <div class="controls">
+    <input type="text" id="location_state" class="span1"
        name="location[state]" value="<%= @location.state %>">
-</p>
-<p>
-<label for="location_zipcode">Zipcode</label>
-<input type="text" id="location_zipcode" 
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="location_zipcode">Zipcode</label>
+  <div class="controls">
+    <input type="text" id="location_zipcode" class="span1"
        name="location[zipcode]" value="<%= @location.zipcode %>">
-</p>
-<p>
-<label for="location_contact_name">Contact Name</label>
-<input type="text" id="location_contact_name" 
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="location_contact_name">Contact Name</label>
+  <div class="controls">
+    <input type="text" id="location_contact_name" class="span2"
        name="location[contact_name]" value="<%= @location.contact_name %>">
-</p>
-<p>
-<label for="location_contact_phone">Contact Phone</label>
-<input type="text" id="location_contact_phone" 
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="location_contact_phone">Contact Phone</label>
+  <div class="controls">
+    <input type="text" id="location_contact_phone" class="span2"
        name="location[contact_phone]" value="<%= @location.contact_phone %>">
-</p>
-<p>
-<label for="location_contact_email">Contact Email</label>
-<input type="text" id="location_contact_email" 
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="location_contact_email">Contact Email</label>
+  <div class="controls">
+    <input type="text" id="location_contact_email" 
        name="location[contact_email]" value="<%= @location.contact_email %>">
-</p>
-<input type="submit" value="Submit">
+       <br><br>
+    <input type="submit" value="Submit" class="btn btn-primary">

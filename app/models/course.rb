@@ -84,5 +84,14 @@ class Course < ActiveRecord::Base
     month_years
   end
   
+  def duration
+    (self.end_time - self.start_time) / 3600
+  end
   
+  def student_attendance(student)
+    records = student.attendance_records.select do |record| 
+      record.course_id == self.id
+    end    
+    (records.map(&:hours).reduce(:+) / records.length / self.duration * 100).to_i
+  end  
 end

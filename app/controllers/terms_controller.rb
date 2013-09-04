@@ -3,9 +3,6 @@ class TermsController < ApplicationController
   
   def index
     @terms = Term.all
-  end
-  
-  def new
     @term = Term.new
   end
   
@@ -26,5 +23,4 @@ class TermsController < ApplicationController
     @term.save
     redirect_to terms_url
   end
-  
 end

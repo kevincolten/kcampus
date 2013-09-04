@@ -1,42 +1,56 @@
 <input type="hidden" name="authenticity_token" 
  value="<%= form_authenticity_token %>">
-<p>
-  <label for="term_semester">Semester</label>
-  <input type="text" id="term_semester" 
-         name="term[semester]" value="<%= @term.semester %>">
-</p>
-<p>
-  <label for="term_code">Code</label>
-  <input type="text" id="term_code" 
-         name="term[code]" value="<%= @term.code %>">
-</p>
-<p>
-  <label for="term_year">Year</label>
-  <input type="text" id="term_year" 
-         name="term[year]" value="<%= @term.year %>">
-</p>
-<p>
-  <label for="term_number">Term Number</label>
-  <input type="text" id="term_number" 
-         name="term[number]" value="<%= @term.number %>">
-</p>
-<p>
-  <label for="term_reg_start">Registration Dates</label>
-  <input type="date" id="term_reg_start" 
-         name="term[reg_start]" value="<%= @term.reg_start %>">
-  -
-  <input type="date" name="term[reg_end]" value="<%= @term.reg_end %>">
-</p>
-<p>
-  <label for="term_start">Term Dates</label>
-  <input type="date" id="term_start" 
-         name="term[start]" value="<%= @term.start %>">
-  -
-  <input type="date" name="term[end]" value="<%= @term.end %>">
-</p>
-<p>
-  <label for="term_add_drop_end">Final Add/Drop Date</label>
-  <input type="date" id="term_add_drop_end" 
-         name="term[add_drop_end]" value="<%= @term.add_drop_end %>">
-</p>
+<div class="control-group">
+  <label class="control-label" for="term_semester">Semester</label>
+  <div class="controls">
+    <input type="text" id="term_semester" 
+           name="term[semester]" value="<%= @term.semester %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="term_code">Code</label>
+  <div class="controls">
+    <input type="text" id="term_code" 
+           name="term[code]" value="<%= @term.code %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="term_year">Year</label>
+  <div class="controls">
+    <input type="text" id="term_year" 
+           name="term[year]" value="<%= @term.year %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="term_number">Term Number</label>
+  <div class="controls">
+    <input type="text" id="term_number" 
+           name="term[number]" value="<%= @term.number %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="term_reg_start">Registration Dates</label>
+  <div class="controls">
+    <input type="date" id="term_reg_start" 
+           name="term[reg_start]" value="<%= @term.reg_start %>">
+    -
+    <input type="date" name="term[reg_end]" value="<%= @term.reg_end %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="term_start">Term Dates</label>
+  <div class="controls">
+    <input type="date" id="term_start" 
+           name="term[start]" value="<%= @term.start %>">
+    -
+    <input type="date" name="term[end]" value="<%= @term.end %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="term_add_drop_end">Final Add/Drop Date</label>
+  <div class="controls">
+    <input type="date" id="term_add_drop_end" 
+           name="term[add_drop_end]" value="<%= @term.add_drop_end %>">
+  </div>
+</div>
 <input type="submit" value="Submit">

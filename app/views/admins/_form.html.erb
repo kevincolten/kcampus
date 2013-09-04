@@ -1,39 +1,50 @@
 <input type="hidden" name="authenticity_token" 
  value="<%= form_authenticity_token %>">
-<p>
- <label for="admin_idn">ID</label>
- <input type="text" id="admin_idn" 
-        name="admin[idn]" value="<%= @admin.idn %>">
-</p>
-<p>
-<label for="admin_fname">First Name</label>
-<input type="text" id="admin_fname" 
-       name="admin[fname]" value="<%= @admin.fname %>">
-</p>
-<p>
-<label for="admin_lname">Last Name</label>
-<input type="text" id="admin_lname" 
-       name="admin[lname]" value="<%= @admin.lname %>">
-</p>
-<p>
-<label for="admin_phone">Phone</label>
-<input type="text" id="admin_phone" 
-       name="admin[phone]" value="<%= @admin.phone %>">
-</p>
-<p>
-<label for="admin_email">Email</label>
-<input type="text" id="admin_email" 
-       name="admin[email]" value="<%= @admin.email %>">
-</p>
-<p>
-  <label for="admin_location_id">Mailbox Location</label>
-  <select id="admin_location_id" name="admin[location_id]">
-    <% @locations.each do |location| %>
-      <option value="<%= location.id %>"
-        <%= "selected" if @admin.location_id == location.id %>>
-        <%= "#{location.code}" %>
-      </option>
-    <% end %>
-  </select>
-</p>
-<input type="submit" value="Submit">
+<div class="control-group">
+  <label class="control-label" for="admin_idn">ID</label>
+  <div class="controls">
+    <input type="text" id="admin_idn" 
+           name="admin[idn]" value="<%= @admin.idn %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="admin_fname">First Name</label>
+  <div class="controls">
+    <input type="text" id="admin_fname" 
+           name="admin[fname]" value="<%= @admin.fname %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="admin_lname">Last Name</label>
+  <div class="controls">
+    <input type="text" id="admin_lname" 
+           name="admin[lname]" value="<%= @admin.lname %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="admin_phone">Phone</label>
+  <div class="controls">
+    <input type="text" id="admin_phone" 
+           name="admin[phone]" value="<%= @admin.phone %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="admin_email">Email</label>
+  <div class="controls">
+    <input type="text" id="admin_email" 
+           name="admin[email]" value="<%= @admin.email %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="admin_location_id">Mailbox Location</label>
+  <div class="controls">
+    <select id="admin_location_id" name="admin[location_id]">
+      <% @locations.each do |location| %>
+        <option value="<%= location.id %>"
+          <%= "selected" if @admin.location_id == location.id %>>
+          <%= "#{location.code}" %>
+        </option>
+      <% end %>
+    </select><br>
+    <br>
+    <input type="submit" value="Submit" class="btn btn-primary">

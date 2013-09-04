@@ -1,3 +1,33 @@
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Synonym</th>
+      <th>Course Code</th>
+      <th>Dept Code</th>
+      <th>Type</th>
+      <th>Location</th>
+      <th>Days</th>
+      <th>Time</th>
+      <th>Instructor</th>
+      <th>No. of Students</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= @course.synonym %></td>
+        <td><%= @course.course_code %></td>
+        <td><%=link_to "#{@course.dept_code}", course_url(@course) %></td>
+        <td><%= @course.course_type.short_name %></td>
+        <td><%= @course.location.name %></td>
+        <td><%= @course.small_days %></td>
+        <td><%= @course.start_time.strftime("%l:%M%P") %> -
+            <%= @course.end_time.strftime("%l:%M%P") %></td>
+        <td><%= @course.instructor.full_name %></td>
+        <td><%= @course.students.count %></td>
+      </tr>   
+  </tbody>
+</table>
+<h1 class="lead">Attendance</h1>
 <div class="accordion" id="attendance">
  <% @month_years.each do |month, year| %>
    <div class="accordion-group">
@@ -7,24 +37,58 @@
            <%= "#{month} #{year}" %>
        </a>
      </div>
-     <div id="collapse<%=month%>" class="accordion-body collapse">
+     <div id="collapse<%=month%>" class="accordion-body collapse" >
        <div class="accordion-inner">
-         <table class="table table-striped">
+         <table class="table table-striped table-hover">
            <thead>
              <tr>
                <th></th>
                <% @course.dates.each do |date| %>
                <% next unless Date::MONTHNAMES[date.month] == month %>
-                 <th><center><%= date.strftime("%m/%d/%Y") %></center></th>
+                 <th><center><%= "#{Date::DAYNAMES[date.wday][0..2]} #{date.day}" %></center></th>
                <% end %>
              </tr>
            </thead>
            <tbody>
              <% @students.each do |student| %>
                <tr>
-                 <td><%= student.name %></td>
-                 <% @course.dates.select { |date| Date::MONTHNAMES[date.month] == month}.length.times do %>
-                 <td><div class="row fluid"><center><input type="text" class="span1"></center></div></td>
+                 <td>
+                   <%= student.name %><br>
+                   <%= "C. A. #{@course.student_attendance(student)}%" %><br>
+                   <%= "T. A. #{student.attendance}%" %>
+                 </td>
+                 <% @course.dates.select { |date| Date::MONTHNAMES[date.month] == month}.each do |date| %>
+                     <% attendance_record = @attendance_records.select do |record| %>
+                       <% record.date == date && record.student_id == student.id && record.course_id == params[:id].to_i %>
+                     <% end %>
+                     <% if attendance_record.first.nil? %>
+                 <form action="<%= attendance_records_url %>" method="post">
+                 <td>
+                   <center>
+                     <input type="hidden" name="authenticity_token" 
+                      value="<%= form_authenticity_token %>">
+                     <input type="text" class="span1" 
+                            name="attendance_record[hours]">
+                     <input type="hidden" name="attendance_record[student_id]"
+                            value="<%= student.id %>">
+                     <input type="hidden" name="attendance_record[course_id]"
+                            value="<%= params[:id] %>">
+                     <input type="hidden" name="attendance_record[date]"
+                            value="<%= date %>"><br>
+                     <input type="submit" value="submit" 
+                            class="btn btn-mini btn-primary">
+                   </center>  
+                 </td>
+                 </form>
+                     <% else %>
+                 <td>
+                   <center>
+                       <input type="text" value="<%= attendance_record.first.hours %>"
+                              class="span1" readonly ><br>
+                       <%= link_to "delete", attendance_record_url(attendance_record), :method => "delete"%>
+                    </center>
+                 </td>
+                    <% end %>
                  <% end %>
                </tr>
              <% end %>

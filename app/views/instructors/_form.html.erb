@@ -1,45 +1,62 @@
 <input type="hidden" name="authenticity_token" 
  value="<%= form_authenticity_token %>">
-<p>
- <label for="instructor_idn">ID</label>
- <input type="text" id="instructor_idn" 
-        name="instructor[idn]" value="<%= @instructor.idn %>">
-</p>
-<p>
-<label for="instructor_fname">First Name</label>
-<input type="text" id="instructor_fname" 
-       name="instructor[fname]" value="<%= @instructor.fname %>">
-</p>
-<p>
-<label for="instructor_lname">Last Name</label>
-<input type="text" id="instructor_lname" 
-       name="instructor[lname]" value="<%= @instructor.lname %>">
-</p>
-<p>
-<label for="instructor_phone">Phone</label>
-<input type="text" id="instructor_phone" 
-       name="instructor[phone]" value="<%= @instructor.phone %>">
-</p>
-<p>
-<label for="instructor_email">Email</label>
-<input type="text" id="instructor_email" 
-       name="instructor[email]" value="<%= @instructor.email %>">
-</p>
-<p>
-  <label for="instructor_location_id">Mailbox Location</label>
-  <select id="instructor_location_id" name="instructor[location_id]">
-    <% @locations.each do |location| %>
-      <option value="<%= location.id %>"
-        <%= "selected" if @instructor.location_id == location.id %>>
-        <%= "#{location.code}" %>
-      </option>
-    <% end %>
-  </select>
-</p>
-<p>
-<label for="instructor_pay_rate">Pay Rate</label>
-$<input type="text" id="instructor_pay_rate" 
-       name="instructor[pay_rate]" value=
-       <%= sprintf('%.2f', @instructor.pay_rate) if @instructor.pay_rate %>>
-</p>
-<input type="submit" value="Submit">
+<div class="control-group">
+  <label class="control-label" for="instructor_idn">ID</label>
+  <div class="controls">
+    <input type="text" id="instructor_idn" 
+           name="instructor[idn]" value="<%= @instructor.idn %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="instructor_fname">First Name</label>
+  <div class="controls">
+    <input type="text" id="instructor_fname" 
+           name="instructor[fname]" value="<%= @instructor.fname %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="instructor_lname">Last Name</label>
+  <div class="controls">
+    <input type="text" id="instructor_lname" 
+           name="instructor[lname]" value="<%= @instructor.lname %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="instructor_phone">Phone</label>
+  <div class="controls">
+    <input type="text" id="instructor_phone" 
+           name="instructor[phone]" value="<%= @instructor.phone %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="instructor_email">Email</label>
+  <div class="controls">
+    <input type="text" id="instructor_email" 
+           name="instructor[email]" value="<%= @instructor.email %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="instructor_location_id">Mailbox Location</label>
+  <div class="controls">
+    <select id="instructor_location_id" name="instructor[location_id]">
+      <% @locations.each do |location| %>
+        <option value="<%= location.id %>"
+          <%= "selected" if @instructor.location_id == location.id %>>
+          <%= "#{location.code}" %>
+        </option>
+      <% end %>
+    </select>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="instructor_pay_rate">Pay Rate</label>
+  <div class="controls">
+    <div class="input-prepend">
+      <span class="add-on">$</span>
+      <input type="text" id="instructor_pay_rate" 
+         name="instructor[pay_rate]" value=
+         <%= sprintf('%.2f', @instructor.pay_rate) if @instructor.pay_rate %>>
+    </div>
+    <br>
+    <br>
+    <input type="submit" value="Submit" class="btn btn-primary">

@@ -1,0 +1,47 @@
+<!-- Button to trigger modal -->
+<a href="#myModal" role="button" class="btn btn-primary" 
+   data-toggle="modal">Register Another Student</a>
+ 
+<!-- Modal -->
+<div id="myModal" class="modal-700 hide fade" tabindex="-1" 
+     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Register Student</h3>
+  </div>
+  <div class="modal-body">
+    <div class="form-horizontal">
+      <form action="<%= course_regs_url %>" method="post" class="form-inline">
+          <%= render partial: "form", locals: { students: @students,
+                                                courses: @courses } %>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </center>
+      </form>
+    </div>
+  </div>
+</div><br>
+<br>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Course</th>
+      <th>Date</th>
+      <th>Registerer</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @course_regs.each do |course_reg| %>
+    <tr>
+      <td><%= course_reg.student.name %></td>
+      <td><%= course_reg.course.dept_code %></td>
+      <td><%= course_reg.created_at %></td>
+      <td><%= course_reg.user.email %></td>
+      <td>
+        <%= link_to "delete", course_reg_url(course_reg), :method => "delete" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -3,11 +3,11 @@ class InstructorsController < ApplicationController
   
   def index
     @instructors = Instructor.all
+    @instructor = Instructor.new
+    @locations = Location.all
   end
   
   def new
-    @instructor = Instructor.new
-    @locations = Location.all
   end
   
   def create

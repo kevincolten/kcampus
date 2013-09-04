@@ -3,9 +3,6 @@ class CourseRegsController < ApplicationController
   
   def index
     @course_regs = CourseReg.find_all_by_client_id(current_user.client_id)
-  end
-  
-  def new
     @students = Student.find_all_by_client_id(current_user.client_id)
     @courses = Course.find_all_by_client_id(current_user.client_id)
   end
@@ -15,7 +12,13 @@ class CourseRegsController < ApplicationController
     params[:course_reg][:client_id] = current_user.client_id
     @course_reg = CourseReg.new(params[:course_reg])
     @course_reg.save
-    redirect_to new_course_reg_url
+    redirect_to course_regs_url
+  end
+  
+  def destroy
+    @course_reg = CourseReg.find(params[:id])
+    @course_reg.destroy
+    redirect_to course_regs_url
   end
   
 end

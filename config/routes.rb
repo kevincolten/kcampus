@@ -13,6 +13,7 @@ AccAdultEd::Application.routes.draw do
   resources :students, :only => [:index, :show]
   resources :event_regs, :only => [:new, :create]
   resources :course_regs
+  resources :attendance_records
   
   root :to => "users#show"
 end

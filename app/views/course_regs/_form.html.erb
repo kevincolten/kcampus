@@ -1,0 +1,20 @@
+<input type="hidden" name="authenticity_token" 
+ value="<%= form_authenticity_token %>">
+ <center>
+    <select id="course_reg_student_id" name="course_reg[student_id]" 
+            class="span4" multiple="multiple">
+      <% @students.each do |student| %>
+        <option value="<%= student.id %>">
+            <%= "#{student.name}"%> 
+        </option>
+      <% end %>
+    </select>
+    <select id="course_reg_course_id" name="course_reg[course_id]" 
+            class="span4" multiple="multiple">
+      <% @courses.each do |course| %>
+        <option value="<%= course.id %>">
+            <%= "#{course.dept_code}-#{course.number} #{course.course_type.long_name}"%> 
+        </option>
+      <% end %>
+    </select><br><br>
+    <input type="submit" value="Submit" class="btn btn-primary">

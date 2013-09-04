@@ -4,11 +4,12 @@ class AdminsController < ApplicationController
   
   def index
     @admins = Admin.all
+    @admin = Admin.new
+    @locations = Location.all
   end
   
   def new
-    @admin = Admin.new
-    @locations = Location.all
+    
   end
   
   def create

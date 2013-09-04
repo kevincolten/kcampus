@@ -5,7 +5,20 @@ class Student < ActiveRecord::Base
   
   has_many :course_regs
   
+  has_many :attendance_records
+  
   def name
     "#{self.fname} #{self.lname}"
+  end
+  
+  def attendance
+    averages = []
+    attendance_records = self.attendance_records
+    self.courses.each do |course|
+      records = attendance_records.select{ |record| course.id == record.course_id}
+      course_hours = records.map(&:hours).reduce(:+)
+      averages << ((course_hours / records.length) / course.duration)
+    end
+    (averages.reduce(:+) / averages.length * 100).to_i
   end
 end

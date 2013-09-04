@@ -1,14 +1,15 @@
 <input type="hidden" name="authenticity_token" 
  value="<%= form_authenticity_token %>">
-<div style="margin: 50px 0 0 20%">
-  <p style="width:160px; float:left">
-     <label for="course_synonym">Synonym</label>
-     <input type="text" id="course_synonym" 
-            name="course[synonym]" value="<%= @course.synonym %>"
-            class="span2">
-  </p>
-  <p>
-    <label for="course_course_type_id">Course Code</label>
+<div class="control-group">
+  <label class="control-label" for="course_synonym">Synonym</label>
+  <div class="controls">
+    <input type="text" id="course_synonym" class="span2"
+           name="course[synonym]" value="<%= @course.synonym %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="course_course_type_id">Course Code</label>
+  <div class="controls">
     <select id="course_course_type_id" name="course[course_type_id]" 
             class="span5">
       <% @course_types.each do |course_type| %>
@@ -22,16 +23,16 @@
     <input type="text" id="course_section" 
            name="course[section]" value="<%= @course.section %>" 
            placeholder="section" class="span1">
-  </p>
-  <br>
-  <br>
-  <p style="float:left; width:390px">
-    <label for="course_term">Deptartment Code</label>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="course_term">Deptartment Code</label>
+  <div class="controls">
     <select id="course_term" name="course[term_id]" class="span2">
       <% @terms.each do |term| %>
         <option value="<%= term.id %>"
           <%= "selected" if @course.term_id == term.id %>>
-            <%= term.code %> 
+            <%= term.dept_code %> 
         </option>
       <% end %>
     </select>
@@ -43,13 +44,15 @@
         </option>
       <% end %>
     </select>
-    <span style="width:200px">-</span>
+    -
     <input type="text" id="course_number" 
            name="course[number]" value="<%= @course.number %>"
            placeholder="no." class="span1">
-  </p>
-  <p>
-    <label for="course_instructor_id">Instructor</label>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="course_instructor_id">Instructor</label>
+  <div class="controls">
     <select id="course_instructor_id" name="course[instructor_id]">
       <% @instructors.each do |instructor| %>
         <option value="<%= instructor.id %>" 
@@ -58,22 +61,20 @@
         </option>
       <% end %>
     </select>
-  </p>
-  <br>
-  <br>
-  <p>
-    <% @days.each do |day| %>
-      <label class="checkbox inline day">
-        <input type="checkbox" value="true" 
-               name="course[<%= day.downcase %>]" id="course_<%= day %>"
-               <%= "checked" if @course_days.include?(day) %>>
-        <%= day %></label>
-    <% end %>
-  </p>
-  <br>
-  <br>
-  <p style="float:left; width:310px">
-    <label for="course_start_time">Time</label>
+  </div>
+</div>
+  <% @days.each do |day| %>
+  <label class="checkbox inline">
+    <input type="checkbox" value="true" 
+           name="course[<%= day.downcase %>]" id="course_<%= day %>"
+           <%= "checked" if @course_days.include?(day) %>>
+      <%= day %>
+  </label>
+  <% end %>
+<br><br>
+<div class="control-group">
+  <label class="control-label" for="course_start_time">Time</label>
+  <div class="controls">
     <input type="time" id="course_start_time" 
            name="course[start_time]"
            class="span2" 
@@ -88,27 +89,35 @@
            <%= "#{sprintf("%02d", @course.end_time.hour)}:#{sprintf("%02d", @course.end_time.min)}" %>>
            <% end %>
     </select>  
-  </p>
-  <p style="width:80px; float:left">
-    <label for="course_room_number">Rm No.</label>
+  </div>
+</div>
+<div class="control-group" style="float:left; width:100px">
+  <label class="control-label" for="course_room_number">Rm No.</label>
+  <div class="controls">
     <input type="text" id="course_room_number" 
            name="course[room_number]" value="<%= @course.room_number %> "
            class="span1">
-  </p>
-  <p style="width:80px; float:left">
-    <label for="course_min_seats">Min. Enroll</label>
+  </div>
+</div>
+<div class="control-group" style="float:left; width:100px">
+  <label class="control-label" for="course_min_seats">Min. Enroll</label>
+  <div class="controls">
     <input type="text" id="course_min_seats" 
            name="course[min_seats]" value="<%= @course.min_seats %>"
            class="span1" >
-  </p>
-  <p style="width:80px; float:left">
-    <label for="course_max_seats">Max. Enroll</label>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="course_max_seats">Max. Enroll</label>
+  <div class="controls">
     <input type="text" id="course_max_seats" 
            name="course[max_seats]" value="<%= @course.max_seats %>"
            class="span1" >
-  </p>
-  <p>
-    <label for="course_budget_code">Budget Code</label>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="course_budget_code">Budget Code</label>
+  <div class="controls">
     <select id="course_budget_code" name="course[budget_code]" class="span2">
       <% @budget_codes.each do |budget_code| %>
         <option value="<%= budget_code %>"
@@ -117,8 +126,5 @@
         </option>
       <% end %>
     </select>
-  </p>
-  <br>
-  <br>
-  <input type="submit" value="Submit" class="btn btn-primary span8">
-</div>
+    <br><br>
+    <input type="submit" value="Submit" class="btn btn-primary">

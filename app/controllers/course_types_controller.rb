@@ -3,9 +3,6 @@ class CourseTypesController < ApplicationController
   
   def index
     @course_types = CourseType.all
-  end
-  
-  def new
     @course_type = CourseType.new
   end
   

@@ -10,7 +10,7 @@
   <div class="navbar">
     <div class="navbar-inner">
       <a class="brand" href="#">kCamp.us</a>
-      <ul class="nav">
+      <ul class="nav" role="navigation">
         <% if current_user %>
         <li
         <%= 'class=active' if request.env['PATH_INFO'] == user_path(current_user) %>>
@@ -38,14 +38,23 @@
         <%= 'class=active' if request.env['PATH_INFO'] == students_path %>>
         <%= link_to "Students", students_url %></li>
         <li
+        <%= 'class=active' if request.env['PATH_INFO'] == course_regs_path %>>
+        <%= link_to "Registration", course_regs_url %></li>
+        <li
         <%= 'class=active' if request.env['PATH_INFO'] == events_path %>>
         <%= link_to "Events", events_url %></li>
+      </ul>
+      <ul class="nav pull-right">
         <li><%= link_to "Log Out", session_url, :method => :delete %></li>
-        <% elsif request.env['PATH_INFO'] == new_session_path %>
+      <% elsif request.env['PATH_INFO'] == new_session_path %>
+      </ul>
+      <ul class="nav pull-right">
         <li><%= link_to "Claim Account", new_user_url %></li>
-        <% else %>
+      <% else %>
+      </ul>
+      <ul class="nav pull-right">
         <li><%= link_to "Log In", new_session_url %></li>
-        <% end %>
+      <% end %>
       </ul>
     </div>
   </div>

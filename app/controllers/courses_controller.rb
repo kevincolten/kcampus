@@ -3,6 +3,15 @@ class CoursesController < ApplicationController
   
   def index
     @courses = Course.all
+    @course = Course.new
+    @terms = Term.all
+    @locations = Location.all
+    @instructors = Instructor.all
+    @course_types = CourseType.all
+    @days = ["Sunday", "Monday", "Tuesday", "Wednesday", 
+             "Thursday", "Friday", "Saturday"]
+    @budget_codes = [80001]
+    @course_days = @course.course_days
   end
   
   def new
@@ -29,6 +38,7 @@ class CoursesController < ApplicationController
   
   def show
     @course = Course.find(params[:id])
+    @attendance_records = AttendanceRecord.find_all_by_course_id(@course.id)
     @dates = @course.dates
     @month_years = @course.month_years
     @students = @course.students
