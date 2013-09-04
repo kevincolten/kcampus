@@ -12,7 +12,6 @@
          <table class="table table-striped">
            <thead>
              <tr>
-               <th></th>
                <% @course.dates.each do |date| %>
                <% next unless Date::MONTHNAMES[date.month] == month %>
                  <th><center><%= date.strftime("%m/%d/%Y") %></center></th>
