@@ -118,13 +118,8 @@
 <div class="control-group">
   <label class="control-label" for="course_budget_code">Budget Code</label>
   <div class="controls">
-    <select id="course_budget_code" name="course[budget_code]" class="span2">
-      <% @budget_codes.each do |budget_code| %>
-        <option value="<%= budget_code %>"
-          <%= "selected" if @course.budget_code == budget_code %>>
-            <%= budget_code %>
-        </option>
-      <% end %>
-    </select>
+    <input type="text" id="course_budget_code" 
+           name="course[budget_code]" value="<%= @course.budget_code %> "
+           class="span1">
     <br><br>
     <input type="submit" value="Submit" class="btn btn-primary">

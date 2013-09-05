@@ -12,8 +12,7 @@
   <div class="modal-body">
     <div class="form-horizontal">
       <form action="<%= admins_url %>" method="post">
-          <%= render partial: "form", locals: { instructor: @instructor,
-                                                locations: @locations } %>
+          <%= render partial: "form" %>
             <button class="btn" data-dismiss="modal" aria-hidden="true">
               Close
             </button>

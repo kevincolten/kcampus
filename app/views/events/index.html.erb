@@ -1,3 +1,29 @@
+<!-- Button to trigger modal -->
+<a href="#myModal" role="button" class="btn btn-primary" 
+   data-toggle="modal">Add Event</a>
+ 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" 
+     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Add Event</h3>
+  </div>
+  <div class="modal-body">
+    <div class="form-horizontal">
+      <form action="<%= events_url %>" method="post">
+            <%= render partial: "form" %>
+            <button class="btn" data-dismiss="modal" aria-hidden="true">
+              Close
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br>
+<br>
 <table class="table table-striped table-hover">
   <thead>
     <tr>
@@ -5,29 +31,33 @@
       <th>Date</th>
       <th>Time</th>
       <th>Location</th>
-      <th>Room Number</th>
+      <th>Room</th>
       <th>Contact Name</th>
       <th>Contact Phone</th>
       <th>Contact Email</th>
       <th>Max Seats</th>
-      <th>Remaining Seats</th>
+      <th>Rem. Seats</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
   <% @events.each do |event| %>
     <tr>
-      <td><%= event.name %></td>
-      <td><%= event.date %>
-      <td><%= event.start %> - <%= event.end %></td>
-      <td><%= event.location_id %></td>
+      <td><%=link_to event.name, event_url(event) %></td>
+      <td><%= event.date.to_date.strftime('%b %e, %Y') %></td>
+      <td><%= event.time %></td>
+      <td><%= event.location.name %></td>
       <td><%= event.room %></td>
       <td><%= event.contact_name %></td>
       <td><%= event.contact_phone %></td>
       <td><%= event.contact_email %></td>
       <td><%= event.max_seats %></td>
-      <td><%= event.max_seats %></td>
-      <td></td>
+      <td><%= event.remaining_seats %></td>
+      <td>
+        <%= link_to "edit", edit_event_url(event)%> | 
+        <%= link_to "delete", event_url(event), :method => "delete "%>
+      </td>
     </tr>
   <% end %>
+  </tbody>
 </table>

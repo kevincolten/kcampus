@@ -1,0 +1,61 @@
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Location</th>
+      <th>Room</th>
+      <th>Contact Name</th>
+      <th>Contact Phone</th>
+      <th>Contact Email</th>
+      <th>Max Seats</th>
+      <th>Remaining Seats</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @event.name %></td>
+      <td><%= @event.date.to_date.strftime('%b %e, %Y') %></td>
+      <td><%= @event.time %></td>
+      <td><%= @event.location.name %></td>
+      <td><%= @event.room %></td>
+      <td><%= @event.contact_name %></td>
+      <td><%= @event.contact_phone %></td>
+      <td><%= @event.contact_email %></td>
+      <td><%= @event.max_seats %></td>
+      <td><%= @event.remaining_seats %></td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>DOB</th>
+      <th>Location</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @event_regs.each do |event_reg| %>
+    <tr>
+      <td><%= event_reg.idn%></td>
+      <td><%= event_reg.fname %></td>
+      <td><%= event_reg.dob %></td>
+      <%= if attendee.idn %>
+      <td>
+        <form action=>
+        </td>
+      <td></td>
+      <td>edit link
+        <%= link_to "delete", event_reg_url(attendee), :method => "delete "%>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

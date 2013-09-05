@@ -1,4 +1,7 @@
-<form action="<%= location_url(@location) %>" method="post">
+<form action="<%= event_url(@event) %>" method="post" class="form-horizontal"
+      class="form-horizontal">
   <input type="hidden" name="_method" value="put">
-  <%= render partial: "form", locals: { location: @location } %>
+      <%= render partial: "form" %>
+    </div>
+  </div>
 </form>

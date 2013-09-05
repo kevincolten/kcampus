@@ -1,4 +1,6 @@
-<form action="<%= term_url %>" method="post">
-  <input type="hidden" name="_method" method="put">
-  <%= render partial: "form", locals: { term: @term } %>
+<form action="<%= term_url %>" method="post" class="form-horizontal">
+  <input type="hidden" name="_method" value="put">
+      <%= render partial: "form" %>
+    </div>
+  </div>
 </form>

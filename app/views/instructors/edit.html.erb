@@ -1,5 +1,7 @@
-<form action="<%= instructor_url(@instructor) %>" method="post">
+<form action="<%= instructor_url(@instructor) %>" method="post"
+       class="form-horizontal">
   <input type="hidden" name="_method" value="put">
-  <%= render partial: "form", locals: { instructor: @instructor,
-                                        locations: @locations } %>
+      <%= render partial: "form" %>
+    </div>
+  </div>
 </form>

@@ -1,6 +1,7 @@
-<form action="<%= location_url(@location) %>" method="post">
+<form action="<%= location_url(@location) %>" method="post" 
+      class="form-horizontal">
   <input type="hidden" name="_method" value="put">
-  <%= render partial: "form", locals: { location: @location } %>
-</div>
-</div>
+      <%= render partial: "form" %>
+    </div>
+  </div>
 </form>

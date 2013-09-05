@@ -10,7 +10,6 @@ class CoursesController < ApplicationController
     @course_types = CourseType.find_all_by_client_id(current_user.client_id)
     @days = ["Sunday", "Monday", "Tuesday", "Wednesday", 
              "Thursday", "Friday", "Saturday"]
-    @budget_codes = [80001]
     @course_days = @course.course_days
   end
   

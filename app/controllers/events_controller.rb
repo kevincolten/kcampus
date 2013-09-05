@@ -3,9 +3,6 @@ class EventsController < ApplicationController
   
   def index
     @events = Event.find_all_by_client_id(current_user.client_id)
-  end
-  
-  def new
     @event = Event.new
     @terms = Term.find_all_by_client_id(current_user.client_id)
     @locations = Location.find_all_by_client_id(current_user.client_id)
