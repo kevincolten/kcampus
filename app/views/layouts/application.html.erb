@@ -20,8 +20,8 @@
         <%= 'class=active' if request.env['PATH_INFO'] == locations_path %>>
         <%= link_to "Locations", locations_url %></li>
         <li
-        <%= 'class=active' if request.env['PATH_INFO'] == courses_path %>>
-        <%= link_to "Courses", courses_url %></li>
+        <%= 'class=active' if request.env['PATH_INFO'] == course_types_path %>>
+        <%= link_to "Course Types", course_types_url %></li>
         <li
         <%= 'class=active' if request.env['PATH_INFO'] == instructors_path %>>
         <%= link_to "Instructors", instructors_url %></li>
@@ -29,11 +29,11 @@
         <%= 'class=active' if request.env['PATH_INFO'] == admins_path %>>
         <%= link_to "Admins", admins_url %></li>
         <li
-        <%= 'class=active' if request.env['PATH_INFO'] == course_types_path %>>
-        <%= link_to "Course Types", course_types_url %></li>
-        <li
         <%= 'class=active' if request.env['PATH_INFO'] == terms_path %>>
         <%= link_to "Terms", terms_url %></li>
+        <li
+        <%= 'class=active' if request.env['PATH_INFO'] == courses_path %>>
+        <%= link_to "Courses", courses_url %></li>
         <li
         <%= 'class=active' if request.env['PATH_INFO'] == students_path %>>
         <%= link_to "Students", students_url %></li>

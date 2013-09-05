@@ -14,11 +14,14 @@ class Student < ActiveRecord::Base
   def attendance
     averages = []
     attendance_records = self.attendance_records
-    self.courses.each do |course|
-      records = attendance_records.select{ |record| course.id == record.course_id}
-      course_hours = records.map(&:hours).reduce(:+)
-      averages << ((course_hours / records.length) / course.duration)
+    unless attendance_records.empty?
+      self.courses.each do |course|
+        records = attendance_records.select{ |record| course.id == record.course_id}
+        course_hours = records.map(&:hours).reduce(:+)
+        averages << ((course_hours / records.length) / course.duration)
+      end
+      return (averages.reduce(:+) / averages.length * 100).to_i
     end
-    (averages.reduce(:+) / averages.length * 100).to_i
+    0
   end
 end

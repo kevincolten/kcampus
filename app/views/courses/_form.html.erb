@@ -63,6 +63,7 @@
     </select>
   </div>
 </div>
+<center>
   <% @days.each do |day| %>
   <label class="checkbox inline">
     <input type="checkbox" value="true" 
@@ -72,6 +73,7 @@
   </label>
   <% end %>
 <br><br>
+</center>
 <div class="control-group">
   <label class="control-label" for="course_start_time">Time</label>
   <div class="controls">
@@ -91,7 +93,8 @@
     </select>  
   </div>
 </div>
-<div class="control-group" style="float:left; width:100px">
+<div>
+<div class="control-group">
   <label class="control-label" for="course_room_number">Rm No.</label>
   <div class="controls">
     <input type="text" id="course_room_number" 
@@ -99,21 +102,18 @@
            class="span1">
   </div>
 </div>
-<div class="control-group" style="float:left; width:100px">
-  <label class="control-label" for="course_min_seats">Min. Enroll</label>
+<div class="control-group">
+  <label class="control-label" for="course_min_seats">Enrollment</label>
   <div class="controls">
     <input type="text" id="course_min_seats" 
            name="course[min_seats]" value="<%= @course.min_seats %>"
-           class="span1" >
-  </div>
-</div>
-<div class="control-group">
-  <label class="control-label" for="course_max_seats">Max. Enroll</label>
-  <div class="controls">
+           class="span1" placeholder="min">
+    -
     <input type="text" id="course_max_seats" 
            name="course[max_seats]" value="<%= @course.max_seats %>"
-           class="span1" >
+           class="span1" placeholder="max">
   </div>
+</div>
 </div>
 <div class="control-group">
   <label class="control-label" for="course_budget_code">Budget Code</label>

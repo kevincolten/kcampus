@@ -91,7 +91,10 @@ class Course < ActiveRecord::Base
   def student_attendance(student)
     records = student.attendance_records.select do |record| 
       record.course_id == self.id
-    end    
-    (records.map(&:hours).reduce(:+) / records.length / self.duration * 100).to_i
+    end
+    unless records.empty?    
+      return (records.map(&:hours).reduce(:+) / records.length / self.duration * 100).to_i
+    end
+    return 0
   end  
 end
