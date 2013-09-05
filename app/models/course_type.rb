@@ -3,6 +3,12 @@ class CourseType < ActiveRecord::Base
   
   has_many :courses
   
+  validates :long_name, :presence => true
+  validates :short_name, :presence => true
+  validates :discipline, :presence => true
+  validates :level, :presence => true
+  validates :client_id, :presence => true
+  
   def code
     str = "#{self.long_name} "
     str << "(#{self.discipline} - "

@@ -2,13 +2,13 @@ class EventsController < ApplicationController
   before_filter :require_current_user!
   
   def index
-    @events = Event.all
+    @events = Event.find_all_by_client_id(current_user.client_id)
   end
   
   def new
     @event = Event.new
-    @terms = Term.all
-    @locations = Location.all
+    @terms = Term.find_all_by_client_id(current_user.client_id)
+    @locations = Location.find_all_by_client_id(current_user.client_id)
   end
   
   def create
@@ -27,8 +27,8 @@ class EventsController < ApplicationController
   
   def edit
     @event = Event.find(params[:id])
-    @terms = Term.all
-    @locations = Location.all
+    @terms = Term.find_all_by_client_id(current_user.client_id)
+    @locations = Location.find_all_by_client_id(current_user.client_id)
   end
   
   def update

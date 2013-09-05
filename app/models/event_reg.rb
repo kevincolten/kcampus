@@ -4,4 +4,8 @@ class EventReg < ActiveRecord::Base
   belongs_to :event
   
   belongs_to :student
+  
+  validates :event_id, :presence => true
+  validates :student_id, :presence => true
+  
 end

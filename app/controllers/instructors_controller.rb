@@ -2,9 +2,9 @@ class InstructorsController < ApplicationController
   before_filter :require_current_user!
   
   def index
-    @instructors = Instructor.all
+    @instructors = Instructor.find_all_by_client_id(current_user.client_id)
     @instructor = Instructor.new
-    @locations = Location.all
+    @locations = Location.find_all_by_client_id(current_user.client_id)
   end
   
   def new
@@ -19,7 +19,7 @@ class InstructorsController < ApplicationController
   
   def edit
     @instructor = Instructor.find(params[:id])
-    @locations = Location.all
+    @locations = Location.find_all_by_client_id(current_user.client_id)
   end
   
   def update

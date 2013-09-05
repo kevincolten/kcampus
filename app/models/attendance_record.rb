@@ -5,4 +5,10 @@ class AttendanceRecord < ActiveRecord::Base
   
   belongs_to :course
   
+  validates :client_id, :presence => true
+  validates :course_id, :presence => true
+  validates :student_id, :presence => true
+  validates :date, :presence => true
+  validates :hours, :presence => true
+  
 end

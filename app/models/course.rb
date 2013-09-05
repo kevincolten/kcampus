@@ -16,6 +16,21 @@ class Course < ActiveRecord::Base
   has_many :course_regs
   
   has_many :students, :through => :course_regs, :source => :student
+  
+  validates :min_seats, :presence => true
+  validates :max_seats, :presence => true
+  validates :budget_code, :presence => true
+  validates :course_type_id, :presence => true
+  validates :end_time, :presence => true
+  validates :instructor_id, :presence => true
+  validates :location_id, :presence => true
+  validates :room_number, :presence => true
+  validates :section, :presence => true
+  validates :start_time, :presence => true
+  validates :synonym, :presence => true
+  validates :term_id, :presence => true
+  validates :number, :presence => true
+  validates :client_id, :presence => true
                   
   def course_days
     methods = [ :sunday, 

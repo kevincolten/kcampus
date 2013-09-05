@@ -3,9 +3,9 @@ class AdminsController < ApplicationController
   before_filter :require_current_user!
   
   def index
-    @admins = Admin.all
+    @admins = Admin.find_all_by_client_id(current_user.client_id)
     @admin = Admin.new
-    @locations = Location.all
+    @locations = Location.find_all_by_client_id(current_user.client_id)
   end
   
   def new
@@ -21,7 +21,7 @@ class AdminsController < ApplicationController
   
   def edit
     @admin = Admin.find(params[:id])
-    @locations = Location.all
+    @locations = Location.find_all_by_client_id(current_user.client_id)
   end
   
   def update

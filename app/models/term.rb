@@ -2,6 +2,17 @@ class Term < ActiveRecord::Base
   attr_accessible :add_drop_end, :end, :number, :reg_end, :reg_start, 
                   :semester, :start, :year, :code, :client_id
                   
+  validates :add_drop_end, :presence => true
+  validates :end, :presence => true
+  validates :number, :presence => true
+  validates :reg_end, :presence => true
+  validates :reg_start, :presence => true
+  validates :semester, :presence => true
+  validates :start, :presence => true
+  validates :year, :presence => true
+  validates :code, :presence => true
+  validates :client_id, :presence => true
+                  
   has_many :courses
   
   def dept_code

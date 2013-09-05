@@ -7,6 +7,15 @@ class Student < ActiveRecord::Base
   
   has_many :attendance_records
   
+  validates :idn, :presence => true
+  validates :dob, :presence => true
+  validates :fname, :presence => true
+  validates :lname, :presence => true
+  validates :client_id, :presence => true
+  validates :phone, :presence => true
+  validates :email, :presence => true
+  
+  
   def name
     "#{self.fname} #{self.lname}"
   end
@@ -18,7 +27,7 @@ class Student < ActiveRecord::Base
       self.courses.each do |course|
         records = attendance_records.select{ |record| course.id == record.course_id}
         course_hours = records.map(&:hours).reduce(:+)
-        averages << ((course_hours / records.length) / course.duration)
+        averages << ((course_hours / records.length) / course.duration) unless records.empty?
       end
       return (averages.reduce(:+) / averages.length * 100).to_i
     end

@@ -2,7 +2,7 @@ class CourseTypesController < ApplicationController
   before_filter :require_current_user!
   
   def index
-    @course_types = CourseType.all
+    @course_types = CourseType.find_all_by_client_id(current_user.client_id)
     @course_type = CourseType.new
   end
   

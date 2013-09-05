@@ -2,12 +2,12 @@ class CoursesController < ApplicationController
   before_filter :require_current_user!
   
   def index
-    @courses = Course.all
+    @courses = Course.find_all_by_client_id(current_user.client_id)
     @course = Course.new
-    @terms = Term.all
-    @locations = Location.all
-    @instructors = Instructor.all
-    @course_types = CourseType.all
+    @terms = Term.find_all_by_client_id(current_user.client_id)
+    @locations = Location.find_all_by_client_id(current_user.client_id)
+    @instructors = Instructor.find_all_by_client_id(current_user.client_id)
+    @course_types = CourseType.find_all_by_client_id(current_user.client_id)
     @days = ["Sunday", "Monday", "Tuesday", "Wednesday", 
              "Thursday", "Friday", "Saturday"]
     @budget_codes = [80001]

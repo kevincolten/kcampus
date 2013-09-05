@@ -2,7 +2,7 @@ class TermsController < ApplicationController
   before_filter :require_current_user!
   
   def index
-    @terms = Term.all
+    @terms = Term.find_all_by_client_id(current_user.client_id)
     @term = Term.new
   end
   

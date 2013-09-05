@@ -2,7 +2,7 @@ class StudentsController < ApplicationController
   before_filter :require_current_user!, :except => :show
   
   def index
-    @students = Student.all
+    @students = Student.find_all_by_client_id(current_user.client_id)
   end
   
   def show

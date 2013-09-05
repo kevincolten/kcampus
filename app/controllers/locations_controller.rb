@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
   before_filter :require_current_user!
   
   def index
-    @locations = Location.all
+    @locations = Location.find_all_by_client_id(current_user.client_id)
     @location = Location.new
   end
   

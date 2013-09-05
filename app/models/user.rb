@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :session_token, :presence => true
   validates :email, :presence => true
   validates :email, :uniqueness => true
+  validates :client, :presence => true
   
   after_initialize :ensure_session_token
   before_save :downcase_email
