@@ -12,6 +12,7 @@ class LocationsController < ApplicationController
   
   def create
     params[:location][:client_id] = current_user.client_id
+    params[:location].each_value { |value| value.strip! if value.is_a?(String) }
     @location = Location.new(params[:location])
     if @location.save
       redirect_to locations_url
@@ -30,6 +31,7 @@ class LocationsController < ApplicationController
   
   def update
     @location = Location.find(params[:id])
+    params[:location].each_value { |value| value.strip! if value.is_a?(String) }
     @location.update_attributes(params[:location])
     @location.save!
     redirect_to location_url(@location)

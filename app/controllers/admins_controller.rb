@@ -14,6 +14,7 @@ class AdminsController < ApplicationController
   
   def create
     params[:admin][:client_id] = current_user.client_id
+    params[:admin].each_value { |value| value.strip! if value.is_a?(String) }
     @admin = Admin.new(params[:admin])
     @admin.save
     redirect_to admins_url
@@ -26,6 +27,7 @@ class AdminsController < ApplicationController
   
   def update
     @admin = Admin.find(params[:id])
+    params[:admin].each_value { |value| value.strip! if value.is_a?(String) }
     @admin.update_attributes(params[:admin])
     @admin.save
     redirect_to admins_url

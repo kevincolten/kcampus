@@ -36,14 +36,14 @@
            name="event[start]"
            class="span2" 
            value=<% if @event.start %>
-           <%= "#{sprintf("%02d", @event.start.hour)}:#{sprintf("%02d", @event.start.min)}" %>>
+           <%= "#{sprintf("%02d", @event.start_time.hour)}:#{sprintf("%02d", @event.start.min)}" %>>
            <% end %>
     </select>
     -
     <input type="time" name="event[end]"
            class="span2" 
            value=<% if @event.end %>
-           <%= "#{sprintf("%02d", @event.end.hour)}:#{sprintf("%02d", @event.end.min)}" %>>
+           <%= "#{sprintf("%02d", @event.end_time.hour)}:#{sprintf("%02d", @event.end.min)}" %>>
            <% end %>
     </select>  
   </div>

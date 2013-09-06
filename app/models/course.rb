@@ -84,7 +84,7 @@ class Course < ActiveRecord::Base
              "F"  => 5,
              "S"  => 6 }
     self.small_days.split(", ").each {|day| array << hash[day]}
-    (self.term.start..self.term.end).to_a.select do |k| 
+    (self.term.start_date..self.term.end_date).to_a.select do |k| 
         array.include?(k.wday)
     end
   end

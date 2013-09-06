@@ -5,11 +5,13 @@ class ClientsController < ApplicationController
   
   def create
     ActiveRecord::Base.transaction do
+      params[:client].each_value { |value| value.strip! if value.is_a?(String) }
       @client = Client.new(params[:client])
       @client.save
       params[:user][:email] = params[:client][:email]
       params[:user][:client_id] = @client.id
       params[:user][:client] = true
+      params[:user].each_value { |value| value.strip! if value.is_a?(String) }
       @user = User.new(params[:user])
       @user.save
       @student1 = Student.new( :idn => "9638521",

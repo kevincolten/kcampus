@@ -5,14 +5,14 @@ class AttendanceRecordsController < ApplicationController
     @course = Course.find(params[:attendance_record][:course_id])
     @attendance_record = AttendanceRecord.new(params[:attendance_record])
     @attendance_record.save
-    redirect_to course_url(@course)
+    redirect_to term_course_url(current_term.id, @course)
   end
   
   def destroy
     @attendance_record = AttendanceRecord.find(params[:id])
     @course = Course.find(@attendance_record.course_id)
     @attendance_record.destroy
-    redirect_to course_url(@course)
+    redirect_to term_course_url(current_term.id, @course)
   end
   
 end

@@ -12,6 +12,7 @@ class InstructorsController < ApplicationController
   
   def create
     params[:instructor][:client_id] = current_user.client_id
+    params[:instructor].each_value { |value| value.strip! if value.is_a?(String) }
     @instructor = Instructor.new(params[:instructor])
     @instructor.save
     redirect_to instructors_url
@@ -24,6 +25,7 @@ class InstructorsController < ApplicationController
   
   def update
     @instructor = Instructor.find(params[:id])
+    params[:instructor].each_value { |value| value.strip! if value.is_a?(String) }
     @instructor.update_attributes(params[:instructor])
     @instructor.save
     redirect_to instructors_url

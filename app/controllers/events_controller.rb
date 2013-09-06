@@ -10,9 +10,10 @@ class EventsController < ApplicationController
   
   def create
     params[:event][:client_id] = current_user.client_id
+    params[:event].each_value { |value| value.strip! if value.is_a?(String) }
     @event = Event.new(params[:event])
     if @event.save
-      redirect_to events_url
+      redirect_to term_events_url(current_term.id)
     else
       render :json => @event.errors.full_messages
     end
@@ -20,6 +21,20 @@ class EventsController < ApplicationController
   
   def show
     @event = Event.find(params[:id])
+    EventReg.find_all_by_event_id(params[:id]).each do |event_reg|
+      unless event_reg.idn
+        @student = Student.find_by_fname_and_lname_and_dob( event_reg.fname,
+                                                            event_reg.lname,
+                                                            event_reg.dob )
+        if @student
+          event_reg.update_attributes(:idn => @student.idn)
+          event_reg.save
+        end
+      end
+    end
+    @event_regs = EventReg.find_all_by_event_id(params[:id])
+                          .sort{ |x, y| x.lname <=> y.lname }
+    @event_reg = EventReg.new
   end
   
   def edit
@@ -30,15 +45,16 @@ class EventsController < ApplicationController
   
   def update
     @event = Event.find(params[:id])
+    params[:event].each_value { |value| value.strip! if value.is_a?(String) }
     @event.update_attributes(params[:event])
     @event.save!
-    redirect_to events_url
+    redirect_to term_events_url(current_term.id)
   end
   
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-    redirect_to events_url
+    redirect_to term_events_url(current_term.id)
   end
   
 end

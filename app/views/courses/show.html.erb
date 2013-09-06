@@ -16,7 +16,7 @@
       <tr>
         <td><%= @course.synonym %></td>
         <td><%= @course.course_code %></td>
-        <td><%=link_to "#{@course.dept_code}", course_url(@course) %></td>
+        <td><%=link_to "#{@course.dept_code}", term_course_url(current_term.id, @course) %></td>
         <td><%= @course.course_type.short_name %></td>
         <td><%= @course.location.name %></td>
         <td><%= @course.small_days %></td>
@@ -63,7 +63,7 @@ hint: click the other months below :)
                        <% record.date == date && record.student_id == student.id && record.course_id == params[:id].to_i %>
                      <% end %>
                      <% if attendance_record.first.nil? %>
-                 <form action="<%= attendance_records_url %>" method="post">
+                 <form action="<%= term_attendance_records_url(current_term.id) %>" method="post">
                  <td>
                    <center>
                      <input type="hidden" name="authenticity_token" 
@@ -86,7 +86,7 @@ hint: click the other months below :)
                    <center>
                        <input type="text" value="<%= attendance_record.first.hours %>"
                               class="span1" readonly ><br>
-                       <%= link_to "delete", attendance_record_url(attendance_record), :method => "delete"%>
+                       <%= link_to "delete", term_attendance_record_url(current_term.id, attendance_record), :method => "delete"%>
                     </center>
                  </td>
                     <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130905175129) do
+ActiveRecord::Schema.define(:version => 20130905234623) do
 
   create_table "admins", :force => true do |t|
     t.string   "fname"
@@ -95,12 +95,13 @@ ActiveRecord::Schema.define(:version => 20130905175129) do
   create_table "event_regs", :force => true do |t|
     t.integer  "event_id"
     t.integer  "client_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "fname",      :null => false
-    t.string   "lname",      :null => false
-    t.date     "dob",        :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "fname",                         :null => false
+    t.string   "lname",                         :null => false
+    t.date     "dob",                           :null => false
     t.integer  "idn"
+    t.boolean  "attended",   :default => false
   end
 
   create_table "events", :force => true do |t|
@@ -108,11 +109,11 @@ ActiveRecord::Schema.define(:version => 20130905175129) do
     t.string   "date"
     t.integer  "max_seats"
     t.integer  "location_id"
-    t.time     "start"
+    t.time     "start_time"
     t.integer  "client_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.time     "end",           :null => false
+    t.time     "end_time",      :null => false
     t.string   "contact_name",  :null => false
     t.string   "contact_email", :null => false
     t.string   "contact_phone", :null => false
@@ -164,8 +165,8 @@ ActiveRecord::Schema.define(:version => 20130905175129) do
     t.integer  "year",         :null => false
     t.string   "semester",     :null => false
     t.integer  "number",       :null => false
-    t.date     "start",        :null => false
-    t.date     "end",          :null => false
+    t.date     "start_date",   :null => false
+    t.date     "end_date",     :null => false
     t.date     "reg_start",    :null => false
     t.date     "reg_end",      :null => false
     t.date     "add_drop_end", :null => false

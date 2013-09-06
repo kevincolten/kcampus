@@ -11,7 +11,7 @@
   </div>
   <div class="modal-body">
     <div class="form-horizontal">
-      <form action="<%= locations_url %>" method="post">
+      <form action="<%= term_courses_url(@term.id) %>" method="post">
             <%= render partial: "form" %>
             <button class="btn" data-dismiss="modal" aria-hidden="true">
               Close
@@ -45,7 +45,7 @@
       <tr>
         <td><%= course.synonym %></td>
         <td><%= course.course_code %></td>
-        <td><%=link_to "#{course.dept_code}", course_url(course) %></td>
+        <td><%=link_to "#{course.dept_code}", term_course_url(current_term.id, course) %></td>
         <td><%= course.course_type.short_name %></td>
         <td><%= course.small_days %></td>
         <td><%= course.start_time.strftime("%l:%M%P") %> -
@@ -54,8 +54,8 @@
         <td><%=course.min_seats %></td>
         <td><%=course.max_seats %></td>
         <td><%=course.budget_code %></td>
-        <td><%= link_to "edit", edit_course_url(course) %> | 
-            <%= link_to "delete", course_url(course), :method => "delete" %>
+        <td><%= link_to "edit", edit_term_course_url(current_term.id, course) %> | 
+            <%= link_to "delete", term_course_url(current_term.id, course), :method => "delete" %>
       </tr>   
     <% end %>
   </tbody>

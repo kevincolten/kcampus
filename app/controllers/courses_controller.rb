@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   def index
     @courses = Course.find_all_by_client_id(current_user.client_id)
     @course = Course.new
-    @terms = Term.find_all_by_client_id(current_user.client_id)
+    @term = current_term
     @locations = Location.find_all_by_client_id(current_user.client_id)
     @instructors = Instructor.find_all_by_client_id(current_user.client_id)
     @course_types = CourseType.find_all_by_client_id(current_user.client_id)
@@ -13,23 +13,13 @@ class CoursesController < ApplicationController
     @course_days = @course.course_days
   end
   
-  def new
-    @course = Course.new
-    @terms = Term.all
-    @locations = Location.all
-    @instructors = Instructor.all
-    @course_types = CourseType.all
-    @days = ["Sunday", "Monday", "Tuesday", "Wednesday", 
-             "Thursday", "Friday", "Saturday"]
-    @budget_codes = [80001]
-    @course_days = @course.course_days
-  end
-  
   def create
+    params[:course][:term_id] = current_term.id
     params[:course][:client_id] = current_user.client_id
+    params[:course].each_value { |value| value.strip! if value.is_a?(String) }
     @course = Course.new(params[:course])
     if @course.save
-      redirect_to courses_url
+      redirect_to term_courses_url(current_term.id)
     else
       render :json => @course.errors.full_messages
     end
@@ -45,27 +35,27 @@ class CoursesController < ApplicationController
   
   def edit
     @course = Course.find(params[:id])
-    @terms = Term.all
+    @term = current_term
     @locations = Location.all
     @instructors = Instructor.all
     @course_types = CourseType.all
     @days = ["Sunday", "Monday", "Tuesday", "Wednesday", 
              "Thursday", "Friday", "Saturday"]
-    @budget_codes = [80001]
     @course_days = @course.course_days
   end
   
   def update
     @course = Course.find(params[:id])
+    params[:course].each_value { |value| value.strip! if value.is_a?(String) }
     @course.update_attributes(params[:course])
     @course.save!
-    redirect_to courses_url
+    redirect_to term_courses_url(current_term.id)
   end
   
   def destroy
     @course = Course.find(params[:id])
     @course.destroy
-    redirect_to courses_url
+    redirect_to term_courses_url(current_term.id)
   end
   
 end

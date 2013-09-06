@@ -12,13 +12,13 @@ class CourseRegsController < ApplicationController
     params[:course_reg][:client_id] = current_user.client_id
     @course_reg = CourseReg.new(params[:course_reg])
     @course_reg.save
-    redirect_to course_regs_url
+    redirect_to term_course_regs_url(current_term.id)
   end
   
   def destroy
     @course_reg = CourseReg.find(params[:id])
     @course_reg.destroy
-    redirect_to course_regs_url
+    redirect_to term_course_regs_url(current_term.id)
   end
   
 end

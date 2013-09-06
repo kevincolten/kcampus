@@ -17,7 +17,7 @@ class Student < ActiveRecord::Base
   
   
   def name
-    "#{self.fname} #{self.lname}"
+    "#{self.lname}, #{self.fname}"
   end
   
   def attendance

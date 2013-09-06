@@ -8,6 +8,7 @@ class TermsController < ApplicationController
   
   def create
     params[:term][:client_id] = current_user.client_id
+    params[:term].each_value { |value| value.strip! if value.is_a?(String) }
     @term = Term.new(params[:term])
     @term.save
     redirect_to terms_url
@@ -19,6 +20,7 @@ class TermsController < ApplicationController
   
   def update
     @term = Term.find(params[:id])
+    params[:term].each_value { |value| value.strip! if value.is_a?(String) }
     @term.update_attributes(params[:id])
     @term.save
     redirect_to terms_url

@@ -1,14 +1,14 @@
 class Term < ActiveRecord::Base
-  attr_accessible :add_drop_end, :end, :number, :reg_end, :reg_start, 
-                  :semester, :start, :year, :code, :client_id
+  attr_accessible :add_drop_end, :end_date, :number, :reg_end, :reg_start, 
+                  :semester, :start_date, :year, :code, :client_id
                   
   validates :add_drop_end, :presence => true
-  validates :end, :presence => true
+  validates :end_date, :presence => true
   validates :number, :presence => true
   validates :reg_end, :presence => true
   validates :reg_start, :presence => true
   validates :semester, :presence => true
-  validates :start, :presence => true
+  validates :start_date, :presence => true
   validates :year, :presence => true
   validates :code, :presence => true
   validates :client_id, :presence => true
@@ -25,7 +25,7 @@ class Term < ActiveRecord::Base
   end
   
   def dates
-    str = "#{self.start.strftime("%m/%d/%Y")} - "
-    str << "#{self.end.strftime("%m/%d/%Y")}"
+    str = "#{self.start_date.strftime("%m/%d/%Y")} - "
+    str << "#{self.end_date.strftime("%m/%d/%Y")}"
   end
 end

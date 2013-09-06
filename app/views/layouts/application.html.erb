@@ -32,17 +32,17 @@
         <%= 'class=active' if request.env['PATH_INFO'] == terms_path %>>
         <%= link_to "Terms", terms_url %></li>
         <li
-        <%= 'class=active' if request.env['PATH_INFO'] == courses_path %>>
-        <%= link_to "Courses", courses_url %></li>
+        <%= 'class=active' if request.env['PATH_INFO'] == term_courses_path(current_term.id) %>>
+        <%= link_to "Courses", term_courses_url(current_term.id) %></li>
         <li
         <%= 'class=active' if request.env['PATH_INFO'] == students_path %>>
         <%= link_to "Students", students_url %></li>
         <li
-        <%= 'class=active' if request.env['PATH_INFO'] == course_regs_path %>>
-        <%= link_to "Registration", course_regs_url %></li>
+        <%= 'class=active' if request.env['PATH_INFO'] == term_course_regs_path(current_term.id) %>>
+        <%= link_to "Registration", term_course_regs_url(current_term.id) %></li>
         <li
-        <%= 'class=active' if request.env['PATH_INFO'] == events_path %>>
-        <%= link_to "Events", events_url %></li>
+        <%= 'class=active' if request.env['PATH_INFO'] == term_events_path(current_term.id) %>>
+        <%= link_to "Events", term_events_url(current_term.id) %></li>
       </ul>
       <ul class="nav pull-right">
         <li><%= link_to "Log Out", session_url, :method => :delete %></li>
@@ -58,7 +58,10 @@
       </ul>
     </div>
   </div>
-<%= yield %>
-
+  <div align="right" style="text-align:right">
+    <%= render partial: "layouts/form" %>
+  </div>
+  <%= current_term.dept_code %>
+  <%= yield %>
 </body>
 </html>

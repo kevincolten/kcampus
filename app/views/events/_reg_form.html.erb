@@ -1,9 +1,40 @@
-<form action="<%= event_regs_url %>" method="post">
-  <label for="event_reg_idn">Enter ID Number</label>
-  <input type="text" id="event_reg_idn" name="event_reg[idn]">
-  <label for="event_reg_email">Enter Email</label>
-  <input type="text" id="event_reg_email" name="event_reg[email]">
-  <label for="event_reg_dob">Enter Date of Birth</label>
-  <input type="date" id="event_reg_dob" name="event_reg[dob]">
-  <input type="submit" value="Submit">
-</form>
+<input type="hidden" name="authenticity_token" 
+ value="<%= form_authenticity_token %>">
+ <input type="hidden" name="event_reg[event_id]" 
+  value="<%= params[:id] %>">
+
+<div class="control-group">
+  <label class="control-label" for="event_reg_fname">ID Number</label>
+  <div class="controls">
+    <input type="text" id="event_reg_idn" 
+           name="event_reg[idn]" 
+           value="<%= @event_reg.idn %>">
+  </div>
+</div>
+<center><span class="lead">or</span></center>
+<br>
+<div class="control-group">
+  <label class="control-label" for="event_reg_fname">First Name</label>
+  <div class="controls">
+    <input type="text" id="event_reg_fname" 
+           name="event_reg[fname]" 
+           value="<%= @event_reg.fname %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="event_reg_lname">Last Name</label>
+  <div class="controls">
+    <input type="text" id="event_reg_lname" 
+           name="event_reg[lname]" 
+           value="<%= @event_reg.lname %>">
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label" for="event_reg_dob">Date of Birth</label>
+  <div class="controls">
+    <input type="date" id="event_reg_dob" 
+           name="event_reg[dob]" 
+           value="<%= @event_reg.dob %>">
+<br>
+<br>
+<input type="submit" value="Submit" class="btn btn-primary">

@@ -28,14 +28,7 @@
 <div class="control-group">
   <label class="control-label" for="course_term">Deptartment Code</label>
   <div class="controls">
-    <select id="course_term" name="course[term_id]" class="span2">
-      <% @terms.each do |term| %>
-        <option value="<%= term.id %>"
-          <%= "selected" if @course.term_id == term.id %>>
-            <%= term.dept_code %> 
-        </option>
-      <% end %>
-    </select>
+    <%= @term.dept_code %>
     <select id="course_location" name="course[location_id]" class="span2">
       <% @locations.each do |location| %>
         <option value="<%= location.id %>"
