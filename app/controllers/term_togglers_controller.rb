@@ -1,12 +1,8 @@
 class TermTogglersController < ApplicationController
   
   def create
-    p "@@@@@@ before"
-    p current_term
-    current_term=(Term.find(params[:term_toggler][:term_id]))
-    p current_term
-    p "@@@@@@ after"
-    redirect_to user_url(User.first)
+    session[:current_term] = Term.find(params[:term_toggler][:term_id])
+    redirect_to :back
   end
   
 end

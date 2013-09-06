@@ -8,16 +8,13 @@ AccAdultEd::Application.routes.draw do
   resources :instructors
   resources :admins
   resources :students, :only => [:index, :show]
-  
-  resources :terms do 
-    resources :courses
-    resources :course_regs
-    resources :events
-    resources :event_regs
-    resources :attendance_records
-  end
-  
+  resources :courses
+  resources :course_regs
+  resources :events
+  resources :event_regs
+  resources :attendance_records
   resource :term_toggler
+  resources :terms
   
   root :to => "users#show"
   

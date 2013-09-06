@@ -2,7 +2,8 @@ class EventsController < ApplicationController
   before_filter :require_current_user!
   
   def index
-    @events = Event.find_all_by_client_id(current_user.client_id)
+    @events = Event.find_all_by_client_id_and_term_id(current_user.client_id,
+                                                      current_term.id)
     @event = Event.new
     @terms = Term.find_all_by_client_id(current_user.client_id)
     @locations = Location.find_all_by_client_id(current_user.client_id)
@@ -13,7 +14,7 @@ class EventsController < ApplicationController
     params[:event].each_value { |value| value.strip! if value.is_a?(String) }
     @event = Event.new(params[:event])
     if @event.save
-      redirect_to term_events_url(current_term.id)
+      redirect_to events_url
     else
       render :json => @event.errors.full_messages
     end
@@ -48,13 +49,13 @@ class EventsController < ApplicationController
     params[:event].each_value { |value| value.strip! if value.is_a?(String) }
     @event.update_attributes(params[:event])
     @event.save!
-    redirect_to term_events_url(current_term.id)
+    redirect_to events_url
   end
   
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-    redirect_to term_events_url(current_term.id)
+    redirect_to events_url
   end
   
 end

@@ -7,6 +7,8 @@ class CourseReg < ActiveRecord::Base
   
   belongs_to :user
   
+  has_one :term, :through => :course, :source => :term
+  
   validates :course_id, :presence => true
   validates :student_id, :presence => true
   validates :user_id, :presence => true

@@ -1,0 +1,10 @@
+<form action="<%= event_reg_url %>" method="post" class="form-horizontal">
+  <input type="hidden" name="_method" value="put">  
+  <input type="hidden" name="authenticity_token" 
+         value="<%= form_authenticity_token %>">
+  <input type="hidden" name="event_reg[id]" 
+         value="<%= event_reg.id %>">
+  <input type="text" id="event_reg_idn" 
+         name="event_reg[idn]" class="span1">
+  <input type="submit" value="Submit" class="btn btn-primary btn-mini">
+</form>

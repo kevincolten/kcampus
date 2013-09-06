@@ -70,7 +70,13 @@
   <tbody>
   <% @event_regs.each do |event_reg| %>
     <tr>
-      <td><%= event_reg.idn %></td>
+      <td>
+        <% if event_reg.idn %>
+          <%= event_reg.idn %>
+        <% else %>
+          <%= render partial: "edit_form", :locals => {event_reg: event_reg} %>
+        <% end %>
+      </td>
       <td><%= event_reg.name %></td>
       <td><%= event_reg.dob %></td>
       <% if event_reg.idn %>

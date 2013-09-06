@@ -1,10 +1,8 @@
 module TermTogglersHelper
   
-  def current_term=(term)
-    @current_term = term
-    p "@@@@@@@"
-    @current_term
-  end
+  # def current_term=(term)
+#     @current_term = term
+#   end
   
   def find_current_term
     Term.where("client_id = ? AND reg_start <= ? AND end_date > ?", 
@@ -18,7 +16,7 @@ module TermTogglersHelper
   end
   
   def current_term
-    @current_term = @current_term || find_current_term || find_latest_term
+    @current_term = session[:current_term] || find_current_term || find_latest_term
   end
   
 end

@@ -2,7 +2,8 @@ class CoursesController < ApplicationController
   before_filter :require_current_user!
   
   def index
-    @courses = Course.find_all_by_client_id(current_user.client_id)
+    @courses = Course.find_all_by_client_id_and_term_id(current_user.client_id,
+                                                        current_term.id)
     @course = Course.new
     @term = current_term
     @locations = Location.find_all_by_client_id(current_user.client_id)
@@ -19,7 +20,7 @@ class CoursesController < ApplicationController
     params[:course].each_value { |value| value.strip! if value.is_a?(String) }
     @course = Course.new(params[:course])
     if @course.save
-      redirect_to term_courses_url(current_term.id)
+      redirect_to courses_url
     else
       render :json => @course.errors.full_messages
     end
@@ -49,7 +50,7 @@ class CoursesController < ApplicationController
     params[:course].each_value { |value| value.strip! if value.is_a?(String) }
     @course.update_attributes(params[:course])
     @course.save!
-    redirect_to term_courses_url(current_term.id)
+    redirect_to courses_url
   end
   
   def destroy

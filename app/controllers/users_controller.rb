@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 	before_filter :require_current_user!, :only => [:show]
 	before_filter :require_no_current_user!, :only => [:create, :new]
-  before_filter :current_term
-
+  
 	def create
     params[:user][:client_id] = current_user.client_id
     params[:user][:admin] = false
