@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :client_id, :client
+  attr_accessible :email, :password, :client_id, :client, :admin, :instructor
   attr_reader :password
 
   validates :password_digest, :presence => { :message => "Password can't be blank" }
@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   validates :session_token, :presence => true
   validates :email, :presence => true
   validates :email, :uniqueness => true
-  validates :client, :presence => true
   
   after_initialize :ensure_session_token
   before_save :downcase_email

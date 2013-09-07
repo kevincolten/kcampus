@@ -1,9 +1,19 @@
 class CoursesController < ApplicationController
   before_filter :require_current_user!
+  before_filter :require_client!, :except => [:index, :show]
   
   def index
-    @courses = Course.find_all_by_client_id_and_term_id(current_user.client_id,
-                                                        current_term.id)
+    if current_user.admin || current_user.client
+      @courses = Course.find_all_by_client_id_and_term_id(current_user.client_id,
+                                                          current_term.id)
+    elsif current_user.instructor
+      @instructor = Instructor.find_by_email(current_user.email)
+      @courses = Course.find_all_by_client_id_and_term_id_and_instructor_id(
+                                                          current_user.client_id,
+                                                          current_term.id,
+                                                          @instructor.id)
+    end
+    @terms = Term.find_all_by_client_id(current_user.client_id)
     @course = Course.new
     @term = current_term
     @locations = Location.find_all_by_client_id(current_user.client_id)
@@ -28,6 +38,7 @@ class CoursesController < ApplicationController
   
   def show
     @course = Course.find(params[:id])
+    redirect_to root_url unless @course.client_id == current_user.client_id
     @attendance_records = AttendanceRecord.find_all_by_course_id(@course.id)
     @dates = @course.dates
     @month_years = @course.month_years

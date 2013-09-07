@@ -1,3 +1,7 @@
+<div align="right" style="text-align:right">
+      <%= render partial: "term_toggle" %>
+</div>
+
 <!-- Button to trigger modal -->
 <a href="#myModal" role="button" class="btn btn-primary" 
    data-toggle="modal">Add Course</a>
@@ -37,7 +41,9 @@
       <th>Min Enroll</th>
       <th>Max Enroll</th>
       <th>Budget Code</th>
-      <th></th>
+      <% if current_user.client %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -54,8 +60,10 @@
         <td><%=course.min_seats %></td>
         <td><%=course.max_seats %></td>
         <td><%=course.budget_code %></td>
-        <td><%= link_to "edit", course_url(course) %> | 
-            <%= link_to "delete", course_url(course), :method => "delete" %>
+        <% if current_user.client %>
+          <td><%= link_to "edit", course_url(course) %> | 
+              <%= link_to "delete", course_url(course), :method => "delete" %>
+        <% end %>
       </tr>   
     <% end %>
   </tbody>

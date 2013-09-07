@@ -1,5 +1,7 @@
 class LocationsController < ApplicationController
   before_filter :require_current_user!
+  before_filter :require_admin!
+  before_filter :require_client!, :only => [:create, :edit, :update, :destroy]
   
   def index
     @locations = Location.find_all_by_client_id(current_user.client_id)
@@ -19,10 +21,6 @@ class LocationsController < ApplicationController
     else
       render :json => @location.errors.full_messages
     end
-  end
-  
-  def show
-    @location = Location.find(params[:id])
   end
   
   def edit

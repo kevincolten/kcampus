@@ -1,5 +1,7 @@
 class TermsController < ApplicationController
   before_filter :require_current_user!
+  before_filter :require_client!, :except => [:index]
+  before_filter :require_admin!
   
   def index
     @terms = Term.find_all_by_client_id(current_user.client_id)

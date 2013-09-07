@@ -1,0 +1,17 @@
+<% if logged_in? %>
+  <form action="<%= term_toggler_url %>" method="post" class="form-horizontal">
+    <input type="hidden" name="authenticity_token" 
+           value="<%= form_authenticity_token %>">
+     Term: 
+    <select id="term_toggler_id" name="term_toggler[term_id]" class="span2">
+      
+      <% @terms.each do |term| %>
+        <option value="<%= term.id %>"
+          <%= "selected" if current_term.id == term.id %>>
+          <%= term.dept_code %> 
+        </option>
+      <% end %>
+    </select>
+    <input type="submit" value="Submit" class="btn btn-primary btn-mini">
+  </form>
+<% end %>

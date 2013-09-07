@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_filter :require_current_user!
+  before_filter :require_admin!
   
   def index
     @events = Event.find_all_by_client_id_and_term_id(current_user.client_id,
@@ -22,6 +23,7 @@ class EventsController < ApplicationController
   
   def show
     @event = Event.find(params[:id])
+    redirect_to root_url unless @event.client_id == current_user.client_id
     EventReg.find_all_by_event_id(params[:id]).each do |event_reg|
       unless event_reg.idn
         @student = Student.find_by_fname_and_lname_and_dob( event_reg.fname,

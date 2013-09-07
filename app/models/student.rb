@@ -23,14 +23,15 @@ class Student < ActiveRecord::Base
   def attendance(term_id)
     courses = self.courses.where('term_id = ?', term_id)
     averages = []
-    attendance_records = self.attendance_records
+    term_attendance_records = self.attendance_records
+    records = nil
     unless attendance_records.empty?
       courses.each do |course|
         records = attendance_records.select{ |record| course.id == record.course_id}
         course_hours = records.map(&:hours).reduce(:+)
         averages << ((course_hours / records.length) / course.duration) unless records.empty?
       end
-      return (averages.reduce(:+) / averages.length * 100).to_i
+      return (averages.reduce(:+) / averages.length * 100).to_i unless records.empty?
     end
     0
   end

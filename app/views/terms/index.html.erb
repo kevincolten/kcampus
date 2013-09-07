@@ -1,29 +1,31 @@
-<!-- Button to trigger modal -->
-<a href="#myModal" role="button" class="btn btn-primary" 
-   data-toggle="modal">Create New Term</a>
- 
-<!-- Modal -->
-<div id="myModal" class="modal-700 hide fade" tabindex="-1" 
-     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Create New Term</h3>
-  </div>
-  <div class="modal-body">
-    <div class="form-horizontal">
-      <form action="<%= terms_url %>" method="post">
-            <%= render partial: "form" %>
-            <button class="btn" data-dismiss="modal" aria-hidden="true">
-              Close
-            </button>
+<% if current_user.client %>
+  <!-- Button to trigger modal -->
+  <a href="#myModal" role="button" class="btn btn-primary" 
+     data-toggle="modal">Create New Term</a>
+   
+  <!-- Modal -->
+  <div id="myModal" class="modal-700 hide fade" tabindex="-1" 
+       role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Create New Term</h3>
+    </div>
+    <div class="modal-body">
+      <div class="form-horizontal">
+        <form action="<%= terms_url %>" method="post">
+              <%= render partial: "form" %>
+              <button class="btn" data-dismiss="modal" aria-hidden="true">
+                Close
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
-</div>
-<br>
-<br>
+  <br>
+  <br>
+<% end %>
 <table class="table table-striped table-hover">
   <thead>
     <tr>
@@ -34,7 +36,9 @@
       <th>Registration Dates</th>
       <th>Term Dates</th>
       <th>Add-Drop Date</th>
-      <th></th>
+      <% if current_user.client %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -47,8 +51,10 @@
         <td><%= term.reg_dates %></td>
         <td><%= term.dates %></td>
         <td><%= "#{term.add_drop_end.strftime("%m/%d/%Y")}" %></td>
-        <td><%= link_to "edit", edit_term_url(term) %> |
-           <%= link_to "delete", term_url(term), :method => "destroy" %></td>
+        <% if current_user.client %>
+          <td><%= link_to "edit", edit_term_url(term) %> |
+             <%= link_to "delete", term_url(term), :method => "destroy" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

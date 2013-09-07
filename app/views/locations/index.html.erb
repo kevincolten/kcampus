@@ -1,30 +1,31 @@
-
-<!-- Button to trigger modal -->
-<a href="#myModal" role="button" class="btn btn-primary" 
-   data-toggle="modal">Add Location</a>
- 
-<!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" 
-     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Add New Location</h3>
-  </div>
-  <div class="modal-body">
-    <div class="form-horizontal">
-      <form action="<%= locations_url %>" method="post">
-            <%= render partial: "form" %>
-            <button class="btn" data-dismiss="modal" aria-hidden="true">
-              Close
-            </button>
+<% if current_user.client %>
+  <!-- Button to trigger modal -->
+  <a href="#myModal" role="button" class="btn btn-primary" 
+     data-toggle="modal">Add Location</a>
+   
+  <!-- Modal -->
+  <div id="myModal" class="modal hide fade" tabindex="-1" 
+       role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Add New Location</h3>
+    </div>
+    <div class="modal-body">
+      <div class="form-horizontal">
+        <form action="<%= locations_url %>" method="post">
+              <%= render partial: "form" %>
+              <button class="btn" data-dismiss="modal" aria-hidden="true">
+                Close
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
-</div>
-<br>
-<br>
+  <br>
+  <br>
+<% end %>
 <table class="table table-striped table-hover">
   <thead>
     <tr>
@@ -33,7 +34,9 @@
       <th>Contact Name</th>
       <th>Contact Phone</th>
       <th>Contact Email</th>
-      <th></th>
+      <% if current_user.client %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -57,10 +60,12 @@
         <td>
           <%= location.contact_email %> 
         </td>
-        <td>
-          <%= link_to "edit", edit_location_url(location) %> | 
-          <%= link_to "delete", location_url(location), :method => "delete" %>
-        </td>
+        <% if current_user.client %>
+          <td>
+            <%= link_to "edit", edit_location_url(location) %> | 
+            <%= link_to "delete", location_url(location), :method => "delete" %>
+          </td>
+        <% end %>
       </tr>
   <% end %>
 </table>

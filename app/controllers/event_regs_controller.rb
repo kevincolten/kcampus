@@ -44,14 +44,19 @@ class EventRegsController < ApplicationController
   end
   
   def update
-    @event_reg = EventReg.find(params[:event_reg][:id])
-    @student = Student.find_by_idn(params[:event_reg][:idn])
-    if @student
-      @event_reg.update_attributes(:idn => @student.idn,
-                                              :fname => @student.fname,
-                                              :lname => @student.lname,
-                                              :dob => @student.dob)
+    @event_reg = EventReg.find(params[:id])
+    if params[:event_reg][:attended]
+      @event_reg.update_attributes(:attended => params[:event_reg][:attended])
       @event_reg.save
+    elsif params[:event_reg][:idn] 
+      @student = Student.find_by_idn(params[:event_reg][:idn])
+      if @student
+        @event_reg.update_attributes(:idn => @student.idn,
+                                     :fname => @student.fname,
+                                     :lname => @student.lname,
+                                     :dob => @student.dob)
+        @event_reg.save
+      end
     end
     redirect_to event_url(@event_reg.event)
   end

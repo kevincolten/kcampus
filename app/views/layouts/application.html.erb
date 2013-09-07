@@ -9,57 +9,93 @@
 <body>
   <div class="navbar">
     <div class="navbar-inner">
-      <a class="brand" href="#">kCamp.us</a>
+      <a class="brand">kCamp.us</a>
       <ul class="nav" role="navigation">
-        <% if current_user %>
-        <li
-        <%= 'class=active' if request.env['PATH_INFO'] == user_path(current_user) %>>
-          <%= link_to "Home", user_url(current_user) %>
-        </li>
-        <li
-        <%= 'class=active' if request.env['PATH_INFO'] == locations_path %>>
-        <%= link_to "Locations", locations_url %></li>
-        <li
-        <%= 'class=active' if request.env['PATH_INFO'] == course_types_path %>>
-        <%= link_to "Course Types", course_types_url %></li>
-        <li
-        <%= 'class=active' if request.env['PATH_INFO'] == instructors_path %>>
-        <%= link_to "Instructors", instructors_url %></li>
-        <li
-        <%= 'class=active' if request.env['PATH_INFO'] == admins_path %>>
-        <%= link_to "Admins", admins_url %></li>
-        <li
-        <%= 'class=active' if request.env['PATH_INFO'] == terms_path %>>
-        <%= link_to "Terms", terms_url %></li>
-        <li
-        <%= 'class=active' if request.env['PATH_INFO'] == courses_path %>>
-        <%= link_to "Courses", courses_url %></li>
-        <li
-        <%= 'class=active' if request.env['PATH_INFO'] == students_path %>>
-        <%= link_to "Students", students_url %></li>
-        <li
-        <%= 'class=active' if request.env['PATH_INFO'] == course_regs_path %>>
-        <%= link_to "Registration", course_regs_url %></li>
-        <li
-        <%= 'class=active' if request.env['PATH_INFO'] == events_path %>>
-        <%= link_to "Events", events_url %></li>
+        <% if current_user && (current_user.admin || current_user.client) %>
+          <li
+            <%= 'class=active' if request.env['PATH_INFO'] == locations_path %>>
+            <%= link_to "Locations", locations_url %>
+          </li>
+          <li
+            <%= 'class=active' if request.env['PATH_INFO'] == course_types_path %>>
+            <%= link_to "Course Types", course_types_url %>
+          </li>
+          <li
+            <%= 'class=active' if request.env['PATH_INFO'] == instructors_path %>>
+            <%= link_to "Instructors", instructors_url %>
+          </li>
+          <li
+            <%= 'class=active' if request.env['PATH_INFO'] == admins_path %>>
+            <%= link_to "Admins", admins_url %>
+          </li>
+          <li
+            <%= 'class=active' if request.env['PATH_INFO'] == terms_path %>>
+            <%= link_to "Terms", terms_url %>
+          </li>
+          <li
+            <%= 'class=active' if request.env['PATH_INFO'] == courses_path %>>
+            <%= link_to "Courses", courses_url %>
+          </li>
+          <li
+            <%= 'class=active' if request.env['PATH_INFO'] == students_path %>>
+            <%= link_to "Students", students_url %>
+          </li>
+          <li
+            <%= 'class=active' if request.env['PATH_INFO'] == course_regs_path %>>
+            <%= link_to "Registration", course_regs_url %>
+          </li>
+          <li
+            <%= 'class=active' if request.env['PATH_INFO'] == events_path %>>
+            <%= link_to "Events", events_url %>
+          </li>
       </ul>
       <ul class="nav pull-right">
-        <li><%= link_to "Log Out", session_url, :method => :delete %></li>
-      <% elsif request.env['PATH_INFO'] == new_session_path %>
+          <li>
+            <div style="margin-top: 3px">
+              <span class="lead">
+                <%= current_user.email %>
+              </span>
+            </div>
+          </li>
+            <li>
+              <%= link_to "Log Out", session_url, :method => :delete %>
+            </li>
       </ul>
-      <ul class="nav pull-right">
-        <li><%= link_to "New Client", new_client_url %></li>
-      <% else %>
-      </ul>
-      <ul class="nav pull-right">
-        <li><%= link_to "Log In", new_session_url %></li>
-      <% end %>
+        <% elsif current_user && (current_user.instructor || current_user.client) %>
+           <li
+            <%= 'class=active' if request.env['PATH_INFO'] == courses_path %>>
+            <%= link_to "Courses", courses_url %>
+          </li>
+          <li
+            <%= 'class=active' if request.env['PATH_INFO'] == course_regs_path %>>
+            <%= link_to "Registration", course_regs_url %>
+          </li>
+        </ul>
+          <ul class="nav pull-right">
+            <li>
+              <div style="margin-top: 3px">
+                <span class="lead">
+                  <%= current_user.email %>
+                </span>
+              </div>
+            </li>
+            <li>
+              <%= link_to "Log Out", session_url, :method => :delete %>
+            </li>
+          </ul>
+        <% else %>
+          <% unless request.env['PATH_INFO'] == new_client_path || current_user %>
+            <li><%= link_to "New Client", new_client_url %></li>
+          <% end %>
+          <% unless request.env['PATH_INFO'] == new_session_path || current_user %>
+            <li><%= link_to "Log In", new_session_url %></li>
+          <% end %>
+          <% unless request.env['PATH_INFO'] == new_user_path || current_user %>
+            <li><%= link_to "Claim Account", new_user_url %></li>
+          <% end %>
+        <% end %>
       </ul>
     </div>
-  </div>
-  <div align="right" style="text-align:right">
-    <%= render partial: "layouts/form" %>
   </div>
   <%= yield %>
 </body>

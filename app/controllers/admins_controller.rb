@@ -1,6 +1,8 @@
 class AdminsController < ApplicationController
   
   before_filter :require_current_user!
+  before_filter :require_admin!
+  before_filter :require_client!, :except => [:index]
   
   def index
     @admins = Admin.find_all_by_client_id(current_user.client_id)
