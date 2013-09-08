@@ -1,8 +1,15 @@
-<form action="<%= event_reg_url(event_reg) %>" method="post" class="form-horizontal">
-  <input type="hidden" name="_method" value="put">  
+<form action="<%= event_reg_url(event_reg) %>" method="post" 
+      class="form-inline" role="form">
+  <input type="hidden" name="_method" value="put">
   <input type="hidden" name="authenticity_token" 
          value="<%= form_authenticity_token %>">
-  <input type="text" id="event_reg_idn" 
-         name="event_reg[idn]" class="span1">
-  <input type="submit" value="Submit" class="btn btn-primary btn-mini">
+  <div class="form-group">
+    <label class="sr-only" for="event_reg_idn"></label>
+      <input type="text" id="event_reg_idn" 
+             name="event_reg[idn]" class="form-control">
+  </div>
+  <div class="form-group">
+    <label class="sr-only"></label>
+      <input type="submit" value="Submit" class="btn btn-primary btn-xs">
+  </div>
 </form>

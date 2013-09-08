@@ -1,6 +1,7 @@
 <form action="<%= admin_url(@admin) %>" method="post" class="form-horizontal">
   <input type="hidden" name="_method" value="put">
       <%= render partial: "form" %>
+      <button type="button" class="btn btn-default" onClick="location.href='<%= admins_url %>'">Cancel</button>
     </div>
   </div>
 </form>

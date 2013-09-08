@@ -9,7 +9,13 @@
       <th>Days</th>
       <th>Time</th>
       <th>Instructor</th>
-      <th>No. of Students</th>
+      <th>Tot. Enr.</th>
+      <th>ADA</th>
+      <% if current_user.client %>
+        <th>Min Enr.</th>
+        <th>Max Enr.</th>
+        <th>Budget Code</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -23,80 +29,77 @@
         <td><%= @course.start_time.strftime("%l:%M%P") %> -
             <%= @course.end_time.strftime("%l:%M%P") %></td>
         <td><%= @course.instructor.full_name %></td>
-        <td><%= @course.students.count %></td>
+        <td><%= @course.total_enrolled %></td>
+        <td><%= @course.ada %></td>
+        <% if current_user.client %>
+          <td><%=@course.min_seats %></td>
+          <td><%=@course.max_seats %></td>
+          <td><%=@course.budget_code %></td>
+        <% end %>
       </tr>   
   </tbody>
 </table>
-<h1 class="lead">Attendance</h1>
-hint: click the other months below :)
 <div class="accordion" id="attendance">
- <% @month_years.each do |month, year| %>
-   <div class="accordion-group">
-     <div class="accordian-heading">
-       <a class="accordion-toggle" data-toggle="collapse" 
-         data-parent="#attendance" href="#collapse<%=month%>">
-           <%= "#{month} #{year}" %>
-       </a>
-     </div>
-     <div id="collapse<%=month%>" class="accordion-body collapse <%= 'in' if month == "October" %>" >
-       <div class="accordion-inner">
-         <table class="table table-striped table-hover">
-           <thead>
-             <tr>
-               <th></th>
-               <% @course.dates.each do |date| %>
-               <% next unless Date::MONTHNAMES[date.month] == month %>
-                 <th><center><%= "#{Date::DAYNAMES[date.wday][0..2]} #{date.day}" %></center></th>
-               <% end %>
-             </tr>
-           </thead>
-           <tbody>
-             <% @students.each do |student| %>
-               <tr>
-                 <td>
-                   <%= student.name %><br>
-                   <%= "C. A. #{@course.student_attendance(student)}%" %><br>
-                   <%= "T. A. #{student.attendance(@course.term_id)}%" %>
-                 </td>
-                 <% @course.dates.select { |date| Date::MONTHNAMES[date.month] == month}.each do |date| %>
-                     <% attendance_record = @attendance_records.select do |record| %>
-                       <% record.date == date && record.student_id == student.id && record.course_id == params[:id].to_i %>
-                     <% end %>
-                     <% if attendance_record.first.nil? %>
-                 <form action="<%= attendance_records_url %>" method="post">
-                 <td>
-                   <center>
-                     <input type="hidden" name="authenticity_token" 
-                      value="<%= form_authenticity_token %>">
-                     <input type="text" class="span1" 
-                            name="attendance_record[hours]">
-                     <input type="hidden" name="attendance_record[student_id]"
-                            value="<%= student.id %>">
-                     <input type="hidden" name="attendance_record[course_id]"
-                            value="<%= params[:id] %>">
-                     <input type="hidden" name="attendance_record[date]"
-                            value="<%= date %>"><br>
-                     <input type="submit" value="submit" 
-                            class="btn btn-mini btn-primary">
-                   </center>  
-                 </td>
-                 </form>
-                     <% else %>
-                 <td>
-                   <center>
-                       <input type="text" value="<%= attendance_record.first.hours %>"
-                              class="span1" readonly ><br>
-                       <%= link_to "delete", attendance_record_url(attendance_record), :method => "delete"%>
+  <% @month_years.each do |month, year| %>
+    <div class="accordion-group">
+      <div class="accordian-heading">
+        <a class="accordion-toggle" data-toggle="collapse" 
+           data-parent="#attendance" href="#collapse<%=month%>">
+             <%= "#{month} #{year}" %>
+        </a>
+      </div>
+      <div id="collapse<%= month %>" 
+           class="accordion-body collapse">
+        <div class="accordion-inner">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th></th>
+                <% @course.dates.each do |date| %>
+                  <% next unless Date::MONTHNAMES[date.month] == month %>
+                  <th>
+                    <center>
+                      <%= "#{Date::DAYNAMES[date.wday][0..2]} #{date.day}" %>
                     </center>
-                 </td>
+                  </th>
+                <% end %>
+              </tr>
+            </thead>
+            <tbody>
+              <% @students.each do |student| %>
+                <tr>
+                  <td>
+                    <%= student.name %>
+                    <br>
+                    <%= "C. A. #{@course.student_attendance(student)}%" %>
+                    <br>
+                    <%= "T. A. #{student.attendance(@course.term_id)}%" %>
+                  </td>
+                  <% @course.dates.select { |date| Date::MONTHNAMES[date.month] == month}.each do |date| %>
+                    <% attendance_record = @attendance_records.select do |record| %>
+                      <% record.date == date && record.student_id == student.id && record.course_id == params[:id].to_i %>
                     <% end %>
-                 <% end %>
-               </tr>
-             <% end %>
-          </tbody>
-        </table>
-       </div>
-     </div>
-   </div>
-   <% end %>
- </div>
+                    <% if attendance_record.first.nil? %>
+                      <td align="center">
+                        <%= render partial: "attendance_form", :locals => { student: student, date: date } %>
+                      </td>
+                    <% else %>
+                      <td align="center">
+                        <form style="float:none; width:50px">
+                          <input type="text" 
+                                 value="<%= attendance_record.first.hours %>"
+                                 class="form-control" readonly >
+                        </form>
+                        <%= link_to "delete", attendance_record_url(attendance_record), :method => "delete"%>
+                      </td>
+                    <% end %>
+                  <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

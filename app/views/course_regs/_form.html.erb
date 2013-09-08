@@ -1,22 +1,32 @@
 <input type="hidden" name="authenticity_token" 
  value="<%= form_authenticity_token %>">
- <center>
+ <div class="form-group">
+  <label class="col-md-3 control-label sr-only" for="course_reg_student_id"></label>
+  <div class="col-md-7">
     <select id="course_reg_student_id" name="course_reg[student_id]" 
-            class="span4" multiple="multiple">
+            class="form-control">
       <% @students.each do |student| %>
         <option value="<%= student.id %>">
-            <%= "#{student.name}"%> 
+            <%= "#{student.idn} #{student.name} #{student.dob}"%> 
         </option>
       <% end %>
     </select>
-    <select id="course_reg_course_id" name="course_reg[course_id]" 
-            class="span4" multiple="multiple">
-      <% @courses.each do |course| %>
-        <option value="<%= course.id %>">
-            <%= "#{course.dept_code}-#{course.number} #{course.course_type.long_name}"%> 
-        </option>
-      <% end %>
-    </select>
-    <br>
-    <br>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label sr-only" for="course_reg_course_id"></label>
+  <div class="col-md-7">
+  <select id="course_reg_course_id" name="course_reg[course_id]" 
+          class="form-control">
+    <% @courses.each do |course| %>
+      <option value="<%= course.id %>">
+          <%= "#{course.dept_code} #{course.course_type.long_name}"%> 
+      </option>
+    <% end %>
+  </select>
+ </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label sr-only"></label>
+  <div class="col-md-4">
     <input type="submit" value="Submit" class="btn btn-primary">

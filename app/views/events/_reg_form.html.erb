@@ -2,39 +2,42 @@
  value="<%= form_authenticity_token %>">
  <input type="hidden" name="event_reg[event_id]" 
   value="<%= params[:id] %>">
-
-<div class="control-group">
-  <label class="control-label" for="event_reg_fname">ID Number</label>
-  <div class="controls">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_reg_fname">ID Number</label>
+  <div class="col-md-2">
     <input type="text" id="event_reg_idn" 
-           name="event_reg[idn]" 
+           name="event_reg[idn]" class="form-control"
            value="<%= @event_reg.idn %>">
   </div>
 </div>
-<div style="width:550px"><center><span class="lead">or</span></center></div>
-<br>
-<div class="control-group">
-  <label class="control-label" for="event_reg_fname">First Name</label>
-  <div class="controls">
+<div class="form-group">
+<label class="col-md-3 control-label" for="course_course_section">or</label>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_reg_fname">First Name</label>
+  <div class="col-md-3">
     <input type="text" id="event_reg_fname" 
-           name="event_reg[fname]" 
+           name="event_reg[fname]" class="form-control"
            value="<%= @event_reg.fname %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="event_reg_lname">Last Name</label>
-  <div class="controls">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_reg_lname">Last Name</label>
+  <div class="col-md-3">
     <input type="text" id="event_reg_lname" 
-           name="event_reg[lname]" 
+           name="event_reg[lname]" class="form-control"
            value="<%= @event_reg.lname %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="event_reg_dob">Date of Birth</label>
-  <div class="controls">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_reg_dob">Date of Birth</label>
+  <div class="col-md-5">
     <input type="date" id="event_reg_dob" 
-           name="event_reg[dob]" 
+           name="event_reg[dob]" class="form-control"
            value="<%= @event_reg.dob %>">
-<br>
-<br>
-<input type="submit" value="Submit" class="btn btn-primary">
+ </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label sr-only"></label>
+  <div class="col-md-4">
+    <input type="submit" value="Submit" class="btn btn-primary">

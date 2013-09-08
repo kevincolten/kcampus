@@ -1,44 +1,44 @@
 <input type="hidden" name="authenticity_token" 
  value="<%= form_authenticity_token %>">
-<div class="control-group">
-  <label class="control-label" for="instructor_idn">ID</label>
-  <div class="controls">
-    <input type="text" id="instructor_idn" 
+<div class='form-group'>
+  <label class="col-md-3 control-label" for="instructor_idn">ID</label>
+  <div class="col-md-3">
+    <input type="text" class="form-control" id="instructor_idn" 
            name="instructor[idn]" value="<%= @instructor.idn %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="instructor_fname">First Name</label>
-  <div class="controls">
-    <input type="text" id="instructor_fname" 
+<div class='form-group'>
+  <label class="col-md-3 control-label" for="instructor_fname">First Name</label>
+  <div class="col-md-4">
+    <input type="text" class="form-control" id="instructor_fname" 
            name="instructor[fname]" value="<%= @instructor.fname %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="instructor_lname">Last Name</label>
-  <div class="controls">
-    <input type="text" id="instructor_lname" 
+<div class='form-group'>
+  <label class="col-md-3 control-label" for="instructor_lname">Last Name</label>
+  <div class="col-md-4">
+    <input type="text" class="form-control" id="instructor_lname" 
            name="instructor[lname]" value="<%= @instructor.lname %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="instructor_phone">Phone</label>
-  <div class="controls">
-    <input type="text" id="instructor_phone" 
+<div class='form-group'>
+  <label class="col-md-3 control-label" for="instructor_phone">Phone</label>
+  <div class="col-md-4">
+    <input type="text" class="form-control" id="instructor_phone" 
            name="instructor[phone]" value="<%= @instructor.phone %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="instructor_email">Email</label>
-  <div class="controls">
-    <input type="text" id="instructor_email" 
+<div class='form-group'>
+  <label class="col-md-3 control-label" for="instructor_email">Email</label>
+  <div class="col-md-4">
+    <input type="text" class="form-control" id="instructor_email" 
            name="instructor[email]" value="<%= @instructor.email %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="instructor_location_id">Mailbox Location</label>
-  <div class="controls">
-    <select id="instructor_location_id" name="instructor[location_id]">
+<div class='form-group'>
+  <label class="col-md-3 control-label" for="instructor_location_id">Mailbox</label>
+  <div class="col-md-3">
+    <select id="instructor_location_id" name="instructor[location_id]" class="form-control">
       <% @locations.each do |location| %>
         <option value="<%= location.id %>"
           <%= "selected" if @instructor.location_id == location.id %>>
@@ -48,15 +48,18 @@
     </select>
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="instructor_pay_rate">Pay Rate</label>
-  <div class="controls">
-    <div class="input-prepend">
-      <span class="add-on">$</span>
-      <input type="text" id="instructor_pay_rate" 
+<div class='form-group'>
+  <label class="col-md-3 control-label" for="instructor_pay_rate">Pay Rate</label>
+  <div class="col-md-3">
+    <div class="input-group">
+      <span class="input-group-addon">$</span>
+      <input type="text" class="form-control" id="instructor_pay_rate" 
          name="instructor[pay_rate]" value=
          <%= sprintf('%.2f', @instructor.pay_rate) if @instructor.pay_rate %>>
     </div>
-    <br>
-    <br>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label sr-only"></label>
+  <div class="col-md-4">
     <input type="submit" value="Submit" class="btn btn-primary">

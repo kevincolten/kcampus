@@ -1,4 +1,4 @@
-<% if logged_in? %>
+
   <form action="<%= term_toggler_url %>" method="post" class="form-horizontal">
     <input type="hidden" name="authenticity_token" 
            value="<%= form_authenticity_token %>">
@@ -12,6 +12,5 @@
         </option>
       <% end %>
     </select>
-    <input type="submit" value="Submit" class="btn btn-primary btn-mini">
+    <input type="submit" value="Submit" class="btn btn-primary btn-xs">
   </form>
-<% end %>

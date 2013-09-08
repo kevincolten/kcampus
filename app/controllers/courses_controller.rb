@@ -19,8 +19,8 @@ class CoursesController < ApplicationController
     @locations = Location.find_all_by_client_id(current_user.client_id)
     @instructors = Instructor.find_all_by_client_id(current_user.client_id)
     @course_types = CourseType.find_all_by_client_id(current_user.client_id)
-    @days = ["Sunday", "Monday", "Tuesday", "Wednesday", 
-             "Thursday", "Friday", "Saturday"]
+    @days = ["Sun", "Mon", "Tues", "Wed", 
+             "Thurs", "Fri", "Sat"]
     @course_days = @course.course_days
   end
   

@@ -1,6 +1,7 @@
 <form action="<%= course_type_url %>" method="post" class="form-horizontal">
   <input type="hidden" name="_method" value="put">
-      <%= render partial: "form" %>
+    <%= render partial: "form" %>
+      <button type="button" class="btn btn-default" onClick="location.href='<%= course_types_url %>'">Cancel</button>
     </div>
   </div>
 </form>

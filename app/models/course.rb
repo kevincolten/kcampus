@@ -110,6 +110,19 @@ class Course < ActiveRecord::Base
     unless records.empty?    
       return (records.map(&:hours).reduce(:+) / records.length / self.duration * 100).to_i
     end
-    return 0
+    0
   end  
+
+  def ada
+    daily_attendances = AttendanceRecord.where('course_id = ? AND hours > 0', self.id).map { |record| record.date }
+    unless daily_attendances.empty?
+      return (daily_attendances.count / daily_attendances.uniq.count)
+    end
+    0
+  end
+
+  def total_enrolled
+    CourseReg.find_all_by_course_id(self.id).count
+  end
+
 end

@@ -52,6 +52,6 @@ gem "backbone-on-rails"
 
 gem 'bootstrap-sass'
 
-gem "twitter-bootstrap-rails"
+# gem "twitter-bootstrap-rails"
 gem "therubyracer"
 gem "less-rails"

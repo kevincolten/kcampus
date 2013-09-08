@@ -1,57 +1,54 @@
 <input type="hidden" name="authenticity_token" 
- value="<%= form_authenticity_token %>">
-<div class="control-group">
- <label class="control-label" for="event_term_id">Term</label>
- <div class="controls">
-   <select id="event_term_id" name="event[term_id]" class="span2">
-      <% @terms.each do |term| %>
-        <option value="<%= term.id %>"
-          <%= "selected" if @event.term_id == term.id %>>
-            <%= term.dept_code %> 
-        </option>
-      <% end %>
-    </select>
+       value="<%= form_authenticity_token %>">
+<div class="form-group">
+  <label class="col-md-3 control-label">Term</label>
+  <div class="col-md-2">
+    <input type="text" id="course_section" 
+           value="<%= current_term.dept_code %>" 
+           class="form-control" disabled>
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="event_name">Event Name</label>
-  <div class="controls">
-    <input type="text" id="event_name" 
-           name="event[name]" 
-           value="<%= @event.name %>">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_name">Event Name</label>
+  <div class="col-md-4">
+    <input type="text" id="event_name" class="form-control"
+           name="event[name]" value="<%= @event.name %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="event_date">Date</label>
-  <div class="controls">
-    <input type="date" id="event_date" 
-           name="event[date]" class="span3"
-           value="<%= @event.date %>">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_date">Date</label>
+  <div class="col-md-4">
+    <input type="date" id="event_date" name="event[date]" 
+           class="form-control" value="<%= @event.date %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="event_start">Time</label>
-  <div class="controls">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_start">Start</label>
+  <div class="col-md-3">
     <input type="time" id="event_start" 
            name="event[start]"
-           class="span2" 
+           class="form-control" 
            value=<% if @event.start_time %>
            <%= "#{sprintf("%02d", @event.start_time.hour)}:#{sprintf("%02d", @event.start_time.min)}" %>>
            <% end %>
     </select>
-    -
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_end">End</label>
+  <div class="col-md-3">
     <input type="time" name="event[end]"
-           class="span2" 
+           class="form-control" 
            value=<% if @event.end_time %>
            <%= "#{sprintf("%02d", @event.end_time.hour)}:#{sprintf("%02d", @event.end_time.min)}" %>>
            <% end %>
     </select>  
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="event_location_id">Location</label>
-  <div class="controls">
-    <select id="event_location_id" name="event[location_id]" class="span3">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_location_id">Location</label>
+  <div class="col-md-5">
+    <select id="event_location_id" name="event[location_id]" class="form-control">
       <% @locations.each do |location| %>
         <option value="<%= location.id %>"
           <%= "selected" if @event.location_id == location.id %>>
@@ -61,39 +58,42 @@
     </select>
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="event_room">Room</label>
-  <div class="controls">
-    <input type="text" id="event_room" class="span1"
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_room">Room</label>
+  <div class="col-md-3">
+    <input type="text" id="event_room" class="form-control"
            name="event[room]" value="<%= @event.room %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="event_contact_name">Contact Name</label>
-  <div class="controls">
-    <input type="text" id="event_contact_name" class="span2"
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_contact_name">Contact Name</label>
+  <div class="col-md-4">
+    <input type="text" id="event_contact_name" class="form-control"
            name="event[contact_name]" value="<%= @event.contact_name %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="event_contact_phone">Contact Phone</label>
-  <div class="controls">
-    <input type="text" id="event_contact_phone" class="span2"
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_contact_phone">Contact Phone</label>
+  <div class="col-md-4">
+    <input type="text" id="event_contact_phone" class="form-control"
            name="event[contact_phone]" value="<%= @event.contact_phone %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="event_contact_email">Contact Email</label>
-  <div class="controls">
-    <input type="text" id="event_contact_email" class="span3"
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_contact_email">Contact Email</label>
+  <div class="col-md-4">
+    <input type="text" id="event_contact_email" class="form-control"
            name="event[contact_email]" value="<%= @event.contact_email %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="event_max_seats">Max Seats</label>
-  <div class="controls">
-    <input type="text" id="event_max_seats" class="span1"
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_max_seats">Max Seats</label>
+  <div class="col-md-2">
+    <input type="text" id="event_max_seats" class="form-control"
            name="event[max_seats]" value="<%= @event.max_seats %>">
-<br>
-<br>
-<input type="submit" value="Submit" class="btn btn-primary">
+ </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label sr-only"></label>
+  <div class="col-md-4">
+    <input type="submit" value="Submit" class="btn btn-primary">

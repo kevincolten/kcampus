@@ -1,35 +1,46 @@
 <input type="hidden" name="authenticity_token" 
- value="<%= form_authenticity_token %>">
-<div class="control-group">
-  <label class="control-label" for="course_synonym">Synonym</label>
-  <div class="controls">
-    <input type="text" id="course_synonym" class="span2"
+       value="<%= form_authenticity_token %>">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="course_synonym">Synonym</label>
+  <div class="col-md-3">
+    <input type="text" id="course_synonym" class="form-control"
            name="course[synonym]" value="<%= @course.synonym %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="course_course_type_id">Course Code</label>
-  <div class="controls">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="course_course_type_id">Course Type</label>
+  <div class="col-md-5">
     <select id="course_course_type_id" name="course[course_type_id]" 
-            class="span5">
+            class="form-control">
       <% @course_types.each do |course_type| %>
         <option value="<%= course_type.id %>"
           <%= "selected" if @course.course_type_id == course_type.id %>>
-          <%= course_type.code %>
+          <%= course_type.long_name %>
         </option>
       <% end %>
     </select>
-    - 
+ </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label" for="course_course_section">Section</label>
+  <div class="col-md-1">
     <input type="text" id="course_section" 
            name="course[section]" value="<%= @course.section %>" 
-           placeholder="section" class="span1">
+           class="form-control">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="course_term">Deptartment Code</label>
-  <div class="controls">
-    <%= @term.dept_code %>
-    <select id="course_location" name="course[location_id]" class="span2">
+<div class="form-group">
+  <label class="col-md-3 control-label">Term</label>
+  <div class="col-md-2">
+    <input type="text" id="course_section" 
+           value="<%= current_term.dept_code %>" 
+           class="form-control" disabled>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label" for="course_location_id">Location</label>
+  <div class="col-md-3">
+    <select id="course_location" name="course[location_id]" class="form-control">
       <% @locations.each do |location| %>
         <option value="<%= location.id %>"
           <%= "selected" if @course.location_id == location.id %>>
@@ -37,16 +48,20 @@
         </option>
       <% end %>
     </select>
-    -
-    <input type="text" id="course_number" 
-           name="course[number]" value="<%= @course.number %>"
-           placeholder="no." class="span1">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="course_instructor_id">Instructor</label>
-  <div class="controls">
-    <select id="course_instructor_id" name="course[instructor_id]">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="course_course_number">Number</label>
+  <div class="col-md-1">
+    <input type="text" id="course_number" 
+           name="course[number]" value="<%= @course.number %>"
+           class="form-control">
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label" for="course_instructor_id">Instructor</label>
+  <div class="col-md-4">
+    <select id="course_instructor_id" name="course[instructor_id]" class="form-control">
       <% @instructors.each do |instructor| %>
         <option value="<%= instructor.id %>" 
           <%= "selected" if @course.instructor_id == instructor.id %> >
@@ -58,7 +73,7 @@
 </div>
 <center>
   <% @days.each do |day| %>
-  <label class="checkbox inline">
+  <label class="checkbox-inline">
     <input type="checkbox" value="true" 
            name="course[<%= day.downcase %>]" id="course_<%= day %>"
            <%= "checked" if @course_days.include?(day) %>>
@@ -67,52 +82,62 @@
   <% end %>
 <br><br>
 </center>
-<div class="control-group">
-  <label class="control-label" for="course_start_time">Time</label>
-  <div class="controls">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="course_start_time">Start</label>
+  <div class="col-md-3">
     <input type="time" id="course_start_time" 
            name="course[start_time]"
-           class="span2" 
+           class="form-control" 
            value=<% if @course.start_time %>
            <%= "#{sprintf("%02d", @course.start_time.hour)}:#{sprintf("%02d", @course.start_time.min)}" %>>
            <% end %>
     </select>
-    -
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label" for="course_start_time">End</label>
+  <div class="col-md-3">
     <input type="time" name="course[end_time]"
-           class="span2" 
+           class="form-control" 
            value=<% if @course.end_time %>
            <%= "#{sprintf("%02d", @course.end_time.hour)}:#{sprintf("%02d", @course.end_time.min)}" %>>
            <% end %>
     </select>  
   </div>
 </div>
-<div>
-<div class="control-group">
-  <label class="control-label" for="course_room_number">Rm No.</label>
-  <div class="controls">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="course_room_number">Rm No.</label>
+  <div class="col-md-3">
     <input type="text" id="course_room_number" 
            name="course[room_number]" value="<%= @course.room_number %> "
-           class="span1">
+           class="form-control">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="course_min_seats">Enrollment</label>
-  <div class="controls">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="course_min_seats">Max Enroll</label>
+  <div class="col-md-2">
     <input type="text" id="course_min_seats" 
            name="course[min_seats]" value="<%= @course.min_seats %>"
-           class="span1" placeholder="min">
-    -
-    <input type="text" id="course_max_seats" 
-           name="course[max_seats]" value="<%= @course.max_seats %>"
-           class="span1" placeholder="max">
+           class="form-control">
   </div>
 </div>
+<div class="form-group">
+  <label class="col-md-3 control-label" for="course_min_seats">Min Enroll</label>
+  <div class="col-md-2">
+    <input type="text" id="course_min_seats" 
+           name="course[min_seats]" value="<%= @course.min_seats %>"
+           class="form-control">
+  </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="course_budget_code">Budget Code</label>
-  <div class="controls">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="course_budget_code">Budget Code</label>
+  <div class="col-md-3">
     <input type="text" id="course_budget_code" 
            name="course[budget_code]" value="<%= @course.budget_code %> "
-           class="span1">
-    <br><br>
+           class="form-control">
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label sr-only"></label>
+  <div class="col-md-4">
     <input type="submit" value="Submit" class="btn btn-primary">

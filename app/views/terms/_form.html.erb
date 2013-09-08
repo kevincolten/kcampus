@@ -1,55 +1,69 @@
 <input type="hidden" name="authenticity_token" 
- value="<%= form_authenticity_token %>">
-<div class="control-group">
-  <label class="control-label" for="term_semester">Semester</label>
-  <div class="controls">
-    <input type="text" id="term_semester" 
+       value="<%= form_authenticity_token %>">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="term_semester">Semester</label>
+  <div class="col-md-3">
+    <input type="text" id="term_semester" class="form-control"
            name="term[semester]" value="<%= @term.semester %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="term_code">Code</label>
-  <div class="controls">
-    <input type="text" id="term_code" 
+<div class="form-group">
+  <label class="col-md-3 control-label" for="term_code">Code</label>
+  <div class="col-md-3">
+    <input type="text" id="term_code" class="form-control"
            name="term[code]" value="<%= @term.code %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="term_year">Year</label>
-  <div class="controls">
-    <input type="text" id="term_year" 
+<div class="form-group">
+  <label class="col-md-3 control-label" for="term_year">Year</label>
+  <div class="col-md-3">
+    <input type="text" id="term_year" class="form-control"
            name="term[year]" value="<%= @term.year %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="term_number">Term Number</label>
-  <div class="controls">
-    <input type="text" id="term_number" 
+<div class="form-group">
+  <label class="col-md-3 control-label" for="term_number">Term Number</label>
+  <div class="col-md-2">
+    <input type="text" id="term_number" class="form-control"
            name="term[number]" value="<%= @term.number %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="term_reg_start">Registration Dates</label>
-  <div class="controls">
-    <input type="date" id="term_reg_start" 
+<div class="form-group">
+  <label class="col-md-3 control-label" for="term_reg_start">Reg. Start Date</label>
+  <div class="col-md-4">
+    <input type="date" id="term_reg_start" class="form-control"
            name="term[reg_start]" value="<%= @term.reg_start %>">
-    -
-    <input type="date" name="term[reg_end]" value="<%= @term.reg_end %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="term_start_date">Term Dates</label>
-  <div class="controls">
-    <input type="date" id="term_start_date" 
+<div class="form-group">
+  <label class="col-md-3 control-label" for="term_reg_end">Reg. End Date</label>
+  <div class="col-md-4">
+    <input type="date" name="term[reg_end]" value="<%= @term.reg_end %>"
+           class="form-control">
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label" for="term_start_date">Term Start Date</label>
+  <div class="col-md-4">
+    <input type="date" id="term_start_date" class="form-control"
            name="term[start_date]" value="<%= @term.start_date %>">
-    -
-    <input type="date" name="term[end_date]" value="<%= @term.end_date %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="term_add_drop_end">Final Add/Drop Date</label>
-  <div class="controls">
-    <input type="date" id="term_add_drop_end" 
+ <div class="form-group">
+  <label class="col-md-3 control-label" for="term_end_date">Term End Date</label>
+  <div class="col-md-4">
+    <input type="date" name="term[end_date]" value="<%= @term.end_date %>"
+           class="form-control">
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label" for="term_add_drop_end">Final Add/Drop Date</label>
+  <div class="col-md-4">
+    <input type="date" id="term_add_drop_end" class="form-control"
            name="term[add_drop_end]" value="<%= @term.add_drop_end %>">
-    <br><br>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label sr-only"></label>
+  <div class="col-md-4">
     <input type="submit" value="Submit" class="btn btn-primary">

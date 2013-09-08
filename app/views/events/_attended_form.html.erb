@@ -1,0 +1,22 @@
+<form action="<%= event_reg_url(event_reg) %>" method="post" 
+      class="form-inline" role="form">
+  <input type="hidden" name="_method" value="put">
+  <input type="hidden" name="authenticity_token" 
+         value="<%= form_authenticity_token %>">
+  <div class="radio form-group">
+    <label for="event_reg_attended_false">No</label>
+      <input type="radio" name="event_reg[attended]" 
+             value="false" id="event_reg_attended_false"
+             <%= 'checked' unless event_reg.attended %>>
+  </div>
+  <div class="radio form-group">
+    <label for="event_reg_attended_true">Yes</label>
+      <input type="radio" name="event_reg[attended]"
+             value="true" id="event_reg_attended_true"
+             <%= 'checked' if event_reg.attended %>>
+  </div>
+  <div class="form-group">
+    <label class="sr-only"></label>
+    <input type="submit" value="submit" class="btn btn-xs btn-primary">
+  </div>
+</form>

@@ -1,65 +1,69 @@
 <input type="hidden" name="authenticity_token" 
- value="<%= form_authenticity_token %>">
-<div class="control-group">
-  <label class="control-label" for="location_code">Code</label>
-  <div class="controls">
-    <input type="text" id="location_code" class="span1"
-       name="location[code]" value="<%= @location.code %>">
+       value="<%= form_authenticity_token %>">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="location_code">Code</label>
+  <div class="col-md-2">
+    <input type="text" id="location_code" class="form-control"
+           name="location[code]" value="<%= @location.code %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="location_name">Location Name</label>
-  <div class="controls">
-    <input type="text" id="location_name" 
-      name="location[name]" value="<%= @location.name %>">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="location_name">Location Name</label>
+  <div class="col-md-4">
+    <input type="text" id="location_name" class="form-control"
+           name="location[name]" value="<%= @location.name %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="location_address">Street Address</label>
-  <div class="controls">
-    <input type="text" id="location_address" 
-       name="location[address]" value="<%= @location.address %>">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="location_address">Street Address</label>
+  <div class="col-md-4">
+    <input type="text" id="location_address" class="form-control"
+           name="location[address]" value="<%= @location.address %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="location_city">City</label>
-  <div class="controls">
-    <input type="text" id="location_city" class="span2"
-       name="location[city]" value="<%= @location.city %>">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="location_city">City</label>
+  <div class="col-md-3">
+    <input type="text" id="location_city" class="form-control"
+           name="location[city]" value="<%= @location.city %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="location_state">State</label>
-  <div class="controls">
-    <input type="text" id="location_state" class="span1"
-       name="location[state]" value="<%= @location.state %>">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="location_state">State</label>
+  <div class="col-md-2">
+    <input type="text" id="location_state" class="form-control"
+           name="location[state]" value="<%= @location.state %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="location_zipcode">Zipcode</label>
-  <div class="controls">
-    <input type="text" id="location_zipcode" class="span1"
-       name="location[zipcode]" value="<%= @location.zipcode %>">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="location_zipcode">Zipcode</label>
+  <div class="col-md-3">
+    <input type="text" id="location_zipcode" class="form-control"
+           name="location[zipcode]" value="<%= @location.zipcode %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="location_contact_name">Contact Name</label>
-  <div class="controls">
-    <input type="text" id="location_contact_name" class="span2"
-       name="location[contact_name]" value="<%= @location.contact_name %>">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="location_contact_name">Contact Name</label>
+  <div class="col-md-4">
+    <input type="text" id="location_contact_name" class="form-control"
+           name="location[contact_name]" value="<%= @location.contact_name %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="location_contact_phone">Contact Phone</label>
-  <div class="controls">
-    <input type="text" id="location_contact_phone" class="span2"
-       name="location[contact_phone]" value="<%= @location.contact_phone %>">
+<div class="form-group">
+  <label class="col-md-3 control-label" for="location_contact_phone">Contact Phone</label>
+  <div class="col-md-4">
+    <input type="text" id="location_contact_phone" class="form-control"
+           name="location[contact_phone]" value="<%= @location.contact_phone %>">
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label" for="location_contact_email">Contact Email</label>
-  <div class="controls">
-    <input type="text" id="location_contact_email" 
-       name="location[contact_email]" value="<%= @location.contact_email %>">
-       <br><br>
+<div class="form-group">
+  <label class="col-md-3 control-label" for="location_contact_email">Contact Email</label>
+  <div class="col-md-4">
+    <input type="text" id="location_contact_email" class="form-control"
+           name="location[contact_email]" value="<%= @location.contact_email %>">
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-3 control-label sr-only"></label>
+  <div class="col-md-4">
     <input type="submit" value="Submit" class="btn btn-primary">

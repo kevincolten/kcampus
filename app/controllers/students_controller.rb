@@ -3,6 +3,7 @@ class StudentsController < ApplicationController
   
   def index
     @students = Student.find_all_by_client_id(current_user.client_id)
+                       .sort_by{ |student| student.lname}
   end
   
   def show
