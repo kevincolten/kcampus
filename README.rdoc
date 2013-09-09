@@ -22,6 +22,5 @@ TODO:
 1. Export Course Spreadsheets
 2. Printable Sign-In sheets
 3. Printable Class Rosters
-4. Flash Error Messages
-5. Index Databases
-6. Reorganize Navbar
+4. Index Databases
+5. Reorganize Navbar
