@@ -94,6 +94,11 @@
       </ul>
     </div>
   </nav>
+  <% flash.each do |name, messages| %>
+  <div class="alert">
+    <%= messages.join("; ") %>
+  </div>
+<% end %>
   <%= yield %>
 </body>
 </html>

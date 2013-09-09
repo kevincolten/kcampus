@@ -18,8 +18,11 @@ class AdminsController < ApplicationController
     params[:admin][:client_id] = current_user.client_id
     params[:admin].each_value { |value| value.strip! if value.is_a?(String) }
     @admin = Admin.new(params[:admin])
-    @admin.save
-    redirect_to admins_url
+    if @admin.save
+      redirect_to admins_url
+    else
+      redirect_to admins_url, alert: @admin.errors.full_messages
+    end
   end
   
   def edit

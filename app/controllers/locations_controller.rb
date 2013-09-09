@@ -19,7 +19,7 @@ class LocationsController < ApplicationController
     if @location.save
       redirect_to locations_url
     else
-      render :json => @location.errors.full_messages
+      redirect_to locations_url, alert: @location.errors.full_messages
     end
   end
   

@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to events_url
     else
-      render :json => @event.errors.full_messages
+      redirect_to events_url, alert: @event.errors.full_messages
     end
   end
   

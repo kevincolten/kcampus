@@ -12,8 +12,11 @@ class TermsController < ApplicationController
     params[:term][:client_id] = current_user.client_id
     params[:term].each_value { |value| value.strip! if value.is_a?(String) }
     @term = Term.new(params[:term])
-    @term.save
-    redirect_to terms_url
+    if @term.save
+      redirect_to terms_url
+    else
+      redirect_to terms_url, alert: @term.errors.full_messages
+    end
   end
   
   def edit

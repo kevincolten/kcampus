@@ -28,13 +28,14 @@ class UsersController < ApplicationController
           self.current_user = @user
           redirect_to user_url(@user)
         else
-          render :json => @user.errors.full_messages
+          redirect_to new_user_url, alert: @user.errors.full_messages
         end
       else
-        render :json => "Email not registered"
+        redirect_to new_user_url, alert: (params[:user][:email].empty?) ? 
+          ["Email can't be blank"] : ["Email not registered"]
       end
     else
-      render :json => "Password doesn't match"
+      redirect_to new_user_url, alert: ["Password doesn't match"]
     end
   end
 

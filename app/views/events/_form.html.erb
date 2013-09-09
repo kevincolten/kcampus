@@ -23,10 +23,10 @@
   </div>
 </div>
 <div class="form-group">
-  <label class="col-md-3 control-label" for="event_start">Start</label>
+  <label class="col-md-3 control-label" for="event_start_time">Start Time</label>
   <div class="col-md-3">
-    <input type="time" id="event_start" 
-           name="event[start]"
+    <input type="time" id="event_start_time" 
+           name="event[start_time]"
            class="form-control" 
            value=<% if @event.start_time %>
            <%= "#{sprintf("%02d", @event.start_time.hour)}:#{sprintf("%02d", @event.start_time.min)}" %>>
@@ -35,9 +35,9 @@
   </div>
 </div>
 <div class="form-group">
-  <label class="col-md-3 control-label" for="event_end">End</label>
+  <label class="col-md-3 control-label" for="event_end_time">End Time</label>
   <div class="col-md-3">
-    <input type="time" name="event[end]"
+    <input type="time" name="event[end_time]"
            class="form-control" 
            value=<% if @event.end_time %>
            <%= "#{sprintf("%02d", @event.end_time.hour)}:#{sprintf("%02d", @event.end_time.min)}" %>>

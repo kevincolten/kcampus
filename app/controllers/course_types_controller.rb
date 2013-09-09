@@ -12,8 +12,11 @@ class CourseTypesController < ApplicationController
     params[:course_type][:client_id] = current_user.client_id
     params[:course_type].each_value { |value| value.strip! if value.is_a?(String) }
     @course_type = CourseType.new(params[:course_type])
-    @course_type.save
-    redirect_to course_types_url
+    if @course_type.save
+      redirect_to course_types_url
+    else
+      redirect_to course_types_url, alert: @course_type.errors.full_messages
+    end
   end
   
   def edit

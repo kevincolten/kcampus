@@ -7,116 +7,21 @@ class ClientsController < ApplicationController
     ActiveRecord::Base.transaction do
       params[:client].each_value { |value| value.strip! if value.is_a?(String) }
       @client = Client.new(params[:client])
-      @client.save
+      @success = @client.save
       params[:user][:email] = params[:client][:email]
       params[:user][:client_id] = @client.id
       params[:user][:admin] = true
       params[:user][:client] = true
       params[:user].each_value { |value| value.strip! if value.is_a?(String) }
       @user = User.new(params[:user])
-      @user.save
-      
-      # @student1 = Student.new( :idn => "9638521",
-#                                :fname => "Caleb",
-#                                :lname => "Guidry",
-#                                :dob => "1986-12-30",
-#                                :phone => "1234567890",
-#                                :email => "caleb@hello.com",
-#                                :client_id => @client.id )
-#                          
-#       @student1.save
-#                          
-#       @student2 = Student.new( :idn => "1472583",
-#                                :fname => "Cody",
-#                                :lname => "Broussard",
-#                                :dob => "1987-1-24",
-#                                :phone => "1234567890",
-#                                :email => "cody@hello.com",
-#                                :client_id => @client.id )
-#                          
-#       @student2.save
-# 
-#       @student3 = Student.new( :idn => "1523652",
-#                                :fname => "Brian",
-#                                :lname => "Romero",
-#                                :dob => "1986-12-30",
-#                                :phone => "1234567890",
-#                                :email => "caleb@hello.com",
-#                                :client_id => @client.id )
-#                          
-#       @student3.save
-#                          
-#       @student4 = Student.new( :idn => "4569871",
-#                                :fname => "Bryce",
-#                                :lname => "Davis",
-#                                :dob => "1987-1-24",
-#                                :phone => "1234567890",
-#                                :email => "cody@hello.com",
-#                                :client_id => @client.id )
-#                          
-#       @student4.save
-# 
-#       @student5 = Student.new( :idn => "1236547",
-#                                :fname => "Caanan",
-#                                :lname => "Falcon",
-#                                :dob => "1986-12-30",
-#                                :phone => "1234567890",
-#                                :email => "caleb@hello.com",
-#                                :client_id => @client.id )
-#                          
-#       @student5.save
-#                          
-#       @student6 = Student.new( :idn => "7894563",
-#                                :fname => "Reid",
-#                                :lname => "Batson",
-#                                :dob => "1987-1-24",
-#                                :phone => "1234567890",
-#                                :email => "cody@hello.com",
-#                                :client_id => @client.id )
-#                          
-#       @student6.save
-# 
-#       @student7 = Student.new( :idn => "9638521",
-#                                :fname => "Justin",
-#                                :lname => "Carter",
-#                                :dob => "1986-12-30",
-#                                :phone => "1234567890",
-#                                :email => "caleb@hello.com",
-#                                :client_id => @client.id )
-#                          
-#       @student7.save
-#                          
-#       @student8 = Student.new( :idn => "7418523",
-#                                :fname => "Drew",
-#                                :lname => "Miranda",
-#                                :dob => "1987-1-24",
-#                                :phone => "1234567890",
-#                                :email => "cody@hello.com",
-#                                :client_id => @client.id )
-#                          
-#       @student8.save
-# 
-#       @student9 = Student.new( :idn => "3256987",
-#                                :fname => "Oscar",
-#                                :lname => "Chavez",
-#                                :dob => "1987-1-24",
-#                                :phone => "1234567890",
-#                                :email => "cody@hello.com",
-#                                :client_id => @client.id )
-#                          
-#       @student9.save
-# 
-#       @student10 = Student.new( :idn => "1237896",
-#                                :fname => "Cesar",
-#                                :lname => "Chavez",
-#                                :dob => "1987-1-24",
-#                                :phone => "1234567890",
-#                                :email => "cody@hello.com",
-#                                :client_id => @client.id )
-#                          
-#       @student10.save
+      @success = @user.save && success
     end
-    redirect_to new_session_url
+    if @success
+      redirect_to new_session_url
+    else
+      redirect_to new_client_url, alert: @client.errors.full_messages << @user.errors.full_messages
+    end
+
   end
   
 end

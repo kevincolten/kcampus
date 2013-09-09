@@ -32,7 +32,7 @@ class CoursesController < ApplicationController
     if @course.save
       redirect_to courses_url
     else
-      render :json => @course.errors.full_messages
+      redirect_to courses_url, alert: @course.errors.full_messages
     end
   end
   

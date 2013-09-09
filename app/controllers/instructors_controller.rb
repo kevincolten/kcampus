@@ -16,8 +16,11 @@ class InstructorsController < ApplicationController
     params[:instructor][:client_id] = current_user.client_id
     params[:instructor].each_value { |value| value.strip! if value.is_a?(String) }
     @instructor = Instructor.new(params[:instructor])
-    @instructor.save
-    redirect_to instructors_url
+    if @instructor.save
+      redirect_to instructors_url
+    else
+      redirect_to instructors_url, alert: @instructor.errors.full_messages
+    end
   end
   
   def edit
