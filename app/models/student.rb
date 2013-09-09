@@ -7,13 +7,10 @@ class Student < ActiveRecord::Base
   
   has_many :attendance_records
   
-  validates :idn, :presence => true
-  validates :dob, :presence => true
-  validates :fname, :presence => true
-  validates :lname, :presence => true
-  validates :client_id, :presence => true
-  validates :phone, :presence => true
-  validates :email, :presence => true
+  # validates :idn, :presence => true
+  # validates :fname, :presence => true
+  # validates :lname, :presence => true
+  # validates :client_id, :presence => true
   
   
   def name
@@ -34,5 +31,20 @@ class Student < ActiveRecord::Base
       return (averages.reduce(:+) / averages.length * 100).to_i unless records.empty?
     end
     0
+  end
+
+  def self.import(file, current_user)
+    CSV.foreach(file.path, headers: true) do |row|
+      data = row.to_hash
+      data[:client_id] = current_user.client_id
+      student = Student.find_by_idn_and_client_id(data["idn"],
+                                                  data[:client_id])
+      if student
+        student.update_attributes(data)
+        student.save!
+      else
+        Student.create!(data)
+      end
+    end
   end
 end

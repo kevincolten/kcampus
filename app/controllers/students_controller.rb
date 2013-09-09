@@ -11,5 +11,10 @@ class StudentsController < ApplicationController
     @events = Event.where("date > ? AND client_id = ?", 
                           Date.today, @student.client_id)
   end
+
+  def import
+    Student.import(params[:file], current_user)
+    redirect_to students_url, notice: "Students updated."
+  end
   
 end

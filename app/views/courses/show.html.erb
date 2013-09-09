@@ -82,6 +82,8 @@
                     <% if attendance_record.first.nil? %>
                       <td align="center">
                         <%= render partial: "attendance_form", :locals => { student: student, date: date } %>
+                        
+
                       </td>
                     <% else %>
                       <td align="center">
@@ -90,7 +92,7 @@
                                  value="<%= attendance_record.first.hours %>"
                                  class="form-control" readonly >
                         </form>
-                        <%= link_to "delete", attendance_record_url(attendance_record), :method => "delete"%>
+                        <%= link_to "delete", attendance_record_url(attendance_record.first), :method => "delete"%>
                       </td>
                     <% end %>
                   <% end %>
@@ -103,3 +105,21 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  $(".attn-form").on("click", 'input[type="submit"]',
+    function (event){
+      event.preventDefault();
+      var that = this;
+      var formData = $(that.form).serialize();
+      var hours = $(that.form).serializeArray()[4].value
+      $.ajax({
+        url: "/attendance_records",
+        type: "post",
+        data: formData,
+        success: function(){
+          $(that.form).html('<input type="text" value="' + hours + '"class="form-control" readonly >')
+        }
+      });
+    });
+</script>

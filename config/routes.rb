@@ -7,7 +7,9 @@ AccAdultEd::Application.routes.draw do
   resources :course_types
   resources :instructors
   resources :admins
-  resources :students, :only => [:index, :show]
+  resources :students, :only => [:index, :show] do
+    collection { post :import }
+  end
   resources :courses
   resources :course_regs
   resources :events
