@@ -21,7 +21,7 @@ class Student < ActiveRecord::Base
     courses = self.courses.where('term_id = ?', term_id)
     averages = []
     term_attendance_records = self.attendance_records
-    records = nil
+    records = []
     unless attendance_records.empty?
       courses.each do |course|
         records = attendance_records.select{ |record| course.id == record.course_id}
