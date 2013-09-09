@@ -1,24 +1,28 @@
 <div class="small-form form-horizontal">
-  <center><h3>Log In</h3></center>
-  <br>
   <form action="<%= session_url %>" method="post">
     <div class="form-group">
+      <label class="col-md-3 control-label sr-only"></label>
+      <div class="col-md-4">
+        <h3>Log In</h3>
+      </div>
+    </div>
+    <div class="form-group">
       <label class="col-md-3 control-label" for="user_email">Email</label>
-      <div class="col-md-7">
+      <div class="col-md-4">
         <input type="email" id="user_email" 
                name="user[email]" class="form-control">
       </div>
     </div>
     <div class="form-group">
       <label class="col-md-3 control-label" for="user_password">Password</label>
-      <div class="col-md-7">
+      <div class="col-md-4">
         <input type="password" id="user_password" 
                name="user[password]" class="form-control">
       </div>
     </div>
     <div class="form-group">
       <label class="col-md-3 control-label sr-only"></label>
-      <div class="col-md-7">
+      <div class="col-md-4">
         <input type="submit" value="Go!" class="btn btn-primary">
       </div>
     </div>

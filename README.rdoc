@@ -6,7 +6,7 @@ organization structure and terminology used is based on my experience as an
 instructor at Austin Community College, Austin, TX.
 
 This is a work in progress, but feel free to poke around. Just don't panic if
-you find a bug, or encounter an error, as I am pushing to this to help correct
+you find a bug, or encounter an error, as I am pushing to this all the time to help correct
 these issues.
 
 You can access a demo account with:
