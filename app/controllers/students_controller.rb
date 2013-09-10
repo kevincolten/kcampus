@@ -13,8 +13,12 @@ class StudentsController < ApplicationController
   end
 
   def import
-    Student.import(params[:file], current_user)
-    redirect_to students_url, notice: "Students updated."
+    if params[:file].nil?
+      redirect_to students_url, alert: ["No File Selected"]
+    else
+      Student.import(params[:file], current_user)
+      redirect_to students_url, notice: "Students updated."
+    end
   end
   
 end

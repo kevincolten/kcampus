@@ -63,7 +63,7 @@
           </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-            <li>
+            <li style="padding:1px 9px 0px 0px">
               <%= button_to "Log Out", session_url, :method => :delete, :class => 'btn btn-default navbar-btn btn-sm' %>
             </li>
           </ul>
@@ -79,7 +79,7 @@
           </li>
         </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li>
+            <li style="padding:5px 10px 0px 0px">
               <%= link_to "Log Out", session_url, :method => :delete %>
             </li>
           </ul>
@@ -99,6 +99,8 @@
     <%= messages.join("; ") %>
   </div>
 <% end %>
+<div style="margin: 0px 10px 0px 10px">
   <%= yield %>
+</div>
 </body>
 </html>
