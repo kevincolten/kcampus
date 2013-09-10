@@ -24,3 +24,6 @@ TODO:
 3. Printable Class Rosters
 4. Index Databases
 5. Reorganize Navbar
+6. Add Roster to Course Show Page
+7. Decide Landing Pages After Logging In
+8. Auto Detect Registration and Attendance Month
