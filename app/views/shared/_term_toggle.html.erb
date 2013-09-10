@@ -1,7 +1,4 @@
-
-  <form action="<%= term_toggler_url %>" method="post" class="form-horizontal">
-    <input type="hidden" name="authenticity_token" 
-           value="<%= form_authenticity_token %>">
+  <form class="form-horizontal" id="term-toggler">
      Term: 
     <select id="term_toggler_id" name="term_toggler[term_id]" class="span2">
       
@@ -12,5 +9,4 @@
         </option>
       <% end %>
     </select>
-    <input type="submit" value="Submit" class="btn btn-primary btn-xs">
   </form>

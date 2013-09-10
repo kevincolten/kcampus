@@ -1,6 +1,4 @@
-<form action="<%= attendance_records_url %>" method="post" style="float:none; width:50px" class="attn-form">
-  <input type="hidden" name="authenticity_token" 
-         value="<%= form_authenticity_token %>">
+<form style="float:none; width:50px" class="attn-form">
   <input type="hidden" name="attendance_record[student_id]"
          value="<%= student.id %>">
   <input type="hidden" name="attendance_record[course_id]"
@@ -8,7 +6,7 @@
   <input type="hidden" name="attendance_record[date]"
          value="<%= date %>">
   <input type="text" class="form-control" 
-         name="attendance_record[hours]">       
+         name="attendance_record[hours]" id="attendance_hours">       
   <input type="submit" value="Submit" 
          class="btn btn-primary btn-xs">
 </form>

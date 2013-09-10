@@ -82,61 +82,81 @@
   <% end %>
 <br><br>
 </center>
-<div class="form-group">
-  <label class="col-md-3 control-label" for="course_start_time">Start</label>
-  <div class="col-md-3">
-    <input type="time" id="course_start_time" 
-           name="course[start_time]"
-           class="form-control" 
-           value=<% if @course.start_time %>
-           <%= "#{sprintf("%02d", @course.start_time.hour)}:#{sprintf("%02d", @course.start_time.min)}" %>>
-           <% end %>
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <label class="col-md-3 control-label" for="course_start_time">End</label>
-  <div class="col-md-3">
-    <input type="time" name="course[end_time]"
-           class="form-control" 
-           value=<% if @course.end_time %>
-           <%= "#{sprintf("%02d", @course.end_time.hour)}:#{sprintf("%02d", @course.end_time.min)}" %>>
-           <% end %>
-    </select>  
-  </div>
-</div>
-<div class="form-group">
-  <label class="col-md-3 control-label" for="course_room_number">Rm No.</label>
-  <div class="col-md-3">
-    <input type="text" id="course_room_number" 
-           name="course[room_number]" value="<%= @course.room_number %> "
-           class="form-control">
-  </div>
-</div>
-<div class="form-group">
-  <label class="col-md-3 control-label" for="course_min_seats">Max Enroll</label>
-  <div class="col-md-2">
-    <input type="text" id="course_min_seats" 
-           name="course[min_seats]" value="<%= @course.min_seats %>"
-           class="form-control">
-  </div>
-</div>
-<div class="form-group">
-  <label class="col-md-3 control-label" for="course_min_seats">Min Enroll</label>
-  <div class="col-md-2">
-    <input type="text" id="course_min_seats" 
-           name="course[min_seats]" value="<%= @course.min_seats %>"
-           class="form-control">
-  </div>
-</div>
-<div class="form-group">
-  <label class="col-md-3 control-label" for="course_budget_code">Budget Code</label>
-  <div class="col-md-3">
-    <input type="text" id="course_budget_code" 
-           name="course[budget_code]" value="<%= @course.budget_code %> "
-           class="form-control">
-  </div>
-</div>
+<table>
+  <tr>
+    <td>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="course_start_time">Start</label>
+        <div class="col-md-6">
+          <input type="time" id="course_start_time" 
+                 name="course[start_time]"
+                 class="form-control" 
+                 value=<% if @course.start_time %>
+                 <%= "#{sprintf("%02d", @course.start_time.hour)}:#{sprintf("%02d", @course.start_time.min)}" %>>
+                 <% end %>
+          </select>
+        </div>
+      </div>
+    </td>
+    <td>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="course_start_time">End</label>
+        <div class="col-md-6">
+          <input type="time" name="course[end_time]"
+                 class="form-control" 
+                 value=<% if @course.end_time %>
+                 <%= "#{sprintf("%02d", @course.end_time.hour)}:#{sprintf("%02d", @course.end_time.min)}" %>>
+                 <% end %>
+          </select>  
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="course_min_seats">Max Enroll</label>
+        <div class="col-md-4">
+          <input type="text" id="course_min_seats" 
+                 name="course[min_seats]" value="<%= @course.min_seats %>"
+                 class="form-control">
+        </div>
+      </div>
+    </td>
+    <td>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="course_min_seats">Min Enroll</label>
+        <div class="col-md-4">
+          <input type="text" id="course_min_seats" 
+                 name="course[min_seats]" value="<%= @course.min_seats %>"
+                 class="form-control">
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="course_room_number">Rm No.</label>
+        <div class="col-md-5">
+          <input type="text" id="course_room_number" 
+                 name="course[room_number]" value="<%= @course.room_number %> "
+                 class="form-control">
+        </div>
+      </div>
+    </td>
+    <td>
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="course_budget_code">Budget Code</label>
+        <div class="col-md-5">
+          <input type="text" id="course_budget_code" 
+                 name="course[budget_code]" value="<%= @course.budget_code %> "
+                 class="form-control">
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
 <div class="form-group">
   <label class="col-md-3 control-label sr-only"></label>
   <div class="col-md-4">
