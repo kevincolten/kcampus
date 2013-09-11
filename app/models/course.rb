@@ -32,6 +32,64 @@ class Course < ActiveRecord::Base
   validates :number, :presence => true
   validates :client_id, :presence => true
                   
+  def self.to_csv(courses)
+    columns = ["Term",
+               "Section Start Date",
+               "Section End Date",
+               "Term Start and End Dates",
+               "Registration Start and End Dates",
+               "Add and Drop Dates",
+               "Course Level",
+               "Short Title",
+               "Long Title",
+               "Class Number",
+               "Synonym",
+               "Days",
+               "Times",
+               "No. Weeks",
+               "Contact Hours",
+               "Max Capacity",
+               "Min Enrollment",
+               "Instructor ID",
+               "Instructor Name",
+               "Location Code",
+               "Location",
+               "Budget Code",
+               "Room"]
+
+    attributes = ["term.code",
+                  "term.start_date",
+                  "term.end_date",
+                  "term.dates",
+                  "term.reg_dates",
+                  "term.add_drop_end",
+                  "course_type.level",
+                  "course_type.short_name",
+                  "course_type.long_name",
+                  "course_code",
+                  "synonym",
+                  "small_days",
+                  "times",
+                  "num_weeks",
+                  "contact_hours",
+                  "max_seats",
+                  "min_seats",
+                  "instructor.idn",
+                  "instructor.full_name",
+                  "location.code",
+                  "location.name",
+                  "budget_code",
+                  "room_number"]
+
+    CSV.generate do |csv|
+      csv << columns
+      courses.each do |course|
+        array = attributes.map { |attribute| course.send(:eval, attribute) }
+        csv << array
+      end
+    end
+  end
+
   def course_days
     methods = [ :sunday, 
                 :monday, 
@@ -123,6 +181,19 @@ class Course < ActiveRecord::Base
 
   def total_enrolled
     CourseReg.find_all_by_course_id(self.id).count
+  end
+
+  def times
+    str = "#{self.start_time.strftime('%l:%M%P')} - "
+    str << "#{self.end_time.strftime('%l:%M%P')}"
+  end
+
+  def num_weeks
+    self.dates.map(&:cweek).uniq.count
+  end
+
+  def contact_hours
+    self.dates.count * self.duration
   end
 
 end
