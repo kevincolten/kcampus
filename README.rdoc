@@ -23,7 +23,7 @@ TODO:
 2. Reorganize Navbar
 3. Decide Landing Pages After Logging In
 4. Export Attendance Records (TEAMS)
-*Select Time Period
-*Select Course
+* Select Time Period
+* Select Course
 5. Build Smart Registration
 6. Look At Student Eligibility Algorithm
