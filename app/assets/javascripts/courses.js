@@ -3,7 +3,7 @@
 
 $(function(){
 
-  $(".attn-form").on("click", 'input[type="submit"]', function (event) {
+  $(".attn-form").on("focusout", 'input[type="text"]', function (event) {
     event.preventDefault();
     var that = this;
     var formData = $(that.parentElement).serialize();
@@ -41,8 +41,6 @@ $(function(){
         string = string + 'value="' + date + '">';
         string = string + '<input type="text" class="form-control"';
         string = string + 'name="attendance_record[hours]" id="attendance_hours">';
-        string = string + '<input type="submit" value="Submit"';
-        string = string + 'class="btn btn-primary btn-xs">';
     $.ajax({
       url: "/attendance_records/" + attn_id,
       type: "delete",
@@ -50,6 +48,11 @@ $(function(){
         $(that.parentElement).html(string);
       }
     });
+  });
+
+  $("#sign-in").on("click", function () {
+    $("head").prepend("<style id='print-style'> @media print { body * { visibility: hidden; } #printable, #printable * { visibility: visible; } #printable { position: absolute; left: 0; top: 0; } } </style>");
+    window.print()
   });
 
 });

@@ -1,0 +1,55 @@
+
+<div id="printable">
+  <table>
+    <tr>
+      <td style="font-size:1.35em" colspan="7" align="center"><b>Austin Community Campus</b></td>
+    </tr>
+    <tr>
+      <td colspan="7" align="center"><b>Adult Education</b></td>
+    </tr>
+    <tr>
+      <td colspan="7" align="center">Student Sign-In Sheet</td>
+    </tr>
+    <tr>
+      <td>Instructor:</td>
+      <td><u><%= course.instructor.full_name %></u></td>
+      <td></td>
+      <td colspan="2" align="right"><b>Date:</b></td>
+      <td colspan="2"><b>___________________________</b></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td colspan="2" align="right">Class Number:</td>
+      <td colspan="2"><u><%= "#{course.dept_code} #{course.course_type.short_name}" %></u></td>
+    </tr>
+    <tr>
+      <td><b>Signature:</b></td>
+      <td><b>_________________________</b></td>
+      <td></td>
+      <td colspan="2" align="right">Days/Times:</td>
+      <td colspan="2"><u><%= "#{course.small_days} #{course.times}" %></u></td>
+    </tr>
+    <tr>
+      <td style="width:5%; border: solid 1px black"></td>
+      <td style="width:25%; border: solid 1px black"><center><b>Student Name<b></center></td>
+      <td style="width:25%; border: solid 1px black"><center><b>Student Signature<b></center></td>
+      <td style="width:9%; border: solid 1px black"><center><b>Time In</center><b></td>
+      <td style="width:9%; border: solid 1px black"><center><b>Time Out</center><b></td>
+      <td style="width:7%; border: solid 1px black"><center><b>Hours</center><b></td>
+      <td style="width:20%; border: solid 1px black"><center><b>For Instr. Use Only</center><b></td>
+    </tr>
+    <% students.each_with_index do |student, idx| %>
+      <tr>
+        <td align="center" style="border: solid 1px black"><%= idx + 1 %></td>
+        <td style="border: solid 1px black"><%= student.name %></td>
+        <td style="border: solid 1px black"></td>
+        <td style="border: solid 1px black"></td>
+        <td style="border: solid 1px black"></td>
+        <td style="border: solid 1px black"></td>
+        <td style="border: solid 1px black"></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
