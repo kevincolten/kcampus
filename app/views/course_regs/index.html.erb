@@ -1,6 +1,5 @@
 <!-- Button to trigger modal -->
-<a data-toggle="modal" href="#myModal" class="btn btn-primary">Register Student</a>
- 
+  <%= render partial: "force_enroll_form" %>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -10,8 +9,6 @@
         <h4 class="modal-title">Register Student</h4>
       </div>
       <div class="modal-body">
-        <div class="form-horizontal">
-          <form action="<%= course_regs_url %>" method="post">
                 <%= render partial: "form" %>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
               </div>

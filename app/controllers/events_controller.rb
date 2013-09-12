@@ -3,11 +3,16 @@ class EventsController < ApplicationController
   before_filter :require_admin!
   
   def index
-    @events = Event.find_all_by_client_id_and_term_id(current_user.client_id,
-                                                      current_term.id)
     @event = Event.new
-    @terms = Term.find_all_by_client_id(current_user.client_id)
-    @locations = Location.find_all_by_client_id(current_user.client_id)
+    @events = []
+    @terms = []
+    @locations = []
+    if current_term
+      @events = Event.find_all_by_client_id_and_term_id(current_user.client_id,
+                                                        current_term.id)
+      @terms = Term.find_all_by_client_id(current_user.client_id)
+      @locations = Location.find_all_by_client_id(current_user.client_id)
+    end
   end
   
   def create

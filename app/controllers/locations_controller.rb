@@ -13,6 +13,7 @@ class LocationsController < ApplicationController
   end
   
   def create
+    params[:location][:contact_phone] = params[:location][:contact_phone].split("").select{|x| x[/\d+/]}.join("")
     params[:location][:client_id] = current_user.client_id
     params[:location].each_value { |value| value.strip! if value.is_a?(String) }
     @location = Location.new(params[:location])
@@ -32,7 +33,7 @@ class LocationsController < ApplicationController
     params[:location].each_value { |value| value.strip! if value.is_a?(String) }
     @location.update_attributes(params[:location])
     @location.save!
-    redirect_to location_url(@location)
+    redirect_to locations_url
   end
   
   def destroy

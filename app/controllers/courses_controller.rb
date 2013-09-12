@@ -3,15 +3,23 @@ class CoursesController < ApplicationController
   before_filter :require_client!, :except => [:index, :show]
 
   def index
+    @courses = []
     if current_user.admin || current_user.client
-      @courses = Course.includes(:location).includes(:instructor).includes(:term).includes(:course_type).find_all_by_client_id_and_term_id(current_user.client_id,
-                                                          current_term.id)
+      if current_term
+        @courses = Course.includes(:location)
+                         .includes(:instructor)
+                         .includes(:term)
+                         .includes(:course_type)
+                         .find_all_by_client_id_and_term_id(current_user.client_id, current_term.id)
+      end
     elsif current_user.instructor
       @instructor = Instructor.find_by_email(current_user.email)
-      @courses = Course.find_all_by_client_id_and_term_id_and_instructor_id(
-                                                          current_user.client_id,
-                                                          current_term.id,
-                                                          @instructor.id)
+      if current_term
+        @courses = Course.find_all_by_client_id_and_term_id_and_instructor_id(
+                                                            current_user.client_id,
+                                                            current_term.id,
+                                                            @instructor.id)
+      end
     end
     @terms = Term.find_all_by_client_id(current_user.client_id)
     @course = Course.new
@@ -19,8 +27,9 @@ class CoursesController < ApplicationController
     @locations = Location.find_all_by_client_id(current_user.client_id)
     @instructors = Instructor.find_all_by_client_id(current_user.client_id)
     @course_types = CourseType.find_all_by_client_id(current_user.client_id)
-    @days = ["Sun", "Mon", "Tues", "Wed", 
+    @short_days = ["Sun", "Mon", "Tues", "Wed", 
              "Thurs", "Fri", "Sat"]
+    @long_days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
     @course_days = @course.course_days
 
     respond_to do |format|

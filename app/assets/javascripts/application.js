@@ -12,4 +12,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require bootstrap-formhelpers-datepicker.en_US.js
+//= require bootstrap-formhelpers-datepicker.js
+//= require bootstrap-formhelpers-phone.format.js
+//= require bootstrap-formhelpers-phone.js
 //= require_tree .

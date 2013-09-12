@@ -1,0 +1,2 @@
+module AttendanceExportsHelper
+end

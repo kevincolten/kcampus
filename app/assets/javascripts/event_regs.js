@@ -1,6 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
-$(".attended-form").on("click", 'input[type="radio"]', function (event) {
+$(function(){
+  $(".attended-form").on("click", 'input[type="radio"]', function (event) {
     var that = this;
     var dataID = $(that).attr("data-id")
     var formData = $(that.form).serialize();
@@ -10,3 +11,4 @@ $(".attended-form").on("click", 'input[type="radio"]', function (event) {
       data: formData
     });
   });
+});

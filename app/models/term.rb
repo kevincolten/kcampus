@@ -13,7 +13,7 @@ class Term < ActiveRecord::Base
   validates :code, :presence => true
   validates :client_id, :presence => true
                   
-  has_many :courses
+  has_many :courses, dependent: :destroy
   
   def dept_code
     "#{self.semester[0]}#{self.year.to_s[-2..-1]}#{self.number}"

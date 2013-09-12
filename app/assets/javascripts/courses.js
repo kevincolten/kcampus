@@ -2,28 +2,34 @@
 // All this logic will automatically be available in application.js.
 
 $(function(){
+  $(document).keypress(function(key) {
+    if(key.which == 13) {
+        key.preventDefault();
+    }
+  });
 
   $(".attn-form").on("focusout", 'input[type="text"]', function (event) {
     event.preventDefault();
     var that = this;
     var formData = $(that.parentElement).serialize();
     var hours = $(that.parentElement.children).filter('#attendance_hours').val();
-    $(that).prop("disabled", true);
-    $.ajax({
-      url: "/attendance_records",
-      type: "post",
-      data: formData,
-      success: function (response) {
-        var string = "<input type='text' value='" + hours
-        string = string + "'class='form-control' readonly >"
-        string = string + "<a href='#' attn-id='" + response.id
-        string = string + "'stu-id='" + response.student_id
-        string = string + "'course-id='" + response.course_id
-        string = string + "'date='" + response.date + "''>delete</a>"
-        console.log(string)
-        $(that.form).html(string);
-      }
-    });
+    if(hours != ""){
+      $(that).prop("disabled", true);
+      $.ajax({
+        url: "/attendance_records",
+        type: "post",
+        data: formData,
+        success: function (response) {
+          var string = "<input type='text' value='" + hours
+          string = string + "'class='form-control' readonly >"
+          string = string + "<a href='#' attn-id='" + response.id
+          string = string + "'stu-id='" + response.student_id
+          string = string + "'course-id='" + response.course_id
+          string = string + "'date='" + response.date + "''>delete</a>"
+          $(that.form).html(string);
+        }
+      });
+    }
   });
 
   $(".attn-form").on("click", "a", function (event){

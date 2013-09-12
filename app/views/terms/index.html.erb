@@ -53,7 +53,7 @@
         <td><%= "#{term.add_drop_end.strftime("%m/%d/%Y")}" %></td>
         <% if current_user.client %>
           <td><%= link_to "edit", edit_term_url(term) %> |
-             <%= link_to "delete", term_url(term), :method => "destroy" %></td>
+             <%= link_to "delete", term_url(term), :method => "delete" %></td>
         <% end %>
       </tr>
     <% end %>

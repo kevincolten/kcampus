@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_to new_session_url, alert: ["email/password combination was not found"]
     else
       self.current_user = user
-      redirect_to user_url(user)
+      redirect_to courses_url
     end
   end
 

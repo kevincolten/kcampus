@@ -32,8 +32,8 @@ class CourseTypesController < ApplicationController
   end
   
   def destroy
-    @course_type = CourseType.find_by_id(params[:course_type][:id])
-    @course_type.destroy!
+    @course_type = CourseType.find_by_id(params[:id])
+    @course_type.destroy
     redirect_to course_types_url
   end
   

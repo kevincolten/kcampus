@@ -18,7 +18,7 @@
       <td><%= @event.name %></td>
       <td><%= @event.date.to_date.strftime('%b %e, %Y') %></td>
       <td><%= @event.time %></td>
-      <td><%= @event.location.name %></td>
+      <td><%= @event.location.name if @event.location%></td>
       <td><%= @event.room %></td>
       <td><%= @event.contact_name %></td>
       <td><%= @event.contact_phone %></td>

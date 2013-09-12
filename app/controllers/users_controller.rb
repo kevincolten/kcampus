@@ -26,7 +26,7 @@ class UsersController < ApplicationController
         @user = User.new(params[:user])
         if @user.save
           self.current_user = @user
-          redirect_to user_url(@user)
+          redirect_to courses_url
         else
           redirect_to new_user_url, alert: @user.errors.full_messages
         end
@@ -43,11 +43,4 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def show
-    if params.include?(:id)
-      @user = User.find(params[:id])
-    else
-      redirect_to user_url(current_user)
-    end
-  end
 end

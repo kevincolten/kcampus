@@ -59,6 +59,10 @@
             <%= 'class=active' if request.env['PATH_INFO'] == events_path %>>
             <%= link_to "Events", events_url %>
           </li>
+          <li
+            <%= 'class=active' if request.env['PATH_INFO'] == new_attendance_export_path %>>
+            <%= link_to "Attendance Export", new_attendance_export_url %>
+          </li>
           <li>
             <p class="navbar-text"><%= current_user.email %></p>
           </li>
@@ -99,7 +103,7 @@
   </nav>
   <% flash.each do |name, messages| %>
   <div class="alert">
-    <%= messages.join("; ") %>
+    <%= messages %>
   </div>
 <% end %>
 <div style="margin: 0px 10px 0px 10px">

@@ -47,7 +47,7 @@
       <td><%= course_type.short_name %></td>
       <% if current_user.client %>
         <td><%= link_to "edit", edit_course_type_url(course_type)%> |
-          <%= link_to "delete", course_type_url(course_type), :method => "destroy" %>
+          <%= link_to "delete", course_type_url(course_type), :method => "delete" %>
         </td>
       <% end %>
     </tr>

@@ -33,7 +33,7 @@
   <label class="col-md-3 control-label">Term</label>
   <div class="col-md-2">
     <input type="text" id="course_section" 
-           value="<%= current_term.dept_code %>" 
+           value="<%= current_term.dept_code if current_term %>" 
            class="form-control" disabled>
   </div>
 </div>
@@ -72,10 +72,10 @@
   </div>
 </div>
 <center>
-  <% @days.each do |day| %>
+  <% @short_days.each_with_index do |day, idx| %>
   <label class="checkbox-inline">
     <input type="checkbox" value="true" 
-           name="course[<%= day.downcase %>]" id="course_<%= day %>"
+           name="course[<%= @long_days[idx] %>]" id="course_<%= @long_days[idx] %>"
            <%= "checked" if @course_days.include?(day) %>>
       <%= day %>
   </label>
@@ -115,10 +115,10 @@
   <tr>
     <td>
       <div class="form-group">
-        <label class="col-md-3 control-label" for="course_min_seats">Max Enroll</label>
+        <label class="col-md-3 control-label" for="course_max_seats">Max Enroll</label>
         <div class="col-md-4">
-          <input type="text" id="course_min_seats" 
-                 name="course[min_seats]" value="<%= @course.min_seats %>"
+          <input type="text" id="course_max_seats" 
+                 name="course[max_seats]" value="<%= @course.max_seats %>"
                  class="form-control">
         </div>
       </div>

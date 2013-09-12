@@ -47,7 +47,7 @@
         <td><%= instructor.full_name %></td>
         <td><%= instructor.phone %></td>
         <td><%= instructor.email %></td>
-        <td><%= instructor.location.code %></td>
+        <td><%= instructor.location.code if instructor.location %></td>
         <% if current_user.client %>
           <td><%= "$#{sprintf('%.2f',instructor.pay_rate)}"%></td>
           <td><%= link_to "edit", edit_instructor_url(instructor) %> |

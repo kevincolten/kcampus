@@ -18,7 +18,7 @@ class Student < ActiveRecord::Base
   end
   
   def attendance(term_id)
-    courses = self.courses.where('term_id = ?', term_id)
+    courses = self.courses.select{ |course| course.term_id = term_id }
     averages = []
     term_attendance_records = self.attendance_records
     records = []

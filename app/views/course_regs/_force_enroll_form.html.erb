@@ -1,0 +1,53 @@
+<div class="form-horizontal">
+  <form action="<%= course_regs_url %>" method="post">
+    <input type="hidden" name="authenticity_token" 
+           value="<%= form_authenticity_token %>">
+     <table style="width:100%">
+      <tr>
+        <td>
+          <a data-toggle="modal" href="#myModal" class="btn btn-primary">Register Student</a>
+        </td>
+         <% if current_user.admin || current_user.client %>
+        <td>
+          <div class="form-group">
+            <label class="col-md-3 control-label sr-only" for="course_reg_student_id"></label>
+            <div class="col-md-11">
+              <select id="course_reg_student_id" name="course_reg[student_id]" 
+                      class="form-control">
+                <% @all_students.each do |student| %>
+                  <option value="<%= student.id %>">
+                      <%= "#{student.idn} #{student.name} #{student.dob}"%> 
+                  </option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <label class="col-md-3 control-label sr-only" for="course_reg_course_id"></label>
+            <div class="col-md-11">
+            <select id="course_reg_course_id" name="course_reg[course_id]" 
+                    class="form-control">
+              <% @all_courses.each do |course| %>
+                <option value="<%= course.id %>">
+                    <%= "#{course.dept_code} #{course.course_type.long_name}"%> 
+                </option>
+              <% end %>
+            </select>
+           </div>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <label class="col-md-3 control-label sr-only"></label>
+            <div class="col-md-4">
+              <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+          </div>
+        </td>
+        <% end %>
+      </tr>
+    </table>
+  </form>
+</div>

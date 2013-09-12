@@ -24,8 +24,8 @@
         <td><%= @course.synonym %></td>
         <td><%= @course.course_code %></td>
         <td><%= @course.dept_code %></td>
-        <td><%= @course.course_type.short_name %></td>
-        <td><%= @course.location.name %></td>
+        <td><%= @course.course_type.short_name if @course.course_type%></td>
+        <td><%= @course.location.name if @course.location %></td>
         <td><%= @course.small_days %></td>
         <td><%= @course.start_time.strftime("%l:%M%P") %> -
             <%= @course.end_time.strftime("%l:%M%P") %></td>

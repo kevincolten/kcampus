@@ -16,6 +16,8 @@ class Course < ActiveRecord::Base
   has_many :course_regs
   
   has_many :students, :through => :course_regs, :source => :student
+
+  has_many :attendance_records, dependent: :destroy
   
   validates :min_seats, :presence => true
   validates :max_seats, :presence => true
@@ -32,7 +34,7 @@ class Course < ActiveRecord::Base
   validates :number, :presence => true
   validates :client_id, :presence => true
                   
-  def self.to_csv(courses)
+  def self.to_csv(courses, options = {})
     columns = ["Term",
                "Section Start Date",
                "Section End Date",
@@ -81,7 +83,7 @@ class Course < ActiveRecord::Base
                   "budget_code",
                   "room_number"]
 
-    CSV.generate do |csv|
+    CSV.generate(options) do |csv|
       csv << columns
       courses.each do |course|
         array = attributes.map { |attribute| course.send(:eval, attribute) }
@@ -119,17 +121,25 @@ class Course < ActiveRecord::Base
   end
   
   def course_code
-    str = "#{self.course_type.discipline}-"
-    str << "#{sprintf('%04d',course_type.level*100+1)}-"
-    str << "#{sprintf('%03d', self.section)}"
+    if self.course_type
+      str = "#{self.course_type.discipline}-"
+      str << "#{sprintf('%04d',self.course_type.level*100+1)}-"
+      str << "#{sprintf('%03d', self.section)}"
+    else
+      "unnassigned"
+    end
   end
   
   def dept_code
-    str = "#{self.term.semester[0]}"
-    str << "#{self.term.year.to_s[-2..-1]}"
-    str << "#{self.term.number}"
-    str << "#{self.location.code}-"
-    str << "#{sprintf('%02d', self.number)}"
+    if self.location && self.term
+      str = "#{self.term.semester[0]}"
+      str << "#{self.term.year.to_s[-2..-1]}"
+      str << "#{self.term.number}"
+      str << "#{self.location.code}-"
+      str << "#{sprintf('%02d', self.number)}"
+    else
+      "unassigned"
+    end
   end
   
   def dates

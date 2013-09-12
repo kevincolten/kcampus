@@ -4,7 +4,7 @@
   <label class="col-md-3 control-label">Term</label>
   <div class="col-md-2">
     <input type="text" id="course_section" 
-           value="<%= current_term.dept_code %>" 
+           value="<%= current_term.dept_code if current_term %>" 
            class="form-control" disabled>
   </div>
 </div>

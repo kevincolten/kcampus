@@ -46,7 +46,7 @@
         <td><%= admin.full_name %></td>
         <td><%= admin.phone %></td>
         <td><%= admin.email %></td>
-        <td><%= admin.location.code %></td>
+        <td><%= admin.location.code if admin.location %></td>
         <% if current_user.client %>
           <td><%= link_to "edit", edit_admin_url(admin) %> |
               <%= link_to "delete", admin_url(admin), :method => :delete %></td>

@@ -16,8 +16,9 @@ AccAdultEd::Application.routes.draw do
   resources :event_regs
   resources :attendance_records
   resource :term_toggler
+  resource :attendance_export
   resources :terms
   
-  root :to => "users#show"
+  root :to => "courses#index"
   
 end
