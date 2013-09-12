@@ -33,18 +33,24 @@ class Student < ActiveRecord::Base
     0
   end
 
-  def self.import(file, current_user)
+  def self.import_CSV(file, current_user)
+    values = []
+    data = nil
     CSV.foreach(file.path, headers: true) do |row|
       data = row.to_hash
       data[:client_id] = current_user.client_id
-      student = Student.find_by_idn_and_client_id(data["idn"],
-                                                  data[:client_id])
-      if student
-        student.update_attributes(data)
-        student.save!
-      else
-        Student.create!(data)
-      end
+      values << data.values
     end
+    columns = data.keys.map{ |key| key.to_sym }
+    Student.import(columns, values)
+
+      # student = Student.find_by_idn_and_client_id(data["idn"],
+      #                                             data[:client_id])
+      # if student
+      #   student.update_attributes(data)
+      #   student.save!
+      # else
+      #   Student.create!(data)
+      # end
   end
 end

@@ -16,7 +16,7 @@ class StudentsController < ApplicationController
     if params[:file].nil?
       redirect_to students_url, alert: ["No File Selected"]
     else
-      Student.import(params[:file], current_user)
+      Student.import_CSV(params[:file], current_user)
       redirect_to students_url, notice: "Students updated."
     end
   end

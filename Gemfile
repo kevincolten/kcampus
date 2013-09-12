@@ -56,3 +56,4 @@ gem 'bootstrap-sass'
 gem "therubyracer"
 gem "less-rails"
 gem "prawn"
+gem "activerecord-import", "~> 0.3.1"
