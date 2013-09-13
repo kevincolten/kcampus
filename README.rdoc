@@ -21,9 +21,5 @@ TODO:
 
 1. Index Databases
 2. Reorganize Navbar
-3. Decide Landing Pages After Logging In
-4. Export Attendance Records (TEAMS)
-* Select Time Period
-* Select Course
-5. Build Smart Registration
-6. Look At Student Eligibility Algorithm
+3. Clean up Forms
+4. Reddis?
