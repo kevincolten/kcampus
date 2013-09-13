@@ -37,28 +37,27 @@ class Student < ActiveRecord::Base
     values = []
     data = nil
     existing_students = []
-    students = Student.find_all_by_client_id(current_user.client_id)
+    student_hash = {}
+    Student.find_all_by_client_id(current_user.client_id).each do |student|
+      student_hash[student.attributes["idn"]] = student.attributes.delete_if do |key, value| 
+        key == "id" || key == "created_at" || key == "updated_at"
+      end
+    end
     CSV.foreach(file.path, headers: true) do |row|
       data = row.to_hash
-      existing_student = students.select{ |student| student.idn == data["idn"].to_i }.first
+      existing_student = student_hash[data["idn"].to_i]
+      data["client_id"] = current_user.client_id
       if existing_student
-        existing_students << existing_student
+        existing_student["dob"] = existing_student["dob"].to_s
+        existing_student["idn"] = existing_student["idn"].to_s
+        existing_students << data if data != existing_student
         next
       end
-      data[:client_id] = current_user.client_id
       values << data.values
     end
-    columns = data.keys.map{ |key| key.to_sym }
-    Student.synchronize(existing_students, keys = ["idn"])
+    columns = data.keys
+    ob_existing_students = existing_students.map{|student| Student.new(student)}
+    Student.synchronize(ob_existing_students, keys = ["idn"])
     Student.import(columns, values) unless values.empty?
-
-      # student = Student.find_by_idn_and_client_id(data["idn"],
-      #                                             data[:client_id])
-      # if student
-      #   student.update_attributes(data)
-      #   student.save!
-      # else
-      #   Student.create!(data)
-      # end
   end
 end

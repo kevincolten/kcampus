@@ -36,16 +36,18 @@ class CourseRegsController < ApplicationController
       end
       render :index
     else
-      flash[:notice] = ["No Registrations Open"]
+      flash.now[:alert] = ["No Registrations Open"]
       render :index
     end
   end
   
   def create
-    params[:course_reg][:user_id] = current_user.id
-    params[:course_reg][:client_id] = current_user.client_id
-    @course_reg = CourseReg.new(params[:course_reg])
-    @course_reg.save
+    if params[:course_reg]
+      params[:course_reg][:user_id] = current_user.id
+      params[:course_reg][:client_id] = current_user.client_id
+      @course_reg = CourseReg.new(params[:course_reg])
+      @course_reg.save
+    end
     redirect_to course_regs_url
   end
   

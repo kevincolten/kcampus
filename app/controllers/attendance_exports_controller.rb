@@ -12,8 +12,8 @@ def new
                                               session[:start_date],
                                               session[:end_date] )
       @dates = AttendanceRecord.dates(@attendance_records)
-      @course = @attendance_records.first.course
-      @students = @course.students
+      @course = @attendance_records.first.course unless @attendance_records.empty?
+      @students = @course.students unless @course.nil?
       respond_to do |format|
         format.html
         format.csv { render text: AttendanceRecord.to_csv(@attendance_records, @course, @students) }
@@ -22,10 +22,14 @@ def new
   end
 
   def create
-    session[:course_id] = params[:attendance_record][:course_id]
-    session[:start_date] = params[:attendance_record][:start_date]
-    session[:end_date] = params[:attendance_record][:end_date]
+    if params[:attendance_record][:start_date].to_date.is_a?(Date) && 
+        params[:attendance_record][:end_date].to_date.is_a?(Date)
+      session[:course_id] = params[:attendance_record][:course_id]
+      session[:start_date] = params[:attendance_record][:start_date]
+      session[:end_date] = params[:attendance_record][:end_date]
+    end
     redirect_to :back
   end
+
 
 end

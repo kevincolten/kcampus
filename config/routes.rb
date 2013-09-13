@@ -1,5 +1,7 @@
 AccAdultEd::Application.routes.draw do
   
+  resources :password_resets
+
   resources :clients, :only => [:new, :create]
   resources :users, :only => [:new, :create, :show]
   resource :session, :only => [:new, :create, :destroy]
