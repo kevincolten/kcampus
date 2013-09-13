@@ -28,7 +28,7 @@ class AttendanceRecord < ActiveRecord::Base
           found = attendance_records.select do |record|
             student.id == record.student_id && record.date == date
           end
-          array << found.first.hours
+          array << found.first.hours unless found.empty?
         end
         csv << array
       end

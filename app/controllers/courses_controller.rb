@@ -65,8 +65,10 @@ class CoursesController < ApplicationController
     @locations = Location.all
     @instructors = Instructor.all
     @course_types = CourseType.all
-    @days = ["Sunday", "Monday", "Tuesday", "Wednesday", 
+    @long_days = ["Sunday", "Monday", "Tuesday", "Wednesday", 
              "Thursday", "Friday", "Saturday"]
+    @short_days = ["Sun", "Mon", "Tues", "Wed", 
+             "Thurs", "Fri", "Sat"]
     @course_days = @course.course_days
   end
   

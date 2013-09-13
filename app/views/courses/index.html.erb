@@ -60,7 +60,7 @@
         <td><%= course.small_days %></td>
         <td><%= course.start_time.strftime("%l:%M%P") %> -
             <%= course.end_time.strftime("%l:%M%P") %></td>
-        <td><%= course.instructor.full_name %></td>
+        <td><%= course.instructor.full_name if @course.instructor %></td>
         <td><%= course.total_enrolled %></td>
         <td><%= course.ada %></td>
         <% if current_user.client %>

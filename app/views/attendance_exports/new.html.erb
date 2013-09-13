@@ -57,11 +57,11 @@
               <% found = @attendance_records.select do |record| %>
                 <% student.id == record.student_id && record.date == date %>
               <% end %>
-              <%= found.first.hours %>
+              <%= found.first.hours unless found.empty? %>
             </td>
           <% end %>
+                </tr>
         <% end %>
-      </tr>
     </tbody>
   </table>
  <% end %> 

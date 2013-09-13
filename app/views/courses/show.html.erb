@@ -29,7 +29,7 @@
         <td><%= @course.small_days %></td>
         <td><%= @course.start_time.strftime("%l:%M%P") %> -
             <%= @course.end_time.strftime("%l:%M%P") %></td>
-        <td><%= @course.instructor.full_name %></td>
+        <td><%= @course.instructor.full_name if @course.instructor %></td>
         <td><%= @course.total_enrolled %></td>
         <td><%= @course.ada %></td>
         <% if current_user.client %>
@@ -144,12 +144,12 @@
     </div>
   <% end %>
 </div>
-<!-- <div class="accordion" id="print-hidden">
-  <div class="accordion-group">
-    <div id="collapseOne" class="accordion-body collapse">
-      <div class="accordion-inner"> -->
+
         <%= render partial: "signin_form", :locals => { course: @course, students: @students } %>
-<!--       </div>
-    </div>
-  </div>
-</div> -->
+<script>
+  $(document).keypress(function(key) {
+      if(key.which == 13) {
+          key.preventDefault();
+      }
+    });
+  </script>

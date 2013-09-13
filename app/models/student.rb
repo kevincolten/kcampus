@@ -36,13 +36,21 @@ class Student < ActiveRecord::Base
   def self.import_CSV(file, current_user)
     values = []
     data = nil
+    existing_students = []
+    students = Student.find_all_by_client_id(current_user.client_id)
     CSV.foreach(file.path, headers: true) do |row|
       data = row.to_hash
+      existing_student = students.select{ |student| student.idn == data["idn"].to_i }.first
+      if existing_student
+        existing_students << existing_student
+        next
+      end
       data[:client_id] = current_user.client_id
       values << data.values
     end
     columns = data.keys.map{ |key| key.to_sym }
-    Student.import(columns, values)
+    Student.synchronize(existing_students, keys = ["idn"])
+    Student.import(columns, values) unless values.empty?
 
       # student = Student.find_by_idn_and_client_id(data["idn"],
       #                                             data[:client_id])

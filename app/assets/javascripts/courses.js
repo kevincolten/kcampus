@@ -2,11 +2,6 @@
 // All this logic will automatically be available in application.js.
 
 $(function(){
-  $(document).keypress(function(key) {
-    if(key.which == 13) {
-        key.preventDefault();
-    }
-  });
 
   $(".attn-form").on("focusout", 'input[type="text"]', function (event) {
     event.preventDefault();
