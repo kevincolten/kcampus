@@ -58,7 +58,7 @@ class EventRegsController < ApplicationController
         @event_reg.save
       end
     end
-    render :json => true
+    redirect_to event_url(@event_reg.event_id)
   end
   
   def destroy
