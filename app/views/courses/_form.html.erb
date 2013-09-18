@@ -1,3 +1,6 @@
+<table>
+  <tr>
+    <td>
 <input type="hidden" name="authenticity_token" 
        value="<%= form_authenticity_token %>">
 <div class="form-group">
@@ -7,9 +10,14 @@
            name="course[synonym]" value="<%= @course.synonym %>">
   </div>
 </div>
+</td>
+<td>
+  </td>
+  <tr>
+    <td>
 <div class="form-group">
   <label class="col-md-3 control-label" for="course_course_type_id">Course Type</label>
-  <div class="col-md-5">
+  <div class="col-md-8">
     <select id="course_course_type_id" name="course[course_type_id]" 
             class="form-control">
       <% @course_types.each do |course_type| %>
@@ -21,25 +29,33 @@
     </select>
  </div>
 </div>
+</td>
+<td>
 <div class="form-group">
   <label class="col-md-3 control-label" for="course_course_section">Section</label>
-  <div class="col-md-4">
+  <div class="col-md-8">
     <input type="text" id="course_section" 
            name="course[section]" value="<%= @course.section %>" 
            class="form-control">
   </div>
 </div>
+</td>
+</tr>
+<tr>
+  <td>
 <div class="form-group">
   <label class="col-md-3 control-label">Term</label>
-  <div class="col-md-4">
+  <div class="col-md-8">
     <input type="text" id="course_section" 
            value="<%= current_term.dept_code if current_term %>" 
            class="form-control" disabled>
   </div>
 </div>
+</td>
+<td>
 <div class="form-group">
   <label class="col-md-3 control-label" for="course_location_id">Location</label>
-  <div class="col-md-4">
+  <div class="col-md-8">
     <select id="course_location" name="course[location_id]" class="form-control">
       <% @locations.each do |location| %>
         <option value="<%= location.id %>"
@@ -50,17 +66,23 @@
     </select>
   </div>
 </div>
+</td>
+</tr>
+<tr>
+<td>
 <div class="form-group">
   <label class="col-md-3 control-label" for="course_course_number">Number</label>
-  <div class="col-md-4">
+  <div class="col-md-8">
     <input type="text" id="course_number" 
            name="course[number]" value="<%= @course.number %>"
            class="form-control">
   </div>
 </div>
+</td>
+<td>
 <div class="form-group">
   <label class="col-md-3 control-label" for="course_instructor_id">Instructor</label>
-  <div class="col-md-4">
+  <div class="col-md-8">
     <select id="course_instructor_id" name="course[instructor_id]" class="form-control">
       <% @instructors.each do |instructor| %>
         <option value="<%= instructor.id %>" 
@@ -71,6 +93,10 @@
     </select>
   </div>
 </div>
+</td>
+</tr>
+</table>
+<div style="width:500px">
 <center>
   <% @short_days.each_with_index do |day, idx| %>
   <label class="checkbox-inline">
@@ -82,6 +108,10 @@
   <% end %>
 <br><br>
 </center>
+</div>
+<table>
+  <tr>
+    <td>
   <div class="form-group">
     <label class="col-md-3 control-label" for="course_start_time">Start</label>
     <div class="col-md-6">
@@ -94,6 +124,8 @@
       </select>
     </div>
   </div>
+</td>
+<td>
   <div class="form-group">
     <label class="col-md-3 control-label" for="course_start_time">End</label>
     <div class="col-md-6">
@@ -105,6 +137,10 @@
       </select>  
     </div>
   </div>
+</td>
+</tr>
+<tr>
+  <td>
   <div class="form-group">
     <label class="col-md-3 control-label" for="course_max_seats">Max Enroll</label>
     <div class="col-md-4">
@@ -113,6 +149,8 @@
              class="form-control">
     </div>
   </div>
+</td>
+<td>
   <div class="form-group">
     <label class="col-md-3 control-label" for="course_min_seats">Min Enroll</label>
     <div class="col-md-4">
@@ -121,6 +159,10 @@
              class="form-control">
     </div>
   </div>
+</td>
+</tr>
+<tr>
+  <td>
   <div class="form-group">
     <label class="col-md-3 control-label" for="course_room_number">Rm No.</label>
     <div class="col-md-5">
@@ -129,6 +171,8 @@
              class="form-control">
     </div>
   </div>
+</td>
+<td>
   <div class="form-group">
     <label class="col-md-3 control-label" for="course_budget_code">Budget Code</label>
     <div class="col-md-5">
@@ -137,7 +181,9 @@
              class="form-control">
     </div>
   </div>
-<div class="form-group">
-<label class="col-md-3 control-label sr-only"></label>
-<div class="col-md-4">
-<input type="submit" value="Submit" class="btn btn-primary">
+</td>
+</tr>
+</table>
+<div style="width:500px">
+  <center>
+    <input type="submit" value="Submit" class="btn btn-primary">

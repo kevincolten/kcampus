@@ -14,7 +14,9 @@ class CourseRegsController < ApplicationController
     if @term_next
       @term_before = Term.where('client_id = ? AND end_date = (SELECT MAX(end_date) FROM terms WHERE end_date <= ?)', current_user.client_id, @term_next.start_date).first
 
-      @courses = @all_courses.select{ |course| course.term_id == @term_next.id }
+      @courses = @all_courses.select do |course| 
+        course.term_id == @term_next.id && course.students.count < course.max_seats
+      end
       @course_regs = CourseReg.includes(:course)
                               .where('course_regs.client_id = ? AND courses.term_id = ?',
                                       current_user.client_id, @term_next.id)

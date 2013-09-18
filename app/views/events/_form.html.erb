@@ -16,36 +16,6 @@
   </div>
 </div>
 <div class="form-group">
-  <label class="col-md-3 control-label" for="event_date">Date</label>
-  <div class="col-md-4">
-    <input type="date" id="event_date" name="event[date]" 
-           class="form-control" value="<%= @event.date %>">
-  </div>
-</div>
-<div class="form-group">
-  <label class="col-md-3 control-label" for="event_start_time">Start Time</label>
-  <div class="col-md-3">
-    <input type="time" id="event_start_time" 
-           name="event[start_time]"
-           class="form-control" 
-           value=<% if @event.start_time %>
-           <%= "#{sprintf("%02d", @event.start_time.hour)}:#{sprintf("%02d", @event.start_time.min)}" %>>
-           <% end %>
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <label class="col-md-3 control-label" for="event_end_time">End Time</label>
-  <div class="col-md-3">
-    <input type="time" name="event[end_time]"
-           class="form-control" 
-           value=<% if @event.end_time %>
-           <%= "#{sprintf("%02d", @event.end_time.hour)}:#{sprintf("%02d", @event.end_time.min)}" %>>
-           <% end %>
-    </select>  
-  </div>
-</div>
-<div class="form-group">
   <label class="col-md-3 control-label" for="event_location_id">Location</label>
   <div class="col-md-5">
     <select id="event_location_id" name="event[location_id]" class="form-control">
@@ -59,12 +29,63 @@
   </div>
 </div>
 <div class="form-group">
+  <label class="col-md-3 control-label" for="event_date">Date</label>
+  <div class="col-md-4">
+    <input type="date" id="event_date" name="event[date]" 
+           class="form-control" value="<%= @event.date %>">
+  </div>
+</div>
+<table>
+  <tr>
+    <td>
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_start_time">Start Time</label>
+  <div class="col-md-8">
+    <input type="time" id="event_start_time" 
+           name="event[start_time]"
+           class="form-control" 
+           value=<% if @event.start_time %>
+           <%= "#{sprintf("%02d", @event.start_time.hour)}:#{sprintf("%02d", @event.start_time.min)}" %>>
+           <% end %>
+    </select>
+  </div>
+</div>
+</td>
+<td>
+<div class="form-group">
+  <label class="col-md-3 control-label" for="event_end_time">End Time</label>
+  <div class="col-md-8">
+    <input type="time" name="event[end_time]"
+           class="form-control" 
+           value=<% if @event.end_time %>
+           <%= "#{sprintf("%02d", @event.end_time.hour)}:#{sprintf("%02d", @event.end_time.min)}" %>>
+           <% end %>
+    </select>  
+  </div>
+</div>
+</td>
+</tr>
+  <tr>
+    <td>
+<div class="form-group">
   <label class="col-md-3 control-label" for="event_room">Room</label>
-  <div class="col-md-3">
+  <div class="col-md-7">
     <input type="text" id="event_room" class="form-control"
            name="event[room]" value="<%= @event.room %>">
   </div>
 </div>
+</td>
+<td>
+  <div class="form-group">
+  <label class="col-md-3 control-label" for="event_max_seats">Max Seats</label>
+  <div class="col-md-5">
+    <input type="text" id="event_max_seats" class="form-control"
+           name="event[max_seats]" value="<%= @event.max_seats %>">
+ </div>
+</div>
+</td>
+</tr>
+</table>
 <div class="form-group">
   <label class="col-md-3 control-label" for="event_contact_name">Contact Name</label>
   <div class="col-md-4">
@@ -85,13 +106,6 @@
     <input type="text" id="event_contact_email" class="form-control"
            name="event[contact_email]" value="<%= @event.contact_email %>">
   </div>
-</div>
-<div class="form-group">
-  <label class="col-md-3 control-label" for="event_max_seats">Max Seats</label>
-  <div class="col-md-2">
-    <input type="text" id="event_max_seats" class="form-control"
-           name="event[max_seats]" value="<%= @event.max_seats %>">
- </div>
 </div>
 <div class="form-group">
   <label class="col-md-3 control-label sr-only"></label>
