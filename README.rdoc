@@ -19,7 +19,7 @@ You can contact me at kevincolten@gmail.com
 
 TODO:
 
-1. Index Databases
-2. Reorganize Navbar
-3. Clean up Forms
-4. Reddis?
+1. Reorganize Navbar
+2. Clean up Forms
+3. Reddis?
+4. Set Up Sendgrid!
