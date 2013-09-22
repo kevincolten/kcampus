@@ -8,8 +8,8 @@
        <select id="attendance_record_course_id" name="attendance_record[course_id]" 
               class="form-control">
         <% @courses.each do |course| %>
-          <option value="<%= course.id %>">
-              <%= "#{course.dept_code} #{course.course_type.long_name}"%> 
+          <option value="<%= course.id %>" <%= 'selected' if session[:course_id] && session[:course_id].to_i == course.id %>>
+              <%= "#{course.dept_code} #{course.course_type.long_name}" %> 
           </option>
         <% end %>
       </select>
@@ -19,14 +19,16 @@
     <label for="attendance_record_start_date" class="col-md-4 control-label">Start Date</label>
     <div class="col-md-4">
       <input type="date" class="form-control" id="attendance_record_start_date" 
-             name="attendance_record[start_date]">
+             name="attendance_record[start_date]"
+             value="<%= session[:start_date] %>">
     </div>
   </div>
   <div class="form-group">
     <label for="attendance_record_end_date" class="col-md-4 control-label">End Date</label>
     <div class="col-md-4">
       <input type="date" class="form-control" id="attendance_record_end_date"
-             name="attendance_record[end_date]">
+             name="attendance_record[end_date]"
+             value="<%= session[:end_date] %>">
     </div>
   </div>
   <div class="form-group">

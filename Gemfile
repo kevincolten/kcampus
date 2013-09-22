@@ -46,6 +46,7 @@ group :development do
   gem "quiet_assets"
   gem "webrick"
   # gem "thin"
+  gem "letter_opener"
 end
 
 gem "backbone-on-rails"
