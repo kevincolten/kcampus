@@ -14,7 +14,7 @@ class ClientsController < ApplicationController
       params[:user][:client] = true
       params[:user].each_value { |value| value.strip! if value.is_a?(String) }
       @user = User.new(params[:user])
-      @success = @user.save && success
+      @success = @user.save && @success
     end
     if @success
       redirect_to new_session_url
