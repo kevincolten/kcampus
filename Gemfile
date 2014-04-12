@@ -5,7 +5,9 @@ gem 'rails', '3.2.14'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
+group :production do
+  gem 'pg'
+end
 
 
 # Gems used only for assets and not required
@@ -35,7 +37,7 @@ gem 'bcrypt-ruby', '~> 3.0.0', :require => 'bcrypt'
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger'
+# gem 'debugger'
 
 # Sam's list
 
@@ -47,6 +49,7 @@ group :development do
   gem "webrick"
   # gem "thin"
   gem "letter_opener"
+  gem 'pg'
 end
 
 gem "backbone-on-rails"
