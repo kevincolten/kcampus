@@ -1,19 +1,11 @@
 == Welcome to kCamp.us
 
-kCamp.us (http://kCamp.us) is an education administration system that allows for 
-the organization of students, teachers, administrators, courses and events. The 
-organization structure and terminology used is based on my experience as an
-instructor at Austin Community College, Austin, TX.
+kCamp.us (http://kCamp.us) is an education administration system that allows for
+the organization of students, teachers, administrators, courses and events.
 
 This is a work in progress, but feel free to poke around. Just don't panic if
 you find a bug, or encounter an error, as I am pushing to this all the time to help correct
 these issues.
-
-You can access a demo account with:
-
-Username: demo@hello.com
-
-Password: hello2
 
 You can contact me at kevincolten@gmail.com
 
