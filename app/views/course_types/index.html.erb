@@ -1,7 +1,7 @@
-<% if current_user.client %>
+<% if current_user.admin %>
   <!-- Button to trigger modal -->
   <a data-toggle="modal" href="#myModal" class="btn btn-primary">Add Course Type</a>
-   
+
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -33,7 +33,7 @@
       <th>Level</th>
       <th>Long Name</th>
       <th>Short Name</th>
-      <% if current_user.client %>
+      <% if current_user.admin %>
         <th></th>
       <% end %>
     </tr>
@@ -45,7 +45,7 @@
       <td><%= sprintf('%04d',course_type.level*100+1) %></td>
       <td><%= course_type.long_name %></td>
       <td><%= course_type.short_name %></td>
-      <% if current_user.client %>
+      <% if current_user.admin %>
         <td><%= link_to "edit", edit_course_type_url(course_type)%> |
           <%= link_to "delete", course_type_url(course_type), :method => "delete" %>
         </td>

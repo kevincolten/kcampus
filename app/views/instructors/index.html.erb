@@ -1,7 +1,7 @@
-<% if current_user.client %>
+<% if current_user.admin %>
   <!-- Button to trigger modal -->
   <a data-toggle="modal" href="#myModal" class="btn btn-primary">Add Instructor</a>
-   
+
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -34,7 +34,7 @@
       <th>Phone</th>
       <th>Email</th>
       <th>Mailbox</th>
-      <% if current_user.client %>
+      <% if current_user.admin %>
         <th>Pay Rate</th>
         <th></th>
       <% end %>
@@ -48,7 +48,7 @@
         <td><%= instructor.phone %></td>
         <td><%= instructor.email %></td>
         <td><%= instructor.location.code if instructor.location %></td>
-        <% if current_user.client %>
+        <% if current_user.admin %>
           <td><%= "$#{sprintf('%.2f',instructor.pay_rate)}"%></td>
           <td><%= link_to "edit", edit_instructor_url(instructor) %> |
               <%= link_to "delete", instructor_url(instructor), :method => :delete %></td>

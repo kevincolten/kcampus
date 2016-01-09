@@ -1,11 +1,11 @@
 <div class="pull-right">
       <%= render partial: "shared/term_toggle" %>
 </div>
-<% if current_user.client %>
+<% if current_user.admin %>
   <!-- Button to trigger modal -->
   <a data-toggle="modal" href="#myModal" class="btn btn-primary">Add Course</a>
   <a href="/courses.csv">Export CSV</a>
-   
+
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -44,7 +44,7 @@
       <th>Instructor</th>
       <th>Tot. Enr.</th>
       <th>ADA</th>
-      <% if current_user.client %>
+      <% if current_user.admin %>
         <th>Min Enr.</th>
         <th>Max Enr.</th>
         <th>Budget Code</th>
@@ -65,15 +65,15 @@
         <td><%= course.instructor.full_name if @course.instructor %></td>
         <td><%= course.total_enrolled %></td>
         <td><%= course.ada %></td>
-        <% if current_user.client %>
+        <% if current_user.admin %>
           <td><%=course.min_seats %></td>
           <td><%=course.max_seats %></td>
           <td><%=course.budget_code %></td>
-          <td><%= link_to "edit", edit_course_url(course) %> | 
+          <td><%= link_to "edit", edit_course_url(course) %> |
               <%= link_to "delete", course_url(course), :method => "delete" %>
           </td>
         <% end %>
-      </tr>   
+      </tr>
     <% end %>
   </tbody>
 </table>

@@ -1,17 +1,16 @@
 class LocationsController < ApplicationController
   before_filter :require_current_user!
   before_filter :require_admin!
-  before_filter :require_client!, :only => [:create, :edit, :update, :destroy]
-  
+
   def index
     @locations = Location.find_all_by_client_id(current_user.client_id)
     @location = Location.new
   end
-  
+
   def new
     @location = Location.new
   end
-  
+
   def create
     params[:location][:contact_phone] = params[:location][:contact_phone].split("").select{|x| x[/\d+/]}.join("")
     params[:location][:client_id] = current_user.client_id
@@ -23,11 +22,11 @@ class LocationsController < ApplicationController
       redirect_to locations_url, alert: @location.errors.full_messages
     end
   end
-  
+
   def edit
     @location = Location.find(params[:id])
   end
-  
+
   def update
     @location = Location.find(params[:id])
     params[:location].each_value { |value| value.strip! if value.is_a?(String) }
@@ -35,12 +34,12 @@ class LocationsController < ApplicationController
     @location.save!
     redirect_to locations_url
   end
-  
+
   def destroy
     @location = Location.find(params[:id])
     @location.delete
     redirect_to locations_url
   end
-  
-  
+
+
 end

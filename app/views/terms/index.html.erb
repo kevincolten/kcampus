@@ -1,7 +1,7 @@
-<% if current_user.client %>
+<% if current_user.admin %>
   <!-- Button to trigger modal -->
   <a data-toggle="modal" href="#myModal" class="btn btn-primary">Add Term</a>
-   
+
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -36,7 +36,7 @@
       <th>Registration Dates</th>
       <th>Term Dates</th>
       <th>Add-Drop Date</th>
-      <% if current_user.client %>
+      <% if current_user.admin %>
         <th></th>
       <% end %>
     </tr>
@@ -51,7 +51,7 @@
         <td><%= term.reg_dates %></td>
         <td><%= term.dates %></td>
         <td><%= "#{term.add_drop_end.strftime("%m/%d/%Y")}" %></td>
-        <% if current_user.client %>
+        <% if current_user.admin %>
           <td><%= link_to "edit", edit_term_url(term) %> |
              <%= link_to "delete", term_url(term), :method => "delete" %></td>
         <% end %>

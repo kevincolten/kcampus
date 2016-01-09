@@ -1,7 +1,7 @@
-<% if current_user.client %>
+<% if current_user.admin %>
   <!-- Button to trigger modal -->
   <a data-toggle="modal" href="#myModal" class="btn btn-primary">Add Location</a>
-   
+
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -34,7 +34,7 @@
       <th>Contact Name</th>
       <th>Contact Phone</th>
       <th>Contact Email</th>
-      <% if current_user.client %>
+      <% if current_user.admin %>
         <th></th>
       <% end %>
     </tr>
@@ -43,12 +43,12 @@
   <% @locations.each do |location| %>
     <tr>
       <td>
-        <%= location.name %> (<%= location.code %>) 
+        <%= location.name %> (<%= location.code %>)
       </td>
       <td>
-          <%= location.address %>, 
-          <%= location.city %>,  
-          <%= location.state %> 
+          <%= location.address %>,
+          <%= location.city %>,
+          <%= location.state %>
           <%= location.zipcode %>
         </td>
         <td>
@@ -58,11 +58,11 @@
           <span class="bfh-phone" data-format="(ddd) ddd-dddd" data-number="<%= location.contact_phone %>"></span>
         </td>
         <td>
-          <%= location.contact_email %> 
+          <%= location.contact_email %>
         </td>
-        <% if current_user.client %>
+        <% if current_user.admin %>
           <td>
-            <%= link_to "edit", edit_location_url(location) %> | 
+            <%= link_to "edit", edit_location_url(location) %> |
             <%= link_to "delete", location_url(location), :method => "delete" %>
           </td>
         <% end %>

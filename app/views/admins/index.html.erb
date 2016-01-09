@@ -1,7 +1,7 @@
-<% if current_user.client %>
+<% if current_user.admin %>
   <!-- Button to trigger modal -->
   <a data-toggle="modal" href="#myModal" class="btn btn-primary">Add Admin</a>
-   
+
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -34,7 +34,7 @@
       <th>Phone</th>
       <th>Email</th>
       <th>Mailbox</th>
-      <% if current_user.client %>
+      <% if current_user.admin %>
         <th></th>
       <% end %>
     </tr>
@@ -47,7 +47,7 @@
         <td><%= admin.phone %></td>
         <td><%= admin.email %></td>
         <td><%= admin.location.code if admin.location %></td>
-        <% if current_user.client %>
+        <% if current_user.admin %>
           <td><%= link_to "edit", edit_admin_url(admin) %> |
               <%= link_to "delete", admin_url(admin), :method => :delete %></td>
         <% end %>
