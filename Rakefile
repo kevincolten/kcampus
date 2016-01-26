@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-AccAdultEd::Application.load_tasks
+KCampus::Application.load_tasks

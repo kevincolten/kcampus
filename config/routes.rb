@@ -1,5 +1,5 @@
-AccAdultEd::Application.routes.draw do
-  
+KCampus::Application.routes.draw do
+
   resources :password_resets
 
   resources :clients, :only => [:new, :create]
@@ -20,7 +20,7 @@ AccAdultEd::Application.routes.draw do
   resource :term_toggler
   resource :attendance_export
   resources :terms
-  
+
   root :to => "courses#index"
-  
+
 end
